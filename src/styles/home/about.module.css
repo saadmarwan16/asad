@@ -1,0 +1,112 @@
+.detail {
+    display: grid;
+    grid-template-columns: 40px 1fr 60px;
+    row-gap: 16px;
+    column-gap: 4px;
+    align-items: center;
+    z-index: 2;
+    grid-template-areas: 
+    'number title icon'
+    '. details .';
+}
+
+.detailImage {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    background-position: center;
+    background-size: cover;
+    opacity: 1;
+}
+
+.detailImageOverlay  {
+    width: 100%;
+    height: 100%;
+    background-color: #0A0A0A;
+    opacity: 0;
+    transition: all 0.5s;
+}
+
+.detail span {
+    grid-area: number;
+    place-self: center start;
+}
+
+.detail .detailTitle {
+    grid-area: title;
+}
+
+.detail .detailTitle h3 {
+    display: inline-block;
+    position: relative;
+}
+
+.detail .detailTitle h3:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 100%;
+    height: 4px;
+    background-color: #00CC5F;
+
+}
+
+.detail svg {
+    grid-area: icon;
+    place-self: center end;
+}
+
+.detail p {
+    grid-area: details;
+}
+
+@media (min-width: 1024px) {
+    .detail {
+        grid-template-columns: 1fr;
+        align-content: center;
+        transition: all 0.5s;
+        transform-origin: left;
+        grid-template-areas: 
+        'number'
+        'title'
+        'details';
+    }
+
+    .detailLink {
+        transition: all 0.5s;
+    }
+
+    .detailLink:hover .detailImage {
+        right: 0;
+    }
+
+    .detailLink:hover {
+        padding-left: 40px;
+    }
+
+    .detailLink:hover .detailImageOverlay {
+        opacity: 0.5;
+    }
+
+    .detailLink span, .detailLink .detailTitle, .detailLink p {
+        transition: all 0.5s;
+        transform: translateY(56px);
+    }
+
+    .detailLink:hover span, .detailLink:hover .detailTitle, .detailLink:hover p {
+        transform: translateY(0px);
+        color: #FCFCFC;
+    }
+
+    .detailLink:hover h3 {
+        color: #FCFCFC;
+    }
+}
+
+@media (min-width: 1280px) {
+    .detailLink:hover {
+        padding-left: 80px;
+    }
+}

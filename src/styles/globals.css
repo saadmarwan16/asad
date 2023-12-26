@@ -1,3 +1,43 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.white {
+    color: #FCFCFC;
+}
+
+.black {
+    color: #0A0A0A;
+}
+
+.black-lighter {
+    color: #333333;
+}
+
+.azure {
+    color: #D2E3E3;
+}
+
+.green-lighter {
+    color: #00CC5F;
+}
+
+.green {
+    color: #007B3A;
+}
+
+.green-darker {
+    color: #005226;
+}
+
+.green-darker-darker {
+    color: #002913;
+}
+
+.blue {
+    color: #051F76;
+}
+
+.blue-lighter {
+    color: #3B67F7;
+}

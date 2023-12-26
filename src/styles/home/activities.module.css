@@ -1,0 +1,97 @@
+#activities {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    column-gap: 16px;
+    row-gap: 48px;
+}
+
+.activityImage {
+    position: relative;
+    height: 250px;
+    background-position: center;
+    background-size: cover;
+    /* background-image: url('/images/about-us.jpg'); */
+}
+
+.activityImage div {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #0A0A0A;
+    opacity: 0;
+    transition: all 0.5s;
+
+}
+
+.activity:hover .activityImage div {
+    opacity: 0.75;
+}
+
+.activity:hover h5 {
+    color: #002913;
+}
+
+.activityImage span:first-child {
+    transition: all 0.5s;
+    transform: translateY(-100px);
+}
+
+.activityImage span:last-child {
+    transition: all 0.5s;
+    transform: translateY(100px);
+}
+
+.activity:hover .activityImage span:first-child, .activity:hover .activityImage span:last-child {
+    transform: translateY(0px);
+}
+
+.viewActivity {
+    color: #FCFCFC;
+    position: relative;
+}
+
+.viewActivity:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -2px;
+    height: 1px;
+    background-color: #FCFCFC;
+}
+
+@media (min-width: 640px) {
+    #activities {
+        grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));
+        column-gap: 20px;
+        row-gap: 48px;
+    }
+
+    .activityImage {
+        height: 300px;
+    }
+}
+
+@media (min-width: 768px) {
+    #activities {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        column-gap: 28px;
+        row-gap: 48px;
+    }
+}
+
+@media (min-width: 1024px) {
+    #activities {
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        column-gap: 32px;
+        row-gap: 48px;
+    }
+}
+
+@media (min-width: 1680px) {
+    #activities {
+        grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+        column-gap: 40px;
+        row-gap: 48px;
+    }
+}
