@@ -15,11 +15,11 @@ export default async function Home() {
         </section>
         <About />
         <Activities />
-        <section className="h-screen bg-green-900 px-5 sm:px-8 md:px-10 lg:px-12">
+        <section className="h-screen bg-primary-200 px-5 sm:px-8 md:px-10 lg:px-12">
           <div className="mx-8 px-8">Contact us here</div>
         </section>
       </main>
-      <footer>Footer information here</footer>
+      <footer className="bg-primary-300">Footer information here</footer>
     </div>
   );
 }
