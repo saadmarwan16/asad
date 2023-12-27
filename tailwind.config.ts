@@ -18,7 +18,9 @@ export default {
         },
         base: {
           100: '#FCFCFC',
-          200: '#D2E3E3'
+          200: '#F2F7F7',
+          300: '#E6EFEF',
+          400: '#D2E3E3',
         },
         content: {
           100: '#333333',

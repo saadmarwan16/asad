@@ -2,42 +2,58 @@
 @tailwind components;
 @tailwind utilities;
 
-.white {
-    color: #FCFCFC;
+html {
+    font-size: 18px;
+    scroll-behavior: smooth;
 }
 
-.black {
-    color: #0A0A0A;
+@media (min-width: 768px) {
+    html {
+        font-size: 20px;
+    }
 }
 
-.black-lighter {
-    color: #333333;
+h1 {
+    font-size: 2.986rem;
+    font-weight: 900;
 }
 
-.azure {
-    color: #D2E3E3;
+h2 {
+    font-size: 2.488rem;
+    font-weight: 800;
 }
 
-.green-lighter {
-    color: #00CC5F;
+h3 {
+    font-size: 2.074rem;
+    font-weight: 700;
 }
 
-.green {
-    color: #007B3A;
+h4 {
+    font-size: 1.728rem;
+    font-weight: 600;
 }
 
-.green-darker {
-    color: #005226;
+h5 {
+    font-size: 1.44rem;
+    font-weight: 500;
 }
 
-.green-darker-darker {
-    color: #002913;
+h6 {
+    font-size: 1.2rem;
+    font-weight: 400;
 }
 
-.blue {
-    color: #051F76;
+p, span, div {
+    font-size: 1rem;
+    font-weight: 400;
 }
 
-.blue-lighter {
-    color: #3B67F7;
+small {
+    font-size: 0.833rem;
+    font-weight: 300;
+}
+
+.x-small {
+    font-size: 0.694rem;
+    font-weight: 200;
 }

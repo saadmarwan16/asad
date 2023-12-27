@@ -23,7 +23,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`font-sans ${montserrat.variable}`}>
+      <body
+        className={`font-sans ${montserrat.variable} bg-base-100 text-content-200`}
+      >
         <TRPCReactProvider cookies={cookies().toString()}>
           {children}
         </TRPCReactProvider>
