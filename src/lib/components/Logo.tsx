@@ -1,8 +1,13 @@
 import Image from "next/image";
+import { type FunctionComponent } from "react";
 
-const Logo = () => {
+interface LogoProps {
+  className: string;
+}
+
+const Logo: FunctionComponent<LogoProps> = ({ className }) => {
   return (
-    <div className="w-24 sm:w-28 md:w-32">
+    <div className={className}>
       <Image
         width={140}
         height={140}

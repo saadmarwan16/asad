@@ -1,5 +1,7 @@
+import Logo from "@asad/lib/components/Logo";
 import { activities } from "@asad/lib/data/home/activities";
 import Button from "@asad/lib/ui/Button";
+import { Urls } from "@asad/lib/urls";
 import styles from "@asad/styles/home/activities.module.css";
 import Link from "next/link";
 
@@ -11,11 +13,11 @@ const Activities = () => {
           <h4 className="text-2xl sm:text-3xl md:text-4xl">
             Recent Activities
           </h4>
-          <div className="hidden sm:block">
+          <Link href={Urls.ACTIVITIES} className="hidden sm:block">
             <Button variant="ghost" data-text="View all">
               View all
             </Button>
-          </div>
+          </Link>
         </div>
         <div id={styles.activities}>
           {activities.map((activity, index) => (
@@ -26,7 +28,9 @@ const Activities = () => {
                   style={{ backgroundImage: `url(${activity.image})` }}
                 >
                   <div className="flex flex-col items-center justify-center gap-4 text-xl">
-                    <span className="text-[#FCFCFC]">Logo</span>
+                    <span>
+                      <Logo className="w-16" />
+                    </span>
                     <span className={styles.viewActivity}>View more</span>
                   </div>
                 </div>
@@ -40,11 +44,14 @@ const Activities = () => {
             </Link>
           ))}
         </div>
-        <div className="flex items-center justify-end sm:hidden">
+        <Link
+          href={Urls.ACTIVITIES}
+          className="flex items-center justify-end sm:hidden"
+        >
           <Button variant="ghost" data-text="View all">
             View all
           </Button>
-        </div>
+        </Link>
       </div>
     </section>
   );

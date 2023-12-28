@@ -1,6 +1,7 @@
 import { type FunctionComponent } from "react";
 import Image from "next/image";
 import { Urls } from "@asad/lib/urls";
+import { RxHamburgerMenu } from "react-icons/rx";
 
 const Logo = () => {
   return (
@@ -23,18 +24,16 @@ const Header: FunctionComponent = () => {
         <div className="fixed left-8 z-10 flex items-center">
           <Logo />
         </div>
-        <div className="fixed right-8 z-10">
-          {/* TODO: Replace this with a hamburger */}
-          Hamburger here
+        <div className="fixed right-8 z-10 cursor-pointer">
+          <RxHamburgerMenu className="text-4xl text-content-200" />
         </div>
       </header>
       <header className="text-md flex h-20 items-center justify-between bg-white px-4 text-black sm:h-24 lg:hidden">
         <div className="flex items-center">
           <Logo />
         </div>
-        <div className="">
-          {/* TODO: Replace this with a hamburger */}
-          Hamburger here
+        <div className="cursor-pointer">
+          <RxHamburgerMenu className="text-3xl text-content-200 md:text-4xl" />
         </div>
       </header>
     </>

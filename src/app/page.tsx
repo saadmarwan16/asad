@@ -12,7 +12,7 @@ export default async function Home() {
       <Header />
       <Welcome />
       <main className="">
-        <section className="h-screen bg-red-900 px-5 sm:px-8 md:px-10 lg:px-12">
+        <section className="h-screen bg-primary-300 px-5 sm:px-8 md:px-10 lg:px-12">
           <div className="mx-8 px-8">Leadership info here</div>
         </section>
         <About />

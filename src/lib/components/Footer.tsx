@@ -10,7 +10,7 @@ const Footer = () => {
     <footer className="bg-primary-400 px-5 py-12 text-base-100 sm:px-8 md:px-10 md:py-14 lg:px-12">
       <div id={styles.footer} className="sm:mx-4 sm:px-4 md:mx-8 md:px-8">
         <a id={styles.logo} href={Urls.HOME} className="inline-block w-fit">
-          <Logo />
+          <Logo className="w-24 sm:w-28 md:w-32" />
         </a>
         <div id={styles.address} className="max-w-64 text-left lg:text-center">
           Çamlaraltı, Kınıklı Yerleşkesi, Üniversite Cd. No:11, Pamukkale,

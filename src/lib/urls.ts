@@ -4,4 +4,5 @@ export abstract class Urls {
     static AIMS = '/aims';
     static PRESIDENTS = '/presidents';
     static TIMELINE = '/timeline';
+    static ACTIVITIES = '/activities';
 }
