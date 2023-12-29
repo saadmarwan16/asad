@@ -12,7 +12,7 @@ const Footer = () => {
         <a id={styles.logo} href={Urls.HOME} className="inline-block w-fit">
           <Logo className="w-24 sm:w-28 md:w-32" />
         </a>
-        <div id={styles.address} className="max-w-64 text-left lg:text-center">
+        <div id={styles.address} className="max-w-64 lg:text-center">
           Çamlaraltı, Kınıklı Yerleşkesi, Üniversite Cd. No:11, Pamukkale,
           Turkey, Denizli 20160
         </div>
