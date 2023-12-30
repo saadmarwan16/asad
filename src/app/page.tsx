@@ -12,7 +12,7 @@ export default async function Home() {
     <div id={styles.mainContainer}>
       <Header />
       <Welcome />
-      <main className="">
+      <main>
         <Leadership />
         <About />
         <Activities />

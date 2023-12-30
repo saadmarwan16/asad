@@ -4,6 +4,7 @@ import { FaHeart } from "react-icons/fa";
 import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa6";
 import Logo from "./Logo";
 import { Urls } from "../urls";
+import dayjs from "dayjs";
 
 const Footer = () => {
   return (
@@ -43,7 +44,7 @@ const Footer = () => {
           </div>
         </div>
         <small id={styles.copyright} className="x-small">
-          © 2015-2023{" "}
+          © 2015-{dayjs().year()}{" "}
           <a href={Urls.HOME} className="hover:text-primary-100">
             ASAD.
           </a>{" "}
