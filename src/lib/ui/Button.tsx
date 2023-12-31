@@ -2,10 +2,10 @@ import { cva, type VariantProps } from "class-variance-authority";
 import type { ButtonHTMLAttributes, FunctionComponent } from "react";
 import styles from "@asad/styles/shared/button.module.css";
 
-const button = cva("rounded-lg  font-medium before:rounded-lg", {
+const button = cva("rounded-lg font-medium before:rounded-lg", {
   variants: {
     variant: {
-      primary: `bg-primary-100 text-primary-400 before:bg-primary-300 before:text-base-100`,
+      primary: `bg-primary-100 text-primary-400 before:bg-primary-200 before:text-base-100`,
       secondary: `bg-secondary-100 text-base-100 before:bg-secondary-200`,
       ghost: `bg-base-300 text-content-100 before:bg-base-400`,
     },

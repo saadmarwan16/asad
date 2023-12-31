@@ -1,0 +1,39 @@
+#leadership {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+#leadership > div:first-child {
+    grid-row-start: 1;
+    grid-column-start: 1;
+    grid-column-end: span 4;
+}
+
+#leadership > div:nth-child(2) {
+    grid-row-start: 1;
+    grid-column-start: 2;
+    grid-column-end: span 3;
+    z-index: -1;
+}
+
+#leadership > div:nth-child(3) {
+    grid-row-start: 1;
+    grid-column-start: 1;
+    grid-column-end: span 2;
+    place-self: center center;
+}
+
+#leadership > div:last-child {
+    grid-row-start: 1;
+    grid-column-start: 3;
+    grid-column-end: span 2;
+    place-self: center;
+}
+
+#leadership > div:nth-child(3) > a span, #leadership > div:last-child > a span {
+    transition: all 0.5s;
+}
+
+#leadership > div:nth-child(3) > a:hover span, #leadership > div:last-child > a:hover span {
+    transform: scale(1.25);
+}

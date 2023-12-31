@@ -27,7 +27,7 @@ const Activities = () => {
               href={Urls.ACTIVITY_DETAILS(activity.id)}
               className={styles.activity}
             >
-              <div className="flex flex-col gap-4 border">
+              <div className="flex flex-col gap-4">
                 <div
                   className={`${styles.activityImage}`}
                   style={{ backgroundImage: `url(${activity.image})` }}

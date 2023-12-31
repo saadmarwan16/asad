@@ -7,4 +7,5 @@ export abstract class Urls {
     static ACTIVITIES = '/activities';
     static ACTIVITY_DETAILS = (id: string) => `/activities/${id}`;
     static ELECTIONS = '/elections';
+    static EXECUTIVE_TEAM = '/executive-team';
 }

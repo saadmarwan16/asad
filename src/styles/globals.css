@@ -48,7 +48,7 @@ p, span, div {
     font-weight: 400;
 }
 
-small {
+small, label {
     font-size: 0.833rem;
     font-weight: 300;
 }

@@ -1,4 +1,5 @@
 import styles from "@asad/styles/home/welcome.module.css";
+import Image from "next/image";
 
 const Welcome = () => {
   return (
@@ -7,8 +8,44 @@ const Welcome = () => {
         id="welcome"
         className="relative -z-20 hidden h-screen bg-base-100 px-5 text-2xl lg:block"
       >
-        <div id={styles.large} className="fixed -z-10 -mx-5 w-full">
+        <div id={styles.large} className="fixed -z-10 -mx-5 !h-full w-full">
           <div className={styles.slider}>
+            <div className={`${styles.slide} ${styles.slide1}`}>
+              <Image
+                width={1075}
+                height={700}
+                src="/images/about-us.jpg"
+                alt="About us"
+              />
+            </div>
+            <div className={`${styles.slide} ${styles.slide2}`}>
+              <Image
+                width={1075}
+                height={700}
+                src="/images/aims.jpg"
+                alt="About us"
+              />
+            </div>
+
+            <div className={`${styles.slide} ${styles.slide3}`}>
+              <Image
+                width={1075}
+                height={700}
+                src="/images/presidents.jpg"
+                alt="About us"
+              />
+            </div>
+
+            <div className={`${styles.slide} ${styles.slide4}`}>
+              <Image
+                width={1075}
+                height={700}
+                src="/images/timeline.jpg"
+                alt="About us"
+              />
+            </div>
+          </div>
+          {/* <div className={styles.slider}>
             <div className={`${styles.slide} ${styles.slide1}`}>
               <img src="./images/about-us.jpg" />
             </div>
@@ -24,7 +61,7 @@ const Welcome = () => {
             <div className={`${styles.slide} ${styles.slide4}`}>
               <img src="./images/timeline.jpg" />
             </div>
-          </div>
+          </div> */}
           <div>
             <svg
               viewBox="0 0 1457 944"

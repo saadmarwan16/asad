@@ -33,6 +33,7 @@ const Contact = () => {
             reach out to us below.
           </p>
           <Button
+            variant="secondary"
             size="lg"
             data-text="Contact"
             onClick={() => toggleModal("contact")}
