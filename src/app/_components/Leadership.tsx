@@ -8,8 +8,24 @@ const Leadership = () => {
   return (
     <section id="leadership" className="text-base-100">
       <div id={styles.leadership} className="">
-        <div>
-          <svg viewBox="0 0 1457 804" xmlns="http://www.w3.org/2000/svg">
+        <div className="overflow-hidden md:hidden">
+          <svg
+            className="h-full w-auto"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="-183.3 17.8 417 577.1"
+          >
+            <path
+              fill="#005226"
+              d="M-183.3 595V391.7c0-24.6 20.7-47.7 38.2-65.1s40.5-27 65.1-27h213.8c26.8 0 48.6-21.9 48.6-48.6V18h-365.7v577z"
+            ></path>
+            <path
+              fill="#002913"
+              d="M214.7 17.8h-43.5v221.9c.3 26.7-21.3 48.4-48.6 48.6H-91.2c-24.6 0-47.7 9.6-65.1 27s-27 40.5-27 65.1v214.4h62.5V390.5c0-13 5-25.2 14.3-34.4 9.2-9.2 21.4-14.3 34.4-14.3h183.5v-.1h30.3c50.7 0 92.1-41.4 92.1-92.1V17.8h-19.1z"
+            ></path>
+          </svg>
+        </div>
+        <div className="hidden md:block">
+          <svg viewBox="0 0 1457 800" xmlns="http://www.w3.org/2000/svg">
             <g fill="none">
               <path
                 fill="#005226"
@@ -28,48 +44,50 @@ const Leadership = () => {
             </g>
           </svg>
         </div>
-        <div className="relative bg-gradient-to-tl from-primary-400 via-primary-300 to-content-200">
-          <div className="absolute bottom-0 left-0 right-0 top-0 bg-base-200 opacity-20 mix-blend-lighten"></div>
+        <div className="relative bg-opacity-30 bg-gradient-to-tl from-primary-400 via-primary-300 to-content-200">
+          <div className="mix-blend-mutiply absolute bottom-0 left-0 right-0 top-0 bg-base-200 opacity-30"></div>
           <Image
             width={1130}
             height={850}
             src="/images/timeline.jpg"
             alt="About us"
-            className="h-full w-full mix-blend-darken"
+            className="h-full w-full mix-blend-multiply"
           />
         </div>
-        <div className="h-full w-full px-28">
+        <div className="h-full w-full px-6 md:px-8 lg:px-20 xl:px-28">
           <Link
             href={Urls.EXECUTIVE_TEAM}
-            className="cur flex h-full w-full items-center justify-center hover:bg-primary-200 hover:bg-opacity-75"
+            className="flex h-full w-full items-center justify-start md:justify-center md:hover:bg-primary-200 md:hover:bg-opacity-75"
           >
-            <div className="flex w-full max-w-80 flex-col gap-6 text-center">
-              <h4 className="font-medium">Our executive team</h4>
+            <div className="flex w-full max-w-80 flex-col gap-2 text-left sm:gap-6 md:text-center">
+              <h5 className="font-medium sm:hidden">Our executive team</h5>
+              <h4 className="hidden font-medium sm:block">
+                Our executive team
+              </h4>
               <p>
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure
-                quisquam facere ad laudantium culpa, perferendis labore veniam
-                asperiores.
+                quisquam facere ad laudantium culpa.
               </p>
-              <span className="flex items-center justify-center gap-4 text-lg">
+              <span className="flex items-center justify-start gap-4 text-lg md:justify-center">
                 View more
                 <MdArrowForward className="text-2xl" />
               </span>
             </div>
           </Link>
         </div>
-        <div className="h-full w-full px-28">
+        <div className="h-full w-full px-6 md:px-8 lg:px-20 xl:px-28">
           <Link
             href="#"
-            className="flex h-full w-full items-center justify-center hover:bg-primary-200 hover:bg-opacity-75"
+            className="flex h-full w-full items-center justify-end md:justify-center md:hover:bg-primary-200 md:hover:bg-opacity-75"
           >
-            <div className="flex w-full max-w-80 flex-col gap-6 text-center">
-              <h4 className="font-medium">Our constitution</h4>
+            <div className="flex w-full max-w-80 flex-col gap-2 text-right sm:gap-6 md:text-center">
+              <h5 className="font-medium sm:hidden">Our constitution</h5>
+              <h4 className="hidden font-medium sm:block">Our constitution</h4>
               <p>
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure
-                quisquam facere ad laudantium culpa, perferendis labore veniam
-                asperiores.
+                quisquam facere ad laudantium culpa.
               </p>
-              <span className="flex items-center justify-center gap-4 text-lg">
+              <span className="flex items-center justify-end gap-4 text-lg md:justify-center">
                 Download
                 <MdArrowForward className="text-2xl" />
               </span>
