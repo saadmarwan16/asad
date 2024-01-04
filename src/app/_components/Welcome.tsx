@@ -1,55 +1,13 @@
-"use client";
-
 import styles from "@asad/styles/home/welcome.module.css";
-import Image from "next/image";
-import { TypeAnimation } from "react-type-animation";
+import WelcomeSmallDescription from "./WelcomeSmallDescription";
+import WelcomeLargeDescription from "./WelcomeLargeDescription";
 
 const Welcome = () => {
   return (
     <>
       <section id="welcome" className="bg-base-100 pt-6 lg:hidden">
         <div id={styles.small}>
-          <div className={`${styles.contentContainer} relative`}>
-            <h4 className="px-5 sm:px-16 md:px-24">
-              <div className="text-2xl font-medium sm:hidden sm:text-3xl">
-                African
-              </div>
-              <div className="text-2xl font-medium sm:hidden sm:text-3xl">
-                Students Association
-              </div>
-              <div className="hidden text-2xl font-medium sm:block sm:text-3xl">
-                African Students Association
-              </div>
-              <div className="text-2xl font-medium sm:text-3xl">in Denizli</div>
-            </h4>
-            <TypeAnimation
-              preRenderFirstString={true}
-              sequence={[
-                "We promote our rich African cultures in a positive manner",
-                2000,
-                "We support one another in times of difficulties",
-                2000,
-                "We propagate the spirit of togetherness",
-                2000,
-                "We protect the rights of all members",
-                2000,
-              ]}
-              speed={70}
-              omitDeletionAnimation
-              repeat={Infinity}
-              wrapper="div"
-              className="xs:text-xl 2xs:text-lg 2xs:h-24 xs:h-32 xs:p-8 absolute bottom-0 right-0 h-20 w-[66%] p-2 text-base sm:h-48 sm:p-12 sm:text-2xl sm:font-medium md:p-16"
-            />
-          </div>
-          <div className={styles.imageContainer}>
-            <Image
-              width={400}
-              height={500}
-              src="/images/about-us.jpg"
-              alt="About us"
-              className="h-full w-full"
-            />
-          </div>
+          <WelcomeSmallDescription />
           <div className={styles.svgContainer}>
             <svg
               className="h-full w-auto md:h-auto md:w-full"
@@ -73,60 +31,8 @@ const Welcome = () => {
         id="welcome"
         className="relative -z-20 hidden h-screen bg-base-100 px-5 text-2xl lg:block"
       >
-        <div id={styles.large} className="fixed -z-10 -mx-5 !h-full w-full">
-          <div className={styles.slider}>
-            <div className={`${styles.slide} ${styles.slide1}`}>
-              <Image
-                width={1075}
-                height={700}
-                src="/images/about-us.jpg"
-                alt="About us"
-              />
-            </div>
-            {/* <div className={`${styles.slide} ${styles.slide2}`}>
-              <Image
-                width={1075}
-                height={700}
-                src="/images/aims.jpg"
-                alt="About us"
-              />
-            </div>
-
-            <div className={`${styles.slide} ${styles.slide3}`}>
-              <Image
-                width={1075}
-                height={700}
-                src="/images/presidents.jpg"
-                alt="About us"
-              />
-            </div>
-
-            <div className={`${styles.slide} ${styles.slide4}`}>
-              <Image
-                width={1075}
-                height={700}
-                src="/images/timeline.jpg"
-                alt="About us"
-              />
-            </div> */}
-          </div>
-          {/* <div className={styles.slider}>
-            <div className={`${styles.slide} ${styles.slide1}`}>
-              <img src="./images/about-us.jpg" />
-            </div>
-
-            <div className={`${styles.slide} ${styles.slide2}`}>
-              <img src="./images/aims.jpg" />
-            </div>
-
-            <div className={`${styles.slide} ${styles.slide3}`}>
-              <img src="./images/presidents.jpg" />
-            </div>
-
-            <div className={`${styles.slide} ${styles.slide4}`}>
-              <img src="./images/timeline.jpg" />
-            </div>
-          </div> */}
+        <div id={styles.large} className="fixed -mx-5 !h-full w-full">
+          <WelcomeLargeDescription />
           <div>
             <svg
               viewBox="0 0 1457 944"
@@ -146,33 +52,6 @@ const Welcome = () => {
                 fill="#F2F7F7"
               ></path>
             </svg>
-          </div>
-          <div className="px-36 pt-24">
-            <h2 className="flex flex-col gap-2">
-              <div className="text-3xl font-medium xl:text-4xl">
-                Afican Students Association
-              </div>
-              <div className="text-3xl font-medium xl:text-4xl">in Denizli</div>
-            </h2>
-            <TypeAnimation
-              preRenderFirstString={true}
-              sequence={[
-                "We promote our rich African cultures in a positive manner",
-                2000,
-                "We support one another in times of difficulties",
-                2000,
-                "We propagate the spirit of togetherness",
-                2000,
-                "We protect the rights of all members",
-                2000,
-              ]}
-              speed={70}
-              style={{ fontWeight: 500 }}
-              omitDeletionAnimation
-              repeat={Infinity}
-              wrapper="div"
-              className="lg:mt-6 lg:max-w-[28rem] lg:text-xl xl:mt-16 xl:max-w-[32rem] xl:text-2xl"
-            />
           </div>
         </div>
       </section>

@@ -1,4 +1,3 @@
-import styles from "@asad/styles/home.module.css";
 import Header from "./_components/Header";
 import Welcome from "./_components/Welcome";
 import About from "./_components/About";
@@ -9,7 +8,7 @@ import Leadership from "./_components/Leadership";
 
 export default async function Home() {
   return (
-    <div id={styles.mainContainer}>
+    <div>
       <Header />
       <Welcome />
       <main>
