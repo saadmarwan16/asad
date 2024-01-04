@@ -1,0 +1,73 @@
+#workTogetherForm, #contactForm {
+    display: grid;
+    row-gap: 2rem;
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+    'title'
+    'name'
+    'company'
+    'email'
+    'message'
+    'submit';
+}
+
+#contactForm {
+    grid-template-areas: 
+    'title'
+    'name'
+    'phone'
+    'email'
+    'message'
+    'submit';
+}
+
+#workTogetherForm h4, #workTogetherForm h5, #contactForm h4, #contactForm h5 {
+    grid-area: title;
+}
+
+#name {
+    grid-area: name;
+}
+
+#company {
+    grid-area: company;
+}
+
+#phone {
+    grid-area: phone;
+}
+
+#email {
+    grid-area: email;
+}
+
+#message {
+    grid-area: message;
+}
+
+#submit {
+    grid-area: submit;
+    justify-self: end;
+}
+
+@media (min-width: 768px) {
+    #workTogetherForm, #contactForm {
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 1rem;
+        grid-template-areas: 
+        'title title'
+        'name company'
+        'email email'
+        'message message'
+        '. submit';
+    }
+
+    #contactForm {
+        grid-template-areas: 
+        'title title'
+        'name phone'
+        'email email'
+        'message message'
+        '. submit';
+    }
+}

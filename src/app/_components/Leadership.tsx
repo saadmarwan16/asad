@@ -77,7 +77,8 @@ const Leadership = () => {
         </div>
         <div className="h-full w-full px-6 md:px-8 lg:px-20 xl:px-28">
           <Link
-            href="#"
+            href="/ASAD Constitution.pdf"
+            target="_blank"
             className="flex h-full w-full items-center justify-end md:justify-center md:hover:bg-primary-200 md:hover:bg-opacity-75"
           >
             <div className="flex w-full max-w-80 flex-col gap-2 text-right sm:gap-6 md:text-center">
@@ -88,7 +89,7 @@ const Leadership = () => {
                 quisquam facere ad laudantium culpa.
               </p>
               <span className="flex items-center justify-end gap-4 text-lg md:justify-center">
-                Download
+                View more
                 <MdArrowForward className="text-2xl" />
               </span>
             </div>

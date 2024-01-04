@@ -10,6 +10,8 @@ import {
 import { Modal } from "react-responsive-modal";
 import "react-responsive-modal/styles.css";
 import { IoMdClose } from "react-icons/io";
+import WorkTogetherContent from "./WorkTogetherContent";
+import ContactUsContent from "./ContactUsContent";
 
 export interface IModalContext {
   content: IModalContent;
@@ -67,8 +69,8 @@ const ModalContextProvider: FunctionComponent<PropsWithChildren> = ({
         center
       >
         <div className="mt-8">
-          {content === "work-together" && <h3>Let's work together</h3>}
-          {content === "contact" && <h3>Contact Us</h3>}
+          {content === "work-together" && <WorkTogetherContent />}
+          {content === "contact" && <ContactUsContent />}
         </div>
       </Modal>
       {children}

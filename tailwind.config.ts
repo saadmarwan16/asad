@@ -27,6 +27,10 @@ export default {
           200: '#0A0A0A'
         }
       },
+      screens: {
+        '2xs': '320px',
+        'xs': '475px',
+      },
       fontFamily: {
         sans: ["var(--font-sans)", ...fontFamily.sans],
       },

@@ -1,11 +1,7 @@
-"use client";
-
-import { useModalContext } from "@asad/lib/components/ModalContextProvider";
-import Button from "@asad/lib/ui/Button";
+import ConnectButton from "@asad/lib/components/ConnectButton";
+import ContactButton from "@asad/lib/components/ContactButton";
 
 const Contact = () => {
-  const { toggleModal } = useModalContext();
-
   return (
     <section
       id="contact"
@@ -18,13 +14,7 @@ const Contact = () => {
             If you have anything related to Africa or Africans in Denizli. We
             are ready to help you see through it
           </p>
-          <Button
-            size="lg"
-            data-text="Connect"
-            onClick={() => toggleModal("work-together")}
-          >
-            Connect
-          </Button>
+          <ConnectButton />
         </div>
         <div className="flex max-w-72 grow flex-col items-center gap-6 text-center sm:gap-8 md:justify-between">
           <h3 className="font-medium">Contact us</h3>
@@ -32,14 +22,7 @@ const Contact = () => {
             If you have any enquiries, suggestions or complaints. Feel free to
             reach out to us below.
           </p>
-          <Button
-            variant="secondary"
-            size="lg"
-            data-text="Contact"
-            onClick={() => toggleModal("contact")}
-          >
-            Contact
-          </Button>
+          <ContactButton />
         </div>
       </div>
     </section>
