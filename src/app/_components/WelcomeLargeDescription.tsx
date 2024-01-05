@@ -42,7 +42,7 @@ const WelcomeLargeDescription = () => {
               width={1075}
               height={700}
               src="/images/aims.jpg"
-              alt="About us"
+              alt="Aims"
               className="h-full w-full object-cover"
             />
           )}
@@ -51,7 +51,7 @@ const WelcomeLargeDescription = () => {
               width={1075}
               height={700}
               src="/images/presidents.jpg"
-              alt="About us"
+              alt="Presidents"
               className="h-full w-full object-cover"
             />
           )}
@@ -60,7 +60,7 @@ const WelcomeLargeDescription = () => {
               width={1075}
               height={700}
               src="/images/timeline.jpg"
-              alt="About us"
+              alt="Timeline"
               className="h-full w-full object-cover"
             />
           )}

@@ -1,8 +1,8 @@
-import Header from "./_components/Header";
+import Header from "../lib/components/Header";
 import Welcome from "./_components/Welcome";
 import About from "./_components/About";
 import Activities from "./_components/Activities";
-import Contact from "./_components/Contact";
+import Contact from "../lib/components/Contact";
 import Footer from "@asad/lib/components/Footer";
 import Leadership from "./_components/Leadership";
 

@@ -11,7 +11,7 @@ const About = () => {
       className="bg-base-100 px-5 pb-4 pt-12 text-content-200 sm:px-8 md:px-10 lg:px-12 lg:py-0"
     >
       <div className="relative sm:mx-4 sm:px-4 md:mx-8 md:px-8">
-        <h4 className="max-[767]:text-2xl font-medium max-[639px]:text-xl lg:absolute lg:z-[1] lg:mt-14 lg:max-w-[750px]">
+        <h4 className="text-lg font-medium 2xs:text-xl xs:text-2xl lg:absolute lg:z-[1] lg:mt-14 lg:max-w-[750px] lg:text-3xl">
           Quidem quisquam blanditiis, doloremque similique optio dolorum non nam
           expedita, voluptates, dolor qui placeat minus nulla laboriosam sequi
           id veniam enim commodi?

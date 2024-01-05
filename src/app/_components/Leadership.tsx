@@ -1,4 +1,4 @@
-import { Urls } from "@asad/lib/urls";
+import { Routes } from "@asad/lib/routes";
 import styles from "@asad/styles/home/leadership.module.css";
 import Image from "next/image";
 import Link from "next/link";
@@ -56,7 +56,7 @@ const Leadership = () => {
         </div>
         <div className="h-full w-full px-6 md:px-8 lg:px-20 xl:px-28">
           <Link
-            href={Urls.EXECUTIVE_TEAM}
+            href={Routes.EXECUTIVE_TEAM}
             className="flex h-full w-full items-center justify-start md:justify-center md:hover:bg-primary-200 md:hover:bg-opacity-75"
           >
             <div className="flex w-full max-w-80 flex-col gap-2 text-left sm:gap-6 md:text-center">

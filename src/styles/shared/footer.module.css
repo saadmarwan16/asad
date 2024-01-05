@@ -30,6 +30,24 @@
     grid-area: me;
 }
 
+.love {
+    animation: scale 0.75s infinite;
+}
+
+@keyframes scale {
+    0%, 10% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.75);
+    }
+
+    90%, 100% {
+        transform: scale(1);
+    }
+}
+
 @media (min-width: 640px) {
     #footer {
         grid-template-columns: repeat(2, 1fr);

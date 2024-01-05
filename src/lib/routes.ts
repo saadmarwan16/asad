@@ -1,4 +1,4 @@
-export abstract class Urls {
+export abstract class Routes {
     static HOME = '/';
     static ABOUT = '/about-us';
     static AIMS = '/aims';

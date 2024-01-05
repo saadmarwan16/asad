@@ -1,4 +1,4 @@
-import { Urls } from "@asad/lib/urls";
+import { Routes } from "@asad/lib/routes";
 
 interface INavItem {
     title: string;
@@ -7,8 +7,8 @@ interface INavItem {
 
 export const nav: INavItem[] = [
     {
-        title: 'Welcome',
-        link: '#welcome'
+        title: 'Home',
+        link: Routes.HOME
     },
     {
         title: 'Leadership',
@@ -28,6 +28,6 @@ export const nav: INavItem[] = [
     },
     {
         title: 'Elections',
-        link: Urls.ELECTIONS
+        link: Routes.ELECTIONS
     }
 ]

@@ -53,6 +53,9 @@ const ModalContextProvider: FunctionComponent<PropsWithChildren> = ({
         }}
         closeOnOverlayClick={false}
         closeIcon={<IoMdClose className="text-3xl" onClick={toggleModal} />}
+        classNames={{
+          modalContainer: "no-scrollbar",
+        }}
         styles={{
           modalContainer: {
             width: "90%",

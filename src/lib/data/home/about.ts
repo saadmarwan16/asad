@@ -1,4 +1,4 @@
-import { Urls } from "@asad/lib/urls";
+import { Routes } from "@asad/lib/routes";
 
 export interface IAbout {
     number: string;
@@ -11,30 +11,30 @@ export interface IAbout {
 export const about: IAbout[] = [
     {
         number: '01',
-        title: 'About us',
+        title: 'About',
         details: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-        url: Urls.ABOUT,
+        url: Routes.ABOUT,
         image: '/images/about-us.jpg'
     },
     {
         number: '02',
         title: 'Aims',
         details: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-        url: Urls.AIMS,
+        url: Routes.AIMS,
         image: '/images/aims.jpg'
     },
     {
         number: '03',
         title: 'Presidents',
         details: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-        url: Urls.PRESIDENTS,
+        url: Routes.PRESIDENTS,
         image: '/images/presidents.jpg'
     },
     {
         number: '04',
         title: 'Timeline',
         details: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-        url: Urls.TIMELINE,
+        url: Routes.TIMELINE,
         image: '/images/timeline.jpg'
     },
 ]

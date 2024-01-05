@@ -16,7 +16,7 @@ const button = cva("rounded-lg font-medium before:rounded-lg", {
     },
     disabled: {
       true: "bg-base-300 cursor-not-allowed text-primary-400",
-      false: `${styles.filled}`,
+      false: `${styles.btn}`,
     },
   },
   defaultVariants: {

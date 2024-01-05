@@ -3,14 +3,14 @@ import Link from "next/link";
 import { FaHeart } from "react-icons/fa";
 import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa6";
 import Logo from "./Logo";
-import { Urls } from "../urls";
+import { Routes } from "../routes";
 import dayjs from "dayjs";
 
 const Footer = () => {
   return (
     <footer className="bg-primary-400 px-5 py-12 text-base-100 sm:px-8 md:px-10 md:py-14 lg:px-12">
       <div id={styles.footer} className="sm:mx-4 sm:px-4 md:mx-8 md:px-8">
-        <a id={styles.logo} href={Urls.HOME} className="inline-block w-fit">
+        <a id={styles.logo} href={Routes.HOME} className="inline-block w-fit">
           <Logo className="w-24 sm:w-28 md:w-32" />
         </a>
         <div id={styles.address} className="max-w-64 lg:text-center">
@@ -45,14 +45,17 @@ const Footer = () => {
         </div>
         <small id={styles.copyright} className="x-small">
           © 2015-{dayjs().year()}{" "}
-          <a href={Urls.HOME} className="hover:text-primary-100">
+          <a href={Routes.HOME} className="hover:text-primary-100">
             ASAD.
           </a>{" "}
           All rights reserved.
         </small>
         <span id={styles.me}>
           Made with lots of{" "}
-          <FaHeart className="mx-1 inline-block text-red-600 md:mx-2" /> by
+          <FaHeart
+            className={`${styles.love} mx-1 inline-block text-red-600 md:mx-2`}
+          />{" "}
+          by
           <Link
             href="https://www.marwansaad.me/"
             target="_blank"

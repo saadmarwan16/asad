@@ -1,10 +1,10 @@
-.filled {
+.btn {
     position: relative;
     transition: all 0.5s;
     overflow: hidden;
 }
 
-.filled:before {
+.btn:before {
     content: attr(data-text);
     position: absolute;
     left: 0;
@@ -19,11 +19,11 @@
     opacity: 0;
 }
 
-.filled:hover {
+.btn:hover {
     transform: scale(1.05);
 }
 
-.filled:hover:before {
+.btn:hover:before {
     transform: scale(1);
     opacity: 1;
 }

@@ -1,7 +1,7 @@
 import Logo from "@asad/lib/components/Logo";
 import { activities } from "@asad/lib/data/home/activities";
 import Button from "@asad/lib/ui/Button";
-import { Urls } from "@asad/lib/urls";
+import { Routes } from "@asad/lib/routes";
 import styles from "@asad/styles/home/activities.module.css";
 import Link from "next/link";
 
@@ -14,7 +14,7 @@ const Activities = () => {
       <div className="flex flex-col gap-8 sm:mx-4 sm:gap-10 sm:px-4 md:mx-8 md:gap-12 md:px-8 lg:gap-14">
         <div className="flex items-center justify-between">
           <h4>Recent Activities</h4>
-          <Link href={Urls.ACTIVITIES} className="hidden sm:block">
+          <Link href={Routes.ACTIVITIES} className="hidden sm:block">
             <Button variant="ghost" data-text="View all">
               View all
             </Button>
@@ -24,7 +24,7 @@ const Activities = () => {
           {activities.map((activity) => (
             <Link
               key={activity.id}
-              href={Urls.ACTIVITY_DETAILS(activity.id)}
+              href={Routes.ACTIVITY_DETAILS(activity.id)}
               className={styles.activity}
             >
               <div className="flex flex-col gap-4">
@@ -48,7 +48,7 @@ const Activities = () => {
           ))}
         </div>
         <Link
-          href={Urls.ACTIVITIES}
+          href={Routes.ACTIVITIES}
           className="flex items-center justify-end sm:hidden"
         >
           <Button variant="ghost" data-text="View all">

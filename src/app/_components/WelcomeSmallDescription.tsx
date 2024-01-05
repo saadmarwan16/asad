@@ -3,7 +3,7 @@
 import styles from "@asad/styles/home/welcome.module.css";
 import Image from "next/image";
 import { TypeAnimation } from "react-type-animation";
-import { motion, useAnimation } from "framer-motion";
+import { useAnimation } from "framer-motion";
 import { useState } from "react";
 
 const WelcomeSmallDescription = () => {
@@ -14,7 +14,6 @@ const WelcomeSmallDescription = () => {
     void control.start({
       opacity: [1, 0.75],
       transition: { duration: 25 },
-      position: "static",
     });
 
     setImageIdx((prev) => (prev + 1) % 4);
@@ -22,7 +21,6 @@ const WelcomeSmallDescription = () => {
     void control.start({
       opacity: [0.75, 1],
       transition: { duration: 1 },
-      position: "static",
     });
   };
 
@@ -74,45 +72,40 @@ const WelcomeSmallDescription = () => {
         />
       </div>
       <div className={`${styles.imageContainer} h-full overflow-hidden`}>
-        {/* <motion.div className="h-full overflow-hidden" animate={control}> */}
-        <motion.div className={`${styles.slider} h-full overflow-hidden`}>
+        <div className={`${styles.slider} h-full overflow-hidden`}>
           {imageIdx === 0 && (
             <Image
-              width={400}
-              height={500}
               src="/images/about-us.jpg"
               alt="About us"
+              fill
               className="h-full w-full object-cover"
             />
           )}
           {imageIdx === 1 && (
             <Image
-              width={400}
-              height={500}
               src="/images/aims.jpg"
               alt="Aims"
+              fill
               className="h-full w-full object-cover"
             />
           )}
           {imageIdx === 2 && (
             <Image
-              width={400}
-              height={500}
               src="/images/presidents.jpg"
               alt="Presidents"
+              fill
               className="h-full w-full object-cover"
             />
           )}
           {imageIdx === 3 && (
             <Image
-              width={400}
-              height={500}
               src="/images/timeline.jpg"
               alt="Timeline"
+              fill
               className="h-full w-full object-cover"
             />
           )}
-        </motion.div>
+        </div>
       </div>
     </>
   );
