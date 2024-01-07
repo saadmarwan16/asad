@@ -1,8 +1,13 @@
+import ExecutivePresidentTimelineActivitiesWrapper from "@asad/lib/components/ExecutivePresidentTimelineActivitiesWrapper";
+
 const ExecutiveTeam = () => {
   return (
-    <div className="flex h-screen items-center justify-center text-4xl">
-      Executive Team page is coming soon
-    </div>
+    <ExecutivePresidentTimelineActivitiesWrapper title="Executive team">
+      <h4 className="max-w-[640px] font-medium">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur
+        vitae eligendi harum alias.
+      </h4>
+    </ExecutivePresidentTimelineActivitiesWrapper>
   );
 };
 
