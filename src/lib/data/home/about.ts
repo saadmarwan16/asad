@@ -12,29 +12,29 @@ export const about: IAbout[] = [
     {
         number: '01',
         title: 'About',
-        details: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+        details: 'Bridging Cultures, Building an Inclusive Community in Denizli.',
         url: Routes.ABOUT,
-        image: '/images/about-us.jpg'
+        image: '/images/about.png'
     },
     {
         number: '02',
         title: 'Aims',
-        details: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+        details: 'Nurturing Inclusivity, Enriching Experiences, Fostering Growth.',
         url: Routes.AIMS,
-        image: '/images/aims.jpg'
+        image: '/images/aims.png'
     },
     {
         number: '03',
         title: 'Presidents',
-        details: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+        details: 'Our Legacy Leaders: Guiding with Vision, Leading with Excellence.',
         url: Routes.PRESIDENTS,
         image: '/images/presidents.jpg'
     },
     {
         number: '04',
         title: 'Timeline',
-        details: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+        details: 'Empowering Unity, Celebrating Diversity: Our Journey Through Time.',
         url: Routes.TIMELINE,
-        image: '/images/timeline.jpg'
+        image: '/images/timeline.png'
     },
 ]

@@ -4,9 +4,8 @@ const Aims = () => {
   return (
     <AboutAimsWrapper
       title="Aims"
-      description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi
-    culpa eveniet voluptatum"
-      url="/images/aims.jpg"
+      description="Nurturing Inclusivity, Enriching Experiences, Fostering Growth."
+      url="/images/aims-large.png"
       alt="Aims"
     >
       <h4>Aims page is coming soon</h4>

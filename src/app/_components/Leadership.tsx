@@ -65,8 +65,8 @@ const Leadership = () => {
                 Our executive team
               </h4>
               <p>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure
-                quisquam facere ad laudantium culpa.
+                Their vision, expertise and dedication have propelled the
+                association to excellence and new heights.
               </p>
               <span className="flex items-center justify-start gap-4 text-lg md:justify-center">
                 View more
@@ -85,8 +85,8 @@ const Leadership = () => {
               <h5 className="font-medium sm:hidden">Our constitution</h5>
               <h4 className="hidden font-medium sm:block">Our constitution</h4>
               <p>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure
-                quisquam facere ad laudantium culpa.
+                These will serve as the legal framework to ensure proper
+                conduct, furthering the well-being of our members
               </p>
               <span className="flex items-center justify-end gap-4 text-lg md:justify-center">
                 View more
