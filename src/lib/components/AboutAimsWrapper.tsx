@@ -70,9 +70,7 @@ const AboutAimsWrapper: FunctionComponent<AboutAimsWrapperProps> = ({
         </div>
 
         <div className="-mx-4 pt-16 sm:-mx-12 md:-mx-16 lg:-mx-28 lg:pt-28 xl:-mx-32">
-          <div className="bg-base-200 px-4 py-16 sm:px-12 md:px-16 lg:px-28 xl:px-32">
-            {children}
-          </div>
+          {children}
         </div>
       </main>
       <Contact />
