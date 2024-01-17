@@ -1,7 +1,7 @@
 import ExecutivePresidentTimelineActivitiesWrapper from "@asad/lib/components/ExecutivePresidentTimelineActivitiesWrapper";
-import { activities } from "@asad/lib/data/home/activities";
 import styles from "@asad/styles/shared/executivepresidentactivities.module.css";
 import PresidentCard from "./_components/PresidentCard";
+import { presidents } from "@asad/lib/data/home/presidents";
 
 const Presidents = () => {
   return (
@@ -11,8 +11,8 @@ const Presidents = () => {
     >
       <h6>Filter</h6>
       <div id={styles.cards}>
-        {activities.map((activity) => (
-          <PresidentCard activity={activity} />
+        {presidents.map((president) => (
+          <PresidentCard president={president} />
         ))}
       </div>
     </ExecutivePresidentTimelineActivitiesWrapper>

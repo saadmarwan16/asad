@@ -1,8 +1,8 @@
 import ExecutivePresidentTimelineActivitiesWrapper from "@asad/lib/components/ExecutivePresidentTimelineActivitiesWrapper";
-import { activities } from "@asad/lib/data/home/activities";
 import styles from "@asad/styles/shared/executivepresidentactivities.module.css";
 
 import ExecutiveMemberCard from "./_components/ExecutiveMemberCard";
+import { executives } from "@asad/lib/data/home/executives";
 
 const ExecutiveTeam = () => {
   return (
@@ -13,8 +13,8 @@ const ExecutiveTeam = () => {
     >
       <h6>Filter</h6>
       <div id={styles.cards}>
-        {activities.map((activity) => (
-          <ExecutiveMemberCard activity={activity} />
+        {executives.map((executive) => (
+          <ExecutiveMemberCard executive={executive} />
         ))}
       </div>
     </ExecutivePresidentTimelineActivitiesWrapper>
