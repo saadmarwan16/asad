@@ -11,8 +11,7 @@ const Activities = () => {
   return (
     <ExecutivePresidentTimelineActivitiesWrapper
       title="Activities"
-      description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur
-    vitae eligendi harum alias."
+      description="Our year-round activities focus on cultural exchange, academic support, and community building among African students in Denizli."
     >
       <h6>Filter</h6>
       <div id={styles.cards}>

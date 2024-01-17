@@ -36,7 +36,7 @@ const ExecutivePresidentTimelineActivitiesWrapper: FunctionComponent<
         </div>
       </div>
       <main className="px-4 pb-16 pt-4 sm:px-12 md:px-16 lg:px-28 lg:py-28 xl:px-32">
-        <h4 className="max-w-[640px] font-medium">{description}</h4>
+        <h4 className="max-w-[730px] font-medium">{description}</h4>
         <div className="flex flex-col gap-8 pt-12 sm:pt-14 md:pt-16 lg:pt-20">
           {children}
         </div>
