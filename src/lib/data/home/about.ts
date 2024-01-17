@@ -28,7 +28,7 @@ export const about: IAbout[] = [
         title: 'Presidents',
         details: 'Our Legacy Leaders: Guiding with Vision, Leading with Excellence.',
         url: Routes.PRESIDENTS,
-        image: '/images/presidents.jpg'
+        image: '/images/presidents.png'
     },
     {
         number: '04',

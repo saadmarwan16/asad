@@ -11,23 +11,23 @@ export const nav: INavItem[] = [
         link: Routes.HOME
     },
     {
-        title: 'Leadership',
-        link: '#leadership'
+        title: 'Executive team',
+        link: Routes.EXECUTIVE_TEAM
     },
     {
         title: 'About',
-        link: '#about'
+        link: Routes.ABOUT
+    },
+    {
+        title: 'Timeline',
+        link: Routes.TIMELINE
     },
     {
         title: 'Activities',
-        link: '#activities'
-    },
-    {
-        title: 'Contact',
-        link: '#contact'
+        link: Routes.ACTIVITIES
     },
     {
         title: 'Elections',
         link: Routes.ELECTIONS
-    }
+    },
 ]

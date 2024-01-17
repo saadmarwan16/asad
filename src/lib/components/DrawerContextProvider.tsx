@@ -47,7 +47,7 @@ const DrawerContextProvider: FunctionComponent<PropsWithChildren> = ({
         onClose={toggleDrawer}
         className="!w-full !max-w-96"
       >
-        <nav className="h-full p-4 sm:p-6 md:p-8">
+        <nav className="h-full overflow-y-scroll p-4 sm:p-6 md:p-8">
           <div className="mb-14 flex justify-end">
             <IoMdClose
               className="cursor-pointer text-5xl"

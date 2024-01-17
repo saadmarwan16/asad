@@ -13,13 +13,13 @@ const WelcomeLargeDescription = () => {
   useEffect(() => {
     const changeSliderImageIdx = () => {
       void control.start({
-        opacity: [1, 0.75],
-        transition: { duration: 25 },
+        opacity: [1, 0.8],
+        transition: { duration: 0.5 },
       });
 
       void control.start({
-        opacity: [0.75, 1],
-        transition: { duration: 1 },
+        opacity: [0.8, 1],
+        transition: { duration: 0.5 },
       });
     };
 
@@ -32,44 +32,51 @@ const WelcomeLargeDescription = () => {
 
   return (
     <>
-      <div className="h-full">
-        <motion.div className={styles.slider}>
-          {imageIdx === 0 && (
-            <Image
-              width={1075}
-              height={700}
-              src="/images/about-us.jpg"
-              alt="About us"
-              className="h-full w-full object-cover"
-            />
-          )}
-          {imageIdx === 1 && (
-            <Image
-              width={1075}
-              height={700}
-              src="/images/aims.jpg"
-              alt="Aims"
-              className="h-full w-full object-cover"
-            />
-          )}
-          {imageIdx === 2 && (
-            <Image
-              width={1075}
-              height={700}
-              src="/images/presidents.jpg"
-              alt="Presidents"
-              className="h-full w-full object-cover"
-            />
-          )}
-          {imageIdx === 3 && (
-            <Image
-              width={1075}
-              height={700}
-              src="/images/timeline.jpg"
-              alt="Timeline"
-              className="h-full w-full object-cover"
-            />
-          )}
+      <div className="h-full overflow-hidden">
+        <motion.div
+          className={`${styles.slider} h-full overflow-hidden`}
+          animate={control}
+        >
+          <Image
+            width={1075}
+            height={700}
+            src="/images/positive_culture.png"
+            alt="People wearing African cultural clothes at an event"
+            priority
+            className={`${
+              imageIdx !== 0 && "hidden"
+            } h-full w-full object-cover`}
+          />
+          <Image
+            width={1075}
+            height={700}
+            src="/images/bridging_cultures.jpg"
+            alt="A study group of people learning English speaking"
+            priority
+            className={`${
+              imageIdx !== 1 && "hidden"
+            } h-full w-full object-cover`}
+          />
+          <Image
+            width={1075}
+            height={700}
+            src="/images/togetherness.jpg"
+            alt="Fifteen guys wearing a football jersey preparing to start a football match"
+            priority
+            className={`${
+              imageIdx !== 2 && "hidden"
+            } h-full w-full object-cover`}
+          />
+          <Image
+            width={1075}
+            height={700}
+            src="/images/transition.jpg"
+            alt="About 20 people on a fun tour"
+            priority
+            className={`${
+              imageIdx !== 3 && "hidden"
+            } h-full w-full object-cover`}
+          />
         </motion.div>
       </div>
       <div className="px-36 pt-24">
@@ -85,13 +92,13 @@ const WelcomeLargeDescription = () => {
             "We promote our rich African cultures in a positive manner",
             3000,
             () => setImageIdx(1),
-            "We support one another in times of difficulties",
+            "We bridge the gap between the African and Turkish cultures",
             3000,
             () => setImageIdx(2),
             "We propagate the spirit of togetherness",
             3000,
             () => setImageIdx(3),
-            "We protect the rights of all members",
+            "We integrate our new members into the Turkish society",
             3000,
             () => setImageIdx(0),
           ]}

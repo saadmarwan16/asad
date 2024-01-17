@@ -47,10 +47,9 @@ const Leadership = () => {
         <div className="relative bg-opacity-30 bg-gradient-to-tl from-primary-400 via-primary-300 to-content-200">
           <div className="mix-blend-mutiply absolute bottom-0 left-0 right-0 top-0 bg-base-200 opacity-30"></div>
           <Image
-            width={1130}
-            height={850}
-            src="/images/timeline.jpg"
+            src="/images/executives.png"
             alt="About us"
+            fill={true}
             className="h-full w-full mix-blend-multiply"
           />
         </div>

@@ -1,6 +1,7 @@
 import { about } from "@asad/lib/data/home/about";
 import styles from "@asad/styles/home/about.module.css";
 import Link from "next/link";
+import Image from "next/image";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import AboutDivider from "./AboutDivider";
 
@@ -26,11 +27,15 @@ const About = () => {
                 href={detail.url}
                 className={`${styles.detailLink} relative z-[2]`}
               >
-                <div
-                  className={styles.detailImage}
-                  data-image={detail.image}
-                  style={{ backgroundImage: `url(${detail.image})` }}
-                >
+                <div className={`${styles.detailImage}`}>
+                  <div className="absolute left-0 top-0 h-full w-full">
+                    <Image
+                      src={detail.image}
+                      alt={detail.title}
+                      className="h-full w-full object-cover object-top"
+                      fill={true}
+                    />
+                  </div>
                   <div className={styles.detailImageOverlay}></div>
                 </div>
                 <div

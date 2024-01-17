@@ -13,13 +13,13 @@ const WelcomeSmallDescription = () => {
   useEffect(() => {
     const changeSliderImageIdx = () => {
       void control.start({
-        opacity: [1, 0.75],
-        transition: { duration: 25 },
+        opacity: [1, 0.8],
+        transition: { duration: 0.5 },
       });
 
       void control.start({
-        opacity: [0.75, 1],
-        transition: { duration: 1 },
+        opacity: [0.8, 1],
+        transition: { duration: 0.5 },
       });
     };
 
@@ -71,38 +71,42 @@ const WelcomeSmallDescription = () => {
       </div>
       <div className={`${styles.imageContainer} h-full overflow-hidden`}>
         <div className={`${styles.slider} h-full overflow-hidden`}>
-          {imageIdx === 0 && (
-            <Image
-              src="/images/about-us.jpg"
-              alt="About us"
-              fill
-              className="h-full w-full object-cover"
-            />
-          )}
-          {imageIdx === 1 && (
-            <Image
-              src="/images/aims.jpg"
-              alt="Aims"
-              fill
-              className="h-full w-full object-cover"
-            />
-          )}
-          {imageIdx === 2 && (
-            <Image
-              src="/images/presidents.jpg"
-              alt="Presidents"
-              fill
-              className="h-full w-full object-cover"
-            />
-          )}
-          {imageIdx === 3 && (
-            <Image
-              src="/images/timeline.jpg"
-              alt="Timeline"
-              fill
-              className="h-full w-full object-cover"
-            />
-          )}
+          <Image
+            src="/images/positive_culture.png"
+            alt="People wearing African cultural clothes at an event"
+            fill
+            priority
+            className={`${
+              imageIdx !== 0 && "hidden"
+            } h-full w-full object-cover`}
+          />
+          <Image
+            src="/images/bridging_cultures.jpg"
+            alt="A study group of people learning English speaking"
+            fill
+            priority
+            className={`${
+              imageIdx !== 1 && "hidden"
+            } h-full w-full object-cover`}
+          />
+          <Image
+            src="/images/togetherness.jpg"
+            alt="Fifteen guys wearing a football jersey preparing to start a football match"
+            fill
+            priority
+            className={`${
+              imageIdx !== 2 && "hidden"
+            } h-full w-full object-cover`}
+          />
+          <Image
+            src="/images/transition.jpg"
+            alt="About 20 people on a fun tour"
+            fill
+            priority
+            className={`${
+              imageIdx !== 3 && "hidden"
+            } h-full w-full object-cover`}
+          />
         </div>
       </div>
     </>
