@@ -2,6 +2,7 @@
 
 import { useModalContext } from "@asad/lib/components/ModalContextProvider";
 import Button from "../ui/Button";
+import ContactUsContent from "./ContactUsContent";
 
 const ContactButton = () => {
   const { toggleModal } = useModalContext();
@@ -11,7 +12,7 @@ const ContactButton = () => {
       variant="secondary"
       size="lg"
       data-text="Contact"
-      onClick={() => toggleModal("contact")}
+      onClick={() => toggleModal(<ContactUsContent />)}
     >
       Contact
     </Button>

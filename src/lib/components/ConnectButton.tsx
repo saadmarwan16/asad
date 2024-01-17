@@ -2,6 +2,7 @@
 
 import { useModalContext } from "@asad/lib/components/ModalContextProvider";
 import Button from "../ui/Button";
+import WorkTogetherContent from "./WorkTogetherContent";
 
 const ConnectButton = () => {
   const { toggleModal } = useModalContext();
@@ -10,7 +11,7 @@ const ConnectButton = () => {
     <Button
       size="lg"
       data-text="Connect"
-      onClick={() => toggleModal("work-together")}
+      onClick={() => toggleModal(<WorkTogetherContent />)}
     >
       Connect
     </Button>

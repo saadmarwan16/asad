@@ -10,15 +10,13 @@ import {
 import { Modal } from "react-responsive-modal";
 import "react-responsive-modal/styles.css";
 import { IoMdClose } from "react-icons/io";
-import WorkTogetherContent from "./WorkTogetherContent";
-import ContactUsContent from "./ContactUsContent";
 
 export interface IModalContext {
   content: IModalContent;
   toggleModal: (content: IModalContent) => void;
 }
 
-type IModalContent = "work-together" | "contact" | undefined;
+type IModalContent = JSX.Element | undefined;
 
 const ModalContext = createContext<IModalContext>({
   content: undefined,
@@ -71,10 +69,7 @@ const ModalContextProvider: FunctionComponent<PropsWithChildren> = ({
         }}
         center
       >
-        <div className="mt-8">
-          {content === "work-together" && <WorkTogetherContent />}
-          {content === "contact" && <ContactUsContent />}
-        </div>
+        <div className="mt-8">{content}</div>
       </Modal>
       {children}
     </ModalContext.Provider>

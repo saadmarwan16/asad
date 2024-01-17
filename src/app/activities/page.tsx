@@ -1,9 +1,11 @@
 import ExecutivePresidentTimelineActivitiesWrapper from "@asad/lib/components/ExecutivePresidentTimelineActivitiesWrapper";
 import Logo from "@asad/lib/components/Logo";
 import { activities } from "@asad/lib/data/home/activities";
+import { Routes } from "@asad/lib/routes";
 import Button from "@asad/lib/ui/Button";
 import styles from "@asad/styles/shared/executivepresidentactivities.module.css";
 import Image from "next/image";
+import Link from "next/link";
 
 const Activities = () => {
   return (
@@ -15,9 +17,10 @@ const Activities = () => {
       <h6>Filter</h6>
       <div id={styles.cards}>
         {activities.map((activity) => (
-          <div
+          <Link
             key={activity.id}
-            className={`${styles.card} flex cursor-pointer flex-col gap-4`}
+            href={Routes.ACTIVITY_DETAILS(activity.id)}
+            className={`${styles.card} flex flex-col gap-4`}
           >
             <div className={`${styles.imageContainer} aspect-[5/6]`}>
               <div className={`${styles.image}`}>
@@ -42,7 +45,7 @@ const Activities = () => {
               <small>{activity.date}</small>
               <h6 className="truncate font-medium">{activity.title}</h6>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
       <div className="self-end">
