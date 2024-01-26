@@ -26,6 +26,19 @@
     grid-area: search;
 }
 
+.focus, .notFocus {
+    transition: all 0.5s;
+    transform-origin: top;
+}
+
+.focus {
+    transform: rotateX(0deg);
+}
+
+.notFocus {
+    transform: rotateX(-90deg);
+}
+
 @media (min-width: 640px) {
     #header {
         grid-template-columns: auto auto 1fr auto;
