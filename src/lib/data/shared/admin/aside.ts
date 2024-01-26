@@ -1,4 +1,5 @@
 import type { IAside } from "@asad/lib/interfaces/aside";
+import { Routes } from "@asad/lib/routes";
 
 export const aside: IAside[] = [
     {
@@ -6,11 +7,11 @@ export const aside: IAside[] = [
         children: [
             {
                 title: 'Add',
-                link: '#'
+                link: Routes.ADMIN_ADD_EXECUTIVE
             },
             {
                 title: 'List',
-                link: '#'
+                link: Routes.ADMIN_EXECUTIVES
             },
         ],
     },
@@ -19,11 +20,11 @@ export const aside: IAside[] = [
         children: [
             {
                 title: 'Add',
-                link: '#'
+                link: Routes.ADMIN_ADD_PRESIDENT
             },
             {
                 title: 'List',
-                link: '#'
+                link: Routes.ADMIN_PRESIDENTS
             },
         ],
     },
@@ -32,11 +33,11 @@ export const aside: IAside[] = [
         children: [
             {
                 title: 'Add',
-                link: '#'
+                link: Routes.ADMIN_ADD_TIMELINE
             },
             {
                 title: 'List',
-                link: '#'
+                link: Routes.ADMIN_TIMELINE
             },
         ],
     },
@@ -45,11 +46,11 @@ export const aside: IAside[] = [
         children: [
             {
                 title: 'Add',
-                link: '#'
+                link: Routes.ADMIN_ADD_ACTIVITY
             },
             {
                 title: 'List',
-                link: '#'
+                link: Routes.ADMIN_ACTIVITIES
             },
         ],
     },
@@ -58,11 +59,11 @@ export const aside: IAside[] = [
         children: [
             {
                 title: 'Add',
-                link: '#'
+                link: Routes.ADMIN_ADD_ELECTION
             },
             {
                 title: 'List',
-                link: '#'
+                link: Routes.ADMIN_ELECTIONS
             },
         ],
     },

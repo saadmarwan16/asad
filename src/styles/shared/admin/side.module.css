@@ -18,7 +18,7 @@
     background-color: #00CC5F;
 }
 
-.innerListItem:hover::before {
+.innerListItem:hover::before, .innerListItem.active::before {
     position: absolute;
     content: '';
     left: -1.25rem;
@@ -28,5 +28,9 @@
     transform: translateY(-50%);
     background-color: #00CC5F;
     border-radius: 100%;
+}
+
+.innerListItem.active {
+    color: #00CC5F;
 }
 

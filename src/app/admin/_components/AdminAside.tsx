@@ -5,16 +5,39 @@ import { MdArrowForwardIos } from "react-icons/md";
 import Link from "next/link";
 import { aside } from "@asad/lib/data/shared/admin/aside";
 import { useState } from "react";
+import Image from "next/image";
+import { Routes } from "@asad/lib/routes";
+import { usePathname } from "next/navigation";
 
 const AdminAside = () => {
   const [open, setOpen] = useState(false);
   const [current, setCurrent] = useState("Dashboard");
+  const [route, setRoute] = useState(usePathname());
 
   return (
     <aside className="fixed hidden h-full w-64 overflow-y-scroll bg-base-200 lg:block">
-      <div className="px-6 py-10">
+      <div className="flex flex-col gap-12 p-6 sm:gap-14 md:gap-16">
+        <Link
+          href={Routes.HOME}
+          className="relative aspect-square w-24 rounded-full transition-all hover:scale-105"
+        >
+          <Image src="/logo.png" alt="Logo" fill />
+        </Link>
         <ul className="flex flex-col gap-3">
-          <li className="text-xl">Dashboard</li>
+          <li className="text-xl">
+            <Link
+              href={Routes.ADMIN_DASHBOARD}
+              className={`block hover:text-primary-200 ${
+                route === Routes.ADMIN_DASHBOARD && "text-primary-200"
+              }`}
+              onClick={() => {
+                setOpen(false);
+                setRoute(Routes.ADMIN_DASHBOARD);
+              }}
+            >
+              Dashboard
+            </Link>
+          </li>
 
           {aside.map((item, index) => (
             <li key={index} className="text-xl">
@@ -46,7 +69,10 @@ const AdminAside = () => {
                       href={inner.link}
                       className={`relative block hover:text-primary-200 ${
                         styles.innerListItem
-                      } ${(!open || current !== item.title) && "hidden"}`}
+                      } ${route === inner.link && styles.active} ${
+                        (!open || current !== item.title) && "hidden"
+                      }`}
+                      onClick={() => setRoute(inner.link)}
                     >
                       {inner.title}
                     </Link>

@@ -53,7 +53,6 @@ const AdminLayout: FunctionComponent<PropsWithChildren> = ({ children }) => {
             {children}
           </div>
         </div>
-        A
       </div>
     </div>
   );
