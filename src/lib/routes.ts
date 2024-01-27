@@ -11,6 +11,7 @@ export abstract class Routes {
 
     // Admin routes
     static ADMIN_DASHBOARD = '/admin';
+    static ADMIN_SEARCH = '/admin/search';
     static ADMIN_EXECUTIVES = '/admin/executives';
     static ADMIN_ADD_EXECUTIVE = '/admin/executives/new';
     static ADMIN_EXECUTIVE_DETAILS = (id: string) => `/admin/executives/${id}`;

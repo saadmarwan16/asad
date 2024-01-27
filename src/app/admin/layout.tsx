@@ -1,29 +1,23 @@
-"use client";
-
-import {
-  useState,
-  type FunctionComponent,
-  type PropsWithChildren,
-} from "react";
+import type { FunctionComponent, PropsWithChildren } from "react";
 import styles from "@asad/styles/shared/admin/header.module.css";
+import footerStyles from "@asad/styles/shared/footer.module.css";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { CiSearch } from "react-icons/ci";
 import AdminAside from "./_components/AdminAside";
 import Link from "next/link";
 import { Routes } from "@asad/lib/routes";
-import Button from "@asad/lib/ui/Button";
 import Image from "next/image";
+import dayjs from "dayjs";
+import AdminSearchForm from "./_components/AdminSearchForm";
+import { FaHeart } from "react-icons/fa6";
 
-// export const metadata = {
-//   title: "Admin Dashboard - ASAD | African Students Association in Denizli",
-//   description:
-//     "African Students Association in Denizli is a non-profit association founded in 2015 by African Stidents in Denizli in order to help create and develop strong relationships with one another.",
-//   icons: [{ rel: "icon", url: "/favicon.ico" }],
-// };
+export const metadata = {
+  title: "Admin Dashboard - ASAD | African Students Association in Denizli",
+  description:
+    "African Students Association in Denizli is a non-profit association founded in 2015 by African Stidents in Denizli in order to help create and develop strong relationships with one another.",
+  icons: [{ rel: "icon", url: "/favicon.ico" }],
+};
 
 const AdminLayout: FunctionComponent<PropsWithChildren> = ({ children }) => {
-  const [focus, setFocus] = useState(false);
-
   return (
     <div className="h-screen">
       <AdminAside />
@@ -41,46 +35,7 @@ const AdminLayout: FunctionComponent<PropsWithChildren> = ({ children }) => {
                 <span className="text-2xl font-medium text-primary-300">A</span>
                 <span className="text-2xl font-medium text-primary-400">D</span>
               </Link>
-              <div
-                id={styles.search}
-                className="flex max-w-[800px] gap-2 sm:px-6"
-              >
-                <div className="relative h-12 w-full">
-                  <input
-                    className="h-full w-full rounded-lg border-2 border-primary-100 bg-transparent px-4 text-content-100 focus-visible:border-primary-200 focus-visible:outline-none"
-                    placeholder="Enter search in presidents ..."
-                    onFocus={() => setFocus(true)}
-                    onBlur={() => setFocus(false)}
-                  />
-                  <div
-                    className={`absolute left-0 right-0 top-[3.4rem] h-auto rounded-lg bg-base-100 p-3 shadow-xl sm:p-4 md:p-5 ${
-                      focus ? styles.focus : styles.notFocus
-                    }`}
-                  >
-                    <span className="mb-4 block text-sm font-medium uppercase text-gray-500">
-                      Search in
-                    </span>
-                    <div className="flex flex-wrap gap-2">
-                      <Button data-text="Executives" size="sm">
-                        Executives
-                      </Button>
-                      <Button data-text="Presidents" size="sm">
-                        Presidents
-                      </Button>
-                      <Button data-text="Activities" size="sm">
-                        Activities
-                      </Button>
-                      <Button data-text="Elections" size="sm">
-                        Elections
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-
-                <button className="flex aspect-square w-12 items-center justify-center rounded-lg bg-primary-100 font-medium text-primary-400 transition-all hover:bg-primary-200 [&>svg]:hover:text-base-100">
-                  <CiSearch className="text-3xl transition-all" />
-                </button>
-              </div>
+              <AdminSearchForm />
               <div
                 id={styles.avatar}
                 className="relative aspect-square w-12 rounded-full"
@@ -93,6 +48,30 @@ const AdminLayout: FunctionComponent<PropsWithChildren> = ({ children }) => {
         <div className="relative w-full pt-[9.5rem] sm:pt-[5.5rem]">
           <div className="absolute w-full overflow-y-scroll bg-base-200 p-5 lg:px-10">
             {children}
+
+            <div className="mt-6 flex flex-col gap-2 sm:mt-8 sm:flex-row sm:items-center sm:justify-between sm:gap-6 md:mt-10 lg:mt-12">
+              <small className="x-small">
+                © 2015-{dayjs().year()}{" "}
+                <a href={Routes.HOME} className="hover:text-primary-100">
+                  ASAD.
+                </a>{" "}
+                All rights reserved.
+              </small>
+              <span>
+                Made with lots of{" "}
+                <FaHeart
+                  className={`${footerStyles.love} mx-1 inline-block text-red-600 md:mx-2`}
+                />{" "}
+                by
+                <Link
+                  href="https://www.marwansaad.me/"
+                  target="_blank"
+                  className="ml-2 text-primary-200 hover:text-primary-100"
+                >
+                  Yours truly
+                </Link>
+              </span>
+            </div>
           </div>
         </div>
       </div>
