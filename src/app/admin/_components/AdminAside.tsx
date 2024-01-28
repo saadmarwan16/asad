@@ -15,8 +15,8 @@ const AdminAside = () => {
   const [route, setRoute] = useState(usePathname());
 
   return (
-    <aside className="fixed hidden h-full w-64 overflow-y-scroll bg-base-200 lg:block">
-      <div className="flex flex-col gap-12 p-6 sm:gap-14 md:gap-16">
+    <aside className="h-full w-full overflow-y-scroll bg-base-200 lg:fixed lg:w-64">
+      <nav className="flex flex-col gap-12 p-6 sm:gap-14 md:gap-16">
         <Link
           href={Routes.HOME}
           className="relative aspect-square w-24 rounded-full transition-all hover:scale-105"
@@ -62,7 +62,13 @@ const AdminAside = () => {
                   }`}
                 />
               </div>
-              <ul className={`relative pl-8 text-base ${styles.innerList}`}>
+              <ul
+                className={`relative pl-8 text-base ${styles.innerList} ${
+                  !open || current !== item.title
+                    ? styles.hideInnerList
+                    : styles.showInnerList
+                }`}
+              >
                 {item.children.map((inner, index) => (
                   <li key={index}>
                     <Link
@@ -70,7 +76,9 @@ const AdminAside = () => {
                       className={`relative block hover:text-primary-200 ${
                         styles.innerListItem
                       } ${route === inner.link && styles.active} ${
-                        (!open || current !== item.title) && "hidden"
+                        !open || current !== item.title
+                          ? styles.closed
+                          : styles.opened
                       }`}
                       onClick={() => setRoute(inner.link)}
                     >
@@ -82,7 +90,7 @@ const AdminAside = () => {
             </li>
           ))}
         </ul>
-      </div>
+      </nav>
     </aside>
   );
 };

@@ -8,6 +8,19 @@
     transform: rotate(0deg);
 }
 
+.showInnerList, .hideInnerList {
+    transition: all 0.5s;
+    transform-origin: top;
+}
+
+.showInnerList {
+    transform: rotateX(0deg);
+}
+
+.hideInnerList {
+    transform: rotateX(-90deg);
+}
+
 .innerList::before {
     position: absolute;
     content: '';
@@ -32,4 +45,16 @@
 
 .innerListItem.active {
     color: #00CC5F;
+}
+
+.innerListItem.opened {
+    transition-delay: 0.2s;
+    height: auto;
+    opacity: 1;
+}
+
+.innerListItem.closed {
+    transition-delay: 0.4s;
+    height: 0px;
+    opacity: 0;
 }
