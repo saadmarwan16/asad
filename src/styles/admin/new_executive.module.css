@@ -1,0 +1,32 @@
+#form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 3rem;
+    row-gap: 2rem;
+    grid-template-areas: 
+    'name image'
+    'role image'
+    'duties image'
+    'button button';
+}
+
+#name {
+    grid-area: name;
+}
+
+#role {
+    grid-area: role;
+}
+
+#duties {
+    grid-area: duties;
+}
+
+#image {
+    grid-area: image;
+}
+
+#button {
+    grid-area: button;
+    justify-self: end;
+}
