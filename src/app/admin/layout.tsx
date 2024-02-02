@@ -59,7 +59,7 @@ const AdminLayout: FunctionComponent<PropsWithChildren> = ({ children }) => {
             </div>
           </div>
           <div className="relative w-full pt-[9.5rem] sm:pt-[5.5rem]">
-            <div className="absolute w-full overflow-y-scroll bg-base-200 p-5 lg:px-10">
+            <div className="absolute w-full overflow-y-scroll bg-base-200 p-5 sm:py-8 lg:px-10">
               {children}
 
               <div className="mt-6 flex flex-col gap-2 sm:mt-8 sm:flex-row sm:items-center sm:justify-between sm:gap-6 md:mt-10 lg:mt-12">
@@ -87,7 +87,6 @@ const AdminLayout: FunctionComponent<PropsWithChildren> = ({ children }) => {
               </div>
             </div>
           </div>
-          d
         </div>
       </div>
     </AdminDrawerContextProvider>
