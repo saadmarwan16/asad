@@ -1,21 +1,49 @@
 "use client";
 
+import {
+  type TNewExecutive,
+  newExecutiveSchema,
+} from "@asad/lib/types/executive";
 import Button, { button } from "@asad/lib/ui/Button";
 import Input from "@asad/lib/ui/Input";
 import Select from "@asad/lib/ui/Select";
 import Textarea from "@asad/lib/ui/Textarea";
 import styles from "@asad/styles/admin/new_executive.module.css";
+import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
 import { useState } from "react";
+import { type SubmitHandler, useForm, Controller } from "react-hook-form";
 import { FaImage } from "react-icons/fa";
 
 const AdminAddExecutive = () => {
   const [image, setImage] = useState<string | null>(null);
+  const {
+    control,
+    reset,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<TNewExecutive>({
+    resolver: zodResolver(newExecutiveSchema),
+    defaultValues: {
+      name: "",
+      role: "",
+      duties: "",
+    },
+  });
+
+  const onSubmit: SubmitHandler<TNewExecutive> = (data) => {
+    console.log({
+      ...data,
+      image,
+    });
+    setImage(null);
+    reset();
+  };
 
   return (
     <div>
       <h4 className="mb-8 font-medium">Add executive memeber</h4>
-      <form id={styles.form}>
+      <form id={styles.form} onSubmit={handleSubmit(onSubmit)}>
         <input
           id="new-image"
           type="file"
@@ -35,23 +63,53 @@ const AdminAddExecutive = () => {
           }}
         />
         <div id={styles.name}>
-          <Input top="Name" placeholder="Enter name here" />
+          <Controller
+            control={control}
+            name="name"
+            render={({ field }) => (
+              <Input
+                top="Name"
+                placeholder="Enter name here"
+                {...field}
+                bottom={errors.name?.message}
+              />
+            )}
+          />
         </div>
         <div id={styles.role}>
-          <Select id="role" top="Role" defaultValue="">
-            <option value="" disabled>
-              Select a role
-            </option>
-            <option value="CEO">CEO</option>
-            <option value="CTO">CTO</option>
-            <option value="CFO">CFO</option>
-          </Select>
+          <Controller
+            control={control}
+            name="role"
+            render={({ field }) => (
+              <Select
+                id="role"
+                top="Role"
+                {...field}
+                bottom={errors.role?.message}
+              >
+                <option value="" disabled>
+                  Select a role
+                </option>
+                <option value="DCEO">DCEO</option>
+                <option value="DCTO">DCTO</option>
+                <option value="DCFO">DCFO</option>
+              </Select>
+            )}
+          />
         </div>
         <div id={styles.duties}>
-          <Textarea
-            top="Duties"
-            placeholder="Write a short description of the executive member's role here"
-            rows={8}
+          <Controller
+            control={control}
+            name="duties"
+            render={({ field }) => (
+              <Textarea
+                top="Duties"
+                placeholder="Write a short description of the executive member's role here"
+                rows={8}
+                bottom={errors.duties?.message}
+                {...field}
+              />
+            )}
           />
         </div>
         <div id={styles.image} className="flex flex-col gap-2">

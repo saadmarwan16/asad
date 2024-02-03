@@ -1,7 +1,11 @@
 "use client";
 
 import { cva, type VariantProps } from "class-variance-authority";
-import type { InputHTMLAttributes, FunctionComponent } from "react";
+import {
+  type InputHTMLAttributes,
+  type FunctionComponent,
+  forwardRef,
+} from "react";
 
 const input = cva("border-2 text-content-100", {
   variants: {
@@ -36,20 +40,16 @@ interface InputProps
   bottom?: string;
 }
 
-const Input: FunctionComponent<InputProps> = ({
-  variant,
-  width,
-  size,
-  top,
-  bottom,
-  ...props
-}) => {
+const Input: FunctionComponent<InputProps> = forwardRef<
+  HTMLInputElement,
+  InputProps
+>(({ variant, width, size, top, bottom, ...props }, ref) => {
   return (
     <div className="flex flex-col gap-2">
       {top && (
         <label className="cursor-default select-none font-medium">{top}</label>
       )}
-      <input {...props} className={input({ variant, width, size })} />
+      <input ref={ref} {...props} className={input({ variant, width, size })} />
       {bottom && (
         <label className="cursor-default select-none font-medium text-red-800">
           {bottom}
@@ -57,6 +57,6 @@ const Input: FunctionComponent<InputProps> = ({
       )}
     </div>
   );
-};
+});
 
 export default Input;
