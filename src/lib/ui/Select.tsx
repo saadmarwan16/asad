@@ -1,10 +1,11 @@
 "use client";
 
 import { cva, type VariantProps } from "class-variance-authority";
-import type {
-  SelectHTMLAttributes,
-  FunctionComponent,
-  PropsWithChildren,
+import {
+  type SelectHTMLAttributes,
+  type FunctionComponent,
+  type PropsWithChildren,
+  forwardRef,
 } from "react";
 
 const select = cva("border-2 text-content-100", {
@@ -41,15 +42,10 @@ interface SelectProps
   bottom?: string;
 }
 
-const Select: FunctionComponent<SelectProps> = ({
-  variant,
-  width,
-  size,
-  top,
-  bottom,
-  children,
-  ...props
-}) => {
+const Select: FunctionComponent<SelectProps> = forwardRef<
+  HTMLSelectElement,
+  SelectProps
+>(({ variant, width, size, top, bottom, children, ...props }, ref) => {
   return (
     <div className="flex flex-col gap-2">
       {top && (
@@ -60,7 +56,7 @@ const Select: FunctionComponent<SelectProps> = ({
           {top}
         </label>
       )}
-      <select {...props} className={select({ variant, width, size })}>
+      <select ref={ref} {...props} className={select({ variant, width, size })}>
         {children}
       </select>
       {bottom && (
@@ -70,6 +66,6 @@ const Select: FunctionComponent<SelectProps> = ({
       )}
     </div>
   );
-};
+});
 
 export default Select;

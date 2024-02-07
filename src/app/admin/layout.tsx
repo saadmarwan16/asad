@@ -53,7 +53,12 @@ const AdminLayout: FunctionComponent<PropsWithChildren> = ({ children }) => {
                   id={styles.avatar}
                   className="relative aspect-square w-12 rounded-full"
                 >
-                  <Image src="/logo.png" alt="User profile" fill />
+                  <Image
+                    src="/logo.png"
+                    alt="User profile"
+                    sizes="100% 100%"
+                    fill
+                  />
                 </div>
               </header>
             </div>

@@ -39,6 +39,7 @@ const AdminDrawerContextProvider: FunctionComponent<PropsWithChildren> = ({
       }}
     >
       <Drawer
+        customIdSuffix="admin-drawer"
         direction="left"
         lockBackgroundScroll={true}
         open={isOpen}

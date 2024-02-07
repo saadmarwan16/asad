@@ -21,7 +21,7 @@ const AdminAside = () => {
           href={Routes.HOME}
           className="relative aspect-square w-24 rounded-full transition-all hover:scale-105"
         >
-          <Image src="/logo.png" alt="Logo" fill />
+          <Image src="/logo.png" alt="Logo" sizes="100% 100%" fill />
         </Link>
         <ul className="flex flex-col gap-3">
           <li className="text-xl">

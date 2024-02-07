@@ -41,6 +41,7 @@ const DrawerContextProvider: FunctionComponent<PropsWithChildren> = ({
       }}
     >
       <Drawer
+        customIdSuffix="drawer"
         direction="right"
         lockBackgroundScroll={true}
         open={isOpen}

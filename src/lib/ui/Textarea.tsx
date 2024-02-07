@@ -1,5 +1,9 @@
 import { cva, type VariantProps } from "class-variance-authority";
-import type { TextareaHTMLAttributes, FunctionComponent } from "react";
+import {
+  type TextareaHTMLAttributes,
+  type FunctionComponent,
+  forwardRef,
+} from "react";
 
 const textarea = cva(
   "rounded-lg border-2 px-4 py-2 text-content-100 focus-visible:outline-none",
@@ -31,19 +35,16 @@ interface TextareaProps
   bottom?: string;
 }
 
-const Textarea: FunctionComponent<TextareaProps> = ({
-  variant,
-  width,
-  top,
-  bottom,
-  ...props
-}) => {
+const Textarea: FunctionComponent<TextareaProps> = forwardRef<
+  HTMLTextAreaElement,
+  TextareaProps
+>(({ variant, width, top, bottom, ...props }, ref) => {
   return (
     <div className="flex flex-col gap-2">
       {top && (
         <label className="cursor-default select-none font-medium">{top}</label>
       )}
-      <textarea {...props} className={textarea({ variant, width })} />
+      <textarea ref={ref} {...props} className={textarea({ variant, width })} />
       {bottom && (
         <label className="cursor-default select-none font-medium text-red-700">
           {bottom}
@@ -51,6 +52,6 @@ const Textarea: FunctionComponent<TextareaProps> = ({
       )}
     </div>
   );
-};
+});
 
 export default Textarea;
