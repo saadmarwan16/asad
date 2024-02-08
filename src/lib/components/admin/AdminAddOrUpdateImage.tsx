@@ -4,12 +4,12 @@ import Image from "next/image";
 import { FunctionComponent, useState } from "react";
 import { FaImage } from "react-icons/fa";
 
-interface UpdateExecutiveImageProps {
+interface AdminAddOrUpdateImageProps {
   image: string | undefined;
   setImage: (value: string | undefined) => void;
 }
 
-const UpdateExecutiveImage: FunctionComponent<UpdateExecutiveImageProps> = ({
+const AdminAddOrUpdateImage: FunctionComponent<AdminAddOrUpdateImageProps> = ({
   image,
   setImage,
 }) => {
@@ -78,4 +78,4 @@ const UpdateExecutiveImage: FunctionComponent<UpdateExecutiveImageProps> = ({
   );
 };
 
-export default UpdateExecutiveImage;
+export default AdminAddOrUpdateImage;

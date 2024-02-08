@@ -1,7 +1,10 @@
+import AddPresidentForm from "./_components/AddPresidentForm";
+
 const AdminAddPresident = () => {
   return (
     <div>
-      <h1>Admin add President page is coming soon</h1>
+      <h4 className="mb-8 font-medium">Add executive memeber</h4>
+      <AddPresidentForm />
     </div>
   );
 };

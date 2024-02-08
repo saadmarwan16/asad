@@ -15,7 +15,7 @@ export const button = cva("rounded-lg font-medium before:rounded-lg", {
       lg: "px-12 py-4 text-lg lg:text-xl",
     },
     disabled: {
-      true: "bg-base-300 cursor-not-allowed text-primary-400",
+      true: "!bg-base-300 cursor-not-allowed text-primary-400",
       false: `${styles.btn}`,
     },
   },
@@ -38,7 +38,7 @@ const Button: FunctionComponent<ButtonProps> = ({
   disabled,
   ...props
 }) => {
-  return <button {...props} className={button({ variant, size, disabled })} />;
+  return <button {...props} className={button({ variant, size, disabled })} disabled={disabled ?? undefined} />;
 };
 
 export default Button;

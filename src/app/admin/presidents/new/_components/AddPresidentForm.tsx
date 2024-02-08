@@ -1,5 +1,6 @@
 "use client";
 
+import AdminAddOrUpdateImage from "@asad/lib/components/admin/AdminAddOrUpdateImage";
 import {
   type TNewExecutive,
   newExecutiveSchema,
@@ -10,26 +11,22 @@ import Select from "@asad/lib/ui/Select";
 import Textarea from "@asad/lib/ui/Textarea";
 import styles from "@asad/styles/admin/new_executive.module.css";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { type SubmitHandler, useForm, Controller } from "react-hook-form";
-import UpdateExecutiveImage from "./UpdateExecutiveImage";
-import { executives } from "@asad/lib/data/home/executives";
 
-const UpdateExecutiveForm = () => {
-  const executive = useMemo(() => {
-    return executives[0];
-  }, [executives[0]]);
-  const [image, setImage] = useState<string | undefined>(executive?.image);
-
+const AddPresidentForm = () => {
+  const [image, setImage] = useState<string | undefined>(undefined);
   const {
     control,
     reset,
     handleSubmit,
-    formState: { errors, isDirty },
+    formState: { errors },
   } = useForm<TNewExecutive>({
     resolver: zodResolver(newExecutiveSchema),
     defaultValues: {
-      ...executive,
+      name: "",
+      role: "",
+      duties: "",
     },
   });
 
@@ -85,8 +82,8 @@ const UpdateExecutiveForm = () => {
           name="duties"
           render={({ field }) => (
             <Textarea
-              top="Duties"
-              placeholder="Write a short description of the executive member's role here"
+              top="Accomplishments"
+              placeholder="Write a short description of the accomplishments of the president here."
               rows={8}
               bottom={errors.duties?.message}
               {...field}
@@ -94,20 +91,17 @@ const UpdateExecutiveForm = () => {
           )}
         />
       </div>
-      <UpdateExecutiveImage
+      <AdminAddOrUpdateImage
         image={image}
         setImage={(value) => setImage(value)}
       />
-      <div id={styles.button} className="flex gap-4 flex-wrap justify-end">
-        <Button type="button" data-text="Remove" variant='secondary' onClick={() => console.log('Executive removed')}>
-          Remove
-        </Button>
-        <Button type="submit" data-text="Update" disabled={!isDirty}>
-          Update
+      <div id={styles.button}>
+        <Button type="submit" data-text="Add">
+          Add
         </Button>
       </div>
     </form>
   );
 };
 
-export default UpdateExecutiveForm;
+export default AddPresidentForm;
