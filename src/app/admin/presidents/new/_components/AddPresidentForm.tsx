@@ -13,9 +13,14 @@ import styles from "@asad/styles/admin/new_executive.module.css";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { type SubmitHandler, useForm, Controller } from "react-hook-form";
+import DatePicker from "react-datepicker";
+import { FaRegCalendarAlt } from "react-icons/fa";
+
+import "react-datepicker/dist/react-datepicker.css";
 
 const AddPresidentForm = () => {
   const [image, setImage] = useState<string | undefined>(undefined);
+  const [startDate, setStartDate] = useState<Date | null>(new Date());
   const {
     control,
     reset,
@@ -74,6 +79,22 @@ const AddPresidentForm = () => {
               <option value="DCFO">DCFO</option>
             </Select>
           )}
+        />
+      </div>
+      <div>
+        <DatePicker
+          showIcon
+          icon={<FaRegCalendarAlt className="text-2xl" />}
+          selected={startDate}
+          onChange={(date) => setStartDate(date)}
+          placeholderText="Select the year the president was sworn in"
+          className="w-full rounded-lg border-2 !pl-10 border-primary-100 p-2 focus-visible:border-primary-200 focus-visible:outline-none"
+          dateFormat="dd/MM/yyyy"
+          // showMonthYearPicker
+          maxDate={new Date()}
+          portalId="new-president-portal"
+          isClearable
+          withPortal
         />
       </div>
       <div id={styles.duties}>
