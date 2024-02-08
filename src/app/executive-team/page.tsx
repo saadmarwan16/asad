@@ -14,7 +14,7 @@ const ExecutiveTeam = () => {
       <h6>Filter</h6>
       <div id={styles.cards}>
         {executives.map((executive) => (
-          <ExecutiveMemberCard executive={executive} />
+          <ExecutiveMemberCard key={executive.id} executive={executive} />
         ))}
       </div>
     </ExecutivePresidentTimelineActivitiesWrapper>

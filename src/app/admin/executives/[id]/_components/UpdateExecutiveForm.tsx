@@ -10,12 +10,17 @@ import Select from "@asad/lib/ui/Select";
 import Textarea from "@asad/lib/ui/Textarea";
 import styles from "@asad/styles/admin/new_executive.module.css";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { type SubmitHandler, useForm, Controller } from "react-hook-form";
-import AddExecutiveImage from "./AddExecutiveImage";
+import UpdateExecutiveImage from "./UpdateExecutiveImage";
+import { executives } from "@asad/lib/data/home/executives";
 
-const AddExecutiveForm = () => {
-  const [image, setImage] = useState<string | undefined>(undefined);
+const UpdateExecutiveForm = () => {
+  const executive = useMemo(() => {
+    return executives[0];
+  }, [executives[0]]);
+  const [image, setImage] = useState<string | undefined>(executive?.image);
+
   const {
     control,
     reset,
@@ -24,9 +29,7 @@ const AddExecutiveForm = () => {
   } = useForm<TNewExecutive>({
     resolver: zodResolver(newExecutiveSchema),
     defaultValues: {
-      name: "",
-      role: "",
-      duties: "",
+      ...executive,
     },
   });
 
@@ -91,7 +94,10 @@ const AddExecutiveForm = () => {
           )}
         />
       </div>
-      <AddExecutiveImage image={image} setImage={(value) => setImage(value)} />
+      <UpdateExecutiveImage
+        image={image}
+        setImage={(value) => setImage(value)}
+      />
       <div id={styles.button}>
         <Button type="submit" data-text="Add">
           Add
@@ -101,4 +107,4 @@ const AddExecutiveForm = () => {
   );
 };
 
-export default AddExecutiveForm;
+export default UpdateExecutiveForm;

@@ -1,7 +1,10 @@
+import UpdateExecutiveForm from "./_components/UpdateExecutiveForm";
+
 const AdminExecutiveDetails = () => {
   return (
     <div>
-      <h1>Admin executive details page is coming soon</h1>
+      <h4 className="mb-8 font-medium">Update executive memeber</h4>
+      <UpdateExecutiveForm />
     </div>
   );
 };

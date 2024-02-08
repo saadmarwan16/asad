@@ -19,7 +19,6 @@ const ExecutiveMemberCard: FunctionComponent<ExecutiveMemberCardProps> = ({
 
   return (
     <div
-      key={executive.id}
       onClick={() =>
         toggleModal(<ExecutiveMemberContent executive={executive} />)
       }

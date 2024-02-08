@@ -67,7 +67,7 @@ const AdminLayout: FunctionComponent<PropsWithChildren> = ({ children }) => {
             <div className="absolute w-full overflow-y-scroll bg-base-200 p-5 sm:py-8 lg:px-10">
               {children}
 
-              <div className="mt-6 flex flex-col gap-2 sm:mt-8 sm:flex-row sm:items-center sm:justify-between sm:gap-6 md:mt-10 lg:mt-12">
+              <div className="mt-10 flex flex-col gap-2 sm:mt-12 sm:flex-row sm:items-center sm:justify-between sm:gap-6 md:mt-14 lg:mt-16">
                 <small className="x-small">
                   © 2015-{dayjs().year()}{" "}
                   <a href={Routes.HOME} className="hover:text-primary-100">

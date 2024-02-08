@@ -10,7 +10,7 @@ export const executiveSchema = z.object({
     id: z.number().min(1, 'Invalid executive id'),
     name: z.string().min(2, 'Name must contain at least 2 characters'),
     role: z.string().min(4, 'Invalid executive role'),
-    image: z.string().url('Invalid executive image url'),
+    image: z.string().url('Invalid executive image url').optional(),
     duties: z.string().min(120, 'Description of executive member\'s duties is too short')
 })
 
