@@ -1,3 +1,5 @@
+import "react-datepicker/dist/react-datepicker.css";
+
 import type { FunctionComponent, PropsWithChildren } from "react";
 import styles from "@asad/styles/shared/admin/header.module.css";
 import footerStyles from "@asad/styles/shared/footer.module.css";

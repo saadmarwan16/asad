@@ -1,0 +1,51 @@
+#form {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 2rem;
+    grid-template-areas:
+    'image' 
+    'name'
+    'from'
+    'to'
+    'duties'
+    'button';
+}
+
+#name {
+    grid-area: name;
+}
+
+#from {
+    grid-area: from;
+}
+
+#to {
+    grid-area: to;
+}
+
+#duties {
+    grid-area: duties;
+}
+
+#image {
+    grid-area: image;
+}
+
+#button {
+    grid-area: button;
+    justify-self: end;
+}
+
+@media (min-width: 768px) {
+    #form {
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 3rem;
+        row-gap: 2rem;
+        grid-template-areas: 
+        'name image'
+        'from image'
+        'to image'
+        'duties image'
+        'button button';
+    }
+}

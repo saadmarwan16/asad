@@ -1,41 +1,49 @@
 "use client";
 
 import AdminAddOrUpdateImage from "@asad/lib/components/admin/AdminAddOrUpdateImage";
-import {
-  type TNewExecutive,
-  newExecutiveSchema,
-} from "@asad/lib/types/executive";
-import Button, { button } from "@asad/lib/ui/Button";
+import Button from "@asad/lib/ui/Button";
 import Input from "@asad/lib/ui/Input";
-import Select from "@asad/lib/ui/Select";
 import Textarea from "@asad/lib/ui/Textarea";
-import styles from "@asad/styles/admin/new_executive.module.css";
+import styles from "@asad/styles/admin/new_or_update_president.module.css";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { type SubmitHandler, useForm, Controller } from "react-hook-form";
-import DatePicker from "react-datepicker";
-import { FaRegCalendarAlt } from "react-icons/fa";
 
-import "react-datepicker/dist/react-datepicker.css";
+import {
+  type TNewPresident,
+  newPresidentSchema,
+} from "@asad/lib/types/president";
+import Select from "@asad/lib/ui/Select";
+
+export const generateYears = () => {
+  const years = [];
+  for (let i = 2015; i <= new Date().getFullYear(); i++) {
+    years.push(i.toString());
+  }
+
+  return years;
+};
 
 const AddPresidentForm = () => {
   const [image, setImage] = useState<string | undefined>(undefined);
-  const [startDate, setStartDate] = useState<Date | null>(new Date());
   const {
     control,
     reset,
     handleSubmit,
     formState: { errors },
-  } = useForm<TNewExecutive>({
-    resolver: zodResolver(newExecutiveSchema),
+  } = useForm<TNewPresident>({
+    resolver: zodResolver(newPresidentSchema),
     defaultValues: {
       name: "",
-      role: "",
-      duties: "",
+      from: "",
+      to: "",
+      accomplishments: "",
     },
   });
 
-  const onSubmit: SubmitHandler<TNewExecutive> = (data) => {
+  // Write a short description Write a short description Write a short description Write a short description Write a short description
+
+  const onSubmit: SubmitHandler<TNewPresident> = (data) => {
     console.log({
       ...data,
       image,
@@ -60,53 +68,92 @@ const AddPresidentForm = () => {
           )}
         />
       </div>
-      <div id={styles.role}>
+      <div id={styles.from}>
         <Controller
           control={control}
-          name="role"
+          name="from"
           render={({ field }) => (
             <Select
-              id="role"
-              top="Role"
+              id="from"
+              top="Year sworn in"
               {...field}
-              bottom={errors.role?.message}
+              bottom={errors.from?.message}
             >
               <option value="" disabled>
-                Select a role
+                Select the year the president was sworn in
               </option>
-              <option value="DCEO">DCEO</option>
-              <option value="DCTO">DCTO</option>
-              <option value="DCFO">DCFO</option>
+              {generateYears().map((year) => (
+                <option key={year} value={year}>
+                  {year}
+                </option>
+              ))}
             </Select>
           )}
         />
       </div>
-      <div>
-        <DatePicker
-          showIcon
-          icon={<FaRegCalendarAlt className="text-2xl" />}
-          selected={startDate}
-          onChange={(date) => setStartDate(date)}
-          placeholderText="Select the year the president was sworn in"
-          className="w-full rounded-lg border-2 !pl-10 border-primary-100 p-2 focus-visible:border-primary-200 focus-visible:outline-none"
-          dateFormat="dd/MM/yyyy"
-          // showMonthYearPicker
-          maxDate={new Date()}
-          portalId="new-president-portal"
-          isClearable
-          withPortal
+      <div id={styles.to}>
+        <Controller
+          control={control}
+          name="to"
+          render={({ field }) => (
+            <Select
+              id="to"
+              top="Year sworn out"
+              {...field}
+              bottom={errors.to?.message}
+            >
+              <option value="" disabled>
+                Select the year the president was sworn in
+              </option>
+              {generateYears().map((year) => (
+                <option key={year} value={year}>
+                  {year}
+                </option>
+              ))}
+            </Select>
+          )}
         />
       </div>
+      {/* <div className={styles.from}>
+        <Controller
+          control={control}
+          name="from"
+          render={({ field }) => (
+            <DatePicker
+              showIcon
+              icon={<FaRegCalendarAlt className="text-2xl" />}
+              selected={startDate}
+              onChange={(date) => {
+                console.log(date);
+                setStartDate(date);
+              }}
+              placeholderText="Select the year the president was sworn in"
+              dateFormat="MM/yyyy"
+              toggleCalendarOnIconClick
+              customInput={
+                <DateInput
+                  top="From"
+                  {...field}
+                  bottom={errors.from?.message}
+                />
+              }
+              showMonthYearPicker
+              maxDate={new Date()}
+              isClearable
+            />
+          )}
+        />
+      </div> */}
       <div id={styles.duties}>
         <Controller
           control={control}
-          name="duties"
+          name="accomplishments"
           render={({ field }) => (
             <Textarea
               top="Accomplishments"
               placeholder="Write a short description of the accomplishments of the president here."
               rows={8}
-              bottom={errors.duties?.message}
+              bottom={errors.accomplishments?.message}
               {...field}
             />
           )}
