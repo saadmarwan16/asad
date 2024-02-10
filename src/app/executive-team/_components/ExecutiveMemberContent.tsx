@@ -17,7 +17,7 @@ const ExecutiveMemberContent: FunctionComponent<
       </div>
       <div className="relative h-[400px] overflow-hidden">
         <Image
-          src={executive.image}
+          src={executive.image ?? '/images/timeline.jpg'}
           alt={executive.name}
           width={500}
           height={500}

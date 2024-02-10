@@ -27,7 +27,7 @@ const ExecutiveMemberCard: FunctionComponent<ExecutiveMemberCardProps> = ({
       <div className={`${styles.imageContainer} aspect-[5/6]`}>
         <div className={`${styles.image}`}>
           <Image
-            src={executive.image}
+            src={executive.image ?? '/images/timeline.jpg'}
             alt={executive.name}
             width={400}
             height={700}
