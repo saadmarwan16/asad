@@ -1,7 +1,10 @@
+import UpdatePresidentForm from "./UpdatePresidentForm";
+
 const AdminPresidentDetails = () => {
   return (
     <div>
-      <h1>Admin President details page is coming soon</h1>
+      <h4 className="mb-8 font-medium">Update president</h4>
+      <UpdatePresidentForm />
     </div>
   );
 };

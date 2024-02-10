@@ -4,7 +4,7 @@ import {
   type TNewExecutive,
   newExecutiveSchema,
 } from "@asad/lib/types/executive";
-import Button, { button } from "@asad/lib/ui/Button";
+import Button from "@asad/lib/ui/Button";
 import Input from "@asad/lib/ui/Input";
 import Select from "@asad/lib/ui/Select";
 import Textarea from "@asad/lib/ui/Textarea";
@@ -28,9 +28,7 @@ const UpdateExecutiveForm = () => {
     formState: { errors, isDirty },
   } = useForm<TNewExecutive>({
     resolver: zodResolver(newExecutiveSchema),
-    defaultValues: {
-      ...executive,
-    },
+    defaultValues: executive,
   });
 
   const onSubmit: SubmitHandler<TNewExecutive> = (data) => {

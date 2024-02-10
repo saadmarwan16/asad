@@ -6,7 +6,7 @@ import Input from "@asad/lib/ui/Input";
 import Textarea from "@asad/lib/ui/Textarea";
 import styles from "@asad/styles/admin/new_or_update_president.module.css";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { type SubmitHandler, useForm, Controller } from "react-hook-form";
 import {
   type TNewPresident,
@@ -14,25 +14,22 @@ import {
 } from "@asad/lib/types/president";
 import Select from "@asad/lib/ui/Select";
 import { generateYears } from "@asad/lib/utils/generateYears";
+import { presidents } from "@asad/lib/data/home/presidents";
 
-const AddPresidentForm = () => {
-  const [image, setImage] = useState<string | undefined>(undefined);
+const UpdatePresidentForm = () => {
+  const president = useMemo(() => {
+    return presidents[0];
+  }, [presidents[0]]);
+  const [image, setImage] = useState<string | undefined>(president?.image);
   const {
     control,
     reset,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isDirty },
   } = useForm<TNewPresident>({
     resolver: zodResolver(newPresidentSchema),
-    defaultValues: {
-      name: "",
-      from: "",
-      to: "",
-      accomplishments: "",
-    },
+    defaultValues: president,
   });
-
-  // Write a short description Write a short description Write a short description Write a short description Write a short description
 
   const onSubmit: SubmitHandler<TNewPresident> = (data) => {
     console.log({
@@ -105,36 +102,6 @@ const AddPresidentForm = () => {
           )}
         />
       </div>
-      {/* <div className={styles.from}>
-        <Controller
-          control={control}
-          name="from"
-          render={({ field }) => (
-            <DatePicker
-              showIcon
-              icon={<FaRegCalendarAlt className="text-2xl" />}
-              selected={startDate}
-              onChange={(date) => {
-                console.log(date);
-                setStartDate(date);
-              }}
-              placeholderText="Select the year the president was sworn in"
-              dateFormat="MM/yyyy"
-              toggleCalendarOnIconClick
-              customInput={
-                <DateInput
-                  top="From"
-                  {...field}
-                  bottom={errors.from?.message}
-                />
-              }
-              showMonthYearPicker
-              maxDate={new Date()}
-              isClearable
-            />
-          )}
-        />
-      </div> */}
       <div id={styles.duties}>
         <Controller
           control={control}
@@ -154,13 +121,21 @@ const AddPresidentForm = () => {
         image={image}
         setImage={(value) => setImage(value)}
       />
-      <div id={styles.button}>
-        <Button type="submit" data-text="Add">
-          Add
+      <div id={styles.button} className="flex flex-wrap justify-end gap-4">
+        <Button
+          type="button"
+          data-text="Remove"
+          variant="secondary"
+          onClick={() => console.log("Executive removed")}
+        >
+          Remove
+        </Button>
+        <Button type="submit" data-text="Update" disabled={!isDirty}>
+          Update
         </Button>
       </div>
     </form>
   );
 };
 
-export default AddPresidentForm;
+export default UpdatePresidentForm;
