@@ -1,7 +1,10 @@
+import AddTimelineForm from "./_components/AddTimelineForm";
+
 const AdminAddTimeline = () => {
   return (
     <div>
-      <h1>Admin add Timeline page is coming soon</h1>
+      <h4 className="mb-8 font-medium">Add timeline</h4>
+      <AddTimelineForm />
     </div>
   );
 };

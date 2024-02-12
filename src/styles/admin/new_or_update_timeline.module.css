@@ -1,0 +1,39 @@
+#form {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 2rem;
+    grid-template-areas:
+    'image' 
+    'date'
+    'description'
+    'button';
+}
+
+#date {
+    grid-area: date;
+}
+
+#description {
+    grid-area: description;
+}
+
+#image {
+    grid-area: image;
+}
+
+#button {
+    grid-area: button;
+    justify-self: end;
+}
+
+@media (min-width: 768px) {
+    #form {
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 3rem;
+        row-gap: 2rem;
+        grid-template-areas: 
+        'date image'
+        'description image'
+        'button button';
+    }
+}

@@ -34,24 +34,28 @@ const input = cva("border-2 text-content-100", {
 type DateInputVariantProps = VariantProps<typeof input>;
 
 interface DateInputProps
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, "size" | "width">,
+  extends Omit<
+      InputHTMLAttributes<HTMLInputElement>,
+      "size" | "width" | "value"
+    >,
     DateInputVariantProps {
   top?: string;
   bottom?: string;
+  value: Date;
 }
 
 const DateInput: FunctionComponent<DateInputProps> = forwardRef<
   HTMLInputElement,
   DateInputProps
->(({ variant, width, size, top, bottom, ...props }, ref) => {
+>(({ variant, width, size, top, bottom, value, ...props }, ref) => {
   return (
     <div className="flex flex-col gap-2">
       {top && (
         <label className="cursor-default select-none font-medium">{top}</label>
       )}
       <input
-        type="date"
         ref={ref}
+        value={value.toString()}
         {...props}
         className={input({ variant, width, size })}
       />

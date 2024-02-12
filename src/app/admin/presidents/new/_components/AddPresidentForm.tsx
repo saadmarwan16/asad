@@ -32,8 +32,6 @@ const AddPresidentForm = () => {
     },
   });
 
-  // Write a short description Write a short description Write a short description Write a short description Write a short description
-
   const onSubmit: SubmitHandler<TNewPresident> = (data) => {
     console.log({
       ...data,
