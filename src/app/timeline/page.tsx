@@ -23,13 +23,13 @@ const Timeline = () => {
             <div className="aspect-[3/2] w-full">
               <Image
                 src={timeline.image}
-                alt={timeline.desciption}
+                alt={timeline.description}
                 width={400}
                 height={250}
                 className="h-full w-full rounded-lg"
               />
             </div>
-            <p>{timeline.desciption}</p>
+            <p>{timeline.description}</p>
           </div>
         ))}
       </div>

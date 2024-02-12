@@ -1,7 +1,7 @@
 import Button, { button } from "@asad/lib/ui/Button";
 import styles from "@asad/styles/admin/new_executive.module.css";
 import Image from "next/image";
-import { FunctionComponent, useState } from "react";
+import { type FunctionComponent } from "react";
 import { FaImage } from "react-icons/fa";
 
 interface AddExecutiveImageProps {

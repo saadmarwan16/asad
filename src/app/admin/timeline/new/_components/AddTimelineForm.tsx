@@ -13,7 +13,6 @@ import {
 } from "@asad/lib/types/timeline";
 import DatePicker from "react-datepicker";
 import DateInput from "@asad/lib/ui/DateInput";
-import { FaRegCalendarAlt } from "react-icons/fa";
 
 const AddTimelineForm = () => {
   const [image, setImage] = useState<string | undefined>(undefined);
@@ -49,8 +48,6 @@ const AddTimelineForm = () => {
           name="date"
           render={({ field }) => (
             <DatePicker
-              showIcon
-              icon={<FaRegCalendarAlt className="text-2xl" />}
               selected={getValues().date}
               onChange={(date) => {
                 if (!date) return;
