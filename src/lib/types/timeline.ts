@@ -1,13 +1,13 @@
 import { z } from "zod";
 
 export const timelineFormSchema = z.object({
-  date: z.date({ required_error: "Date is required" }),
+  date: z.date().nullable(),
   description: z.string().min(40, "Description of timeline is too short"),
 });
 
 export const timelineSchema = z.object({
   id: z.number().min(1, "Invalid timeline id"),
-  date: z.date({ required_error: "Date is required" }),
+  date: z.date().nullable(),
   image: z.string().url("Invalid timeline image url"),
   description: z.string().min(40, "Description of timeline is too short"),
 });

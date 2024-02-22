@@ -1,7 +1,13 @@
+import { timelines } from "@asad/lib/data/home/timelines";
+import UpdateTimelineForm from "./_components/UpdateTimelineForm";
+
 const AdminTimelineDetails = () => {
+  const timeline = timelines[0];
+
   return (
     <div>
-      <h1>Admin Timeline details page is coming soon</h1>
+      <h4 className="mb-8 font-medium">Update timeline</h4>
+      <UpdateTimelineForm timeline={timeline} />
     </div>
   );
 };

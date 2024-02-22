@@ -3,6 +3,7 @@
 import {
   type TNewExecutive,
   newExecutiveSchema,
+  type TExecutive,
 } from "@asad/lib/types/executive";
 import Button from "@asad/lib/ui/Button";
 import Input from "@asad/lib/ui/Input";
@@ -10,15 +11,17 @@ import Select from "@asad/lib/ui/Select";
 import Textarea from "@asad/lib/ui/Textarea";
 import styles from "@asad/styles/admin/new_executive.module.css";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMemo, useState } from "react";
+import { type FunctionComponent, useState } from "react";
 import { type SubmitHandler, useForm, Controller } from "react-hook-form";
 import UpdateExecutiveImage from "./UpdateExecutiveImage";
-import { executives } from "@asad/lib/data/home/executives";
 
-const UpdateExecutiveForm = () => {
-  const executive = useMemo(() => {
-    return executives[0];
-  }, [executives[0]]);
+interface UpdateExecutiveFormProps {
+  executive?: TExecutive;
+}
+
+const UpdateExecutiveForm: FunctionComponent<UpdateExecutiveFormProps> = ({
+  executive,
+}) => {
   const [image, setImage] = useState<string | undefined>(executive?.image);
 
   const {
@@ -70,9 +73,12 @@ const UpdateExecutiveForm = () => {
               <option value="" disabled>
                 Select a role
               </option>
-              <option value="DCEO">DCEO</option>
-              <option value="DCTO">DCTO</option>
-              <option value="DCFO">DCFO</option>
+              <option value="President">President</option>
+              <option value="Vice President">Vice President</option>
+              <option value="General Secretary">General Secretary</option>
+              <option value="Deputy General Secretary">
+                Deputy General Secretary
+              </option>
             </Select>
           )}
         />
@@ -96,8 +102,13 @@ const UpdateExecutiveForm = () => {
         image={image}
         setImage={(value) => setImage(value)}
       />
-      <div id={styles.button} className="flex gap-4 flex-wrap justify-end">
-        <Button type="button" data-text="Remove" variant='secondary' onClick={() => console.log('Executive removed')}>
+      <div id={styles.button} className="flex flex-wrap justify-end gap-4">
+        <Button
+          type="button"
+          data-text="Remove"
+          variant="secondary"
+          onClick={() => console.log("Executive removed")}
+        >
           Remove
         </Button>
         <Button type="submit" data-text="Update" disabled={!isDirty}>

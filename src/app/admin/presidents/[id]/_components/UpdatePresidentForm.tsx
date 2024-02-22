@@ -6,20 +6,23 @@ import Input from "@asad/lib/ui/Input";
 import Textarea from "@asad/lib/ui/Textarea";
 import styles from "@asad/styles/admin/new_or_update_president.module.css";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMemo, useState } from "react";
+import { type FunctionComponent, useState } from "react";
 import { type SubmitHandler, useForm, Controller } from "react-hook-form";
 import {
   type TNewPresident,
   newPresidentSchema,
+  type TPresident,
 } from "@asad/lib/types/president";
 import Select from "@asad/lib/ui/Select";
 import { generateYears } from "@asad/lib/utils/generateYears";
-import { presidents } from "@asad/lib/data/home/presidents";
 
-const UpdatePresidentForm = () => {
-  const president = useMemo(() => {
-    return presidents[0];
-  }, [presidents[0]]);
+interface UpdatePresidentFormProps {
+  president?: TPresident;
+}
+
+const UpdatePresidentForm: FunctionComponent<UpdatePresidentFormProps> = ({
+  president,
+}) => {
   const [image, setImage] = useState<string | undefined>(president?.image);
   const {
     control,

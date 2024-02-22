@@ -54,17 +54,4 @@ export const aside: IAside[] = [
             },
         ],
     },
-    {
-        title: 'Elections',
-        children: [
-            {
-                title: 'Add',
-                link: Routes.ADMIN_ADD_ELECTION
-            },
-            {
-                title: 'List',
-                link: Routes.ADMIN_ELECTIONS
-            },
-        ],
-    },
 ];

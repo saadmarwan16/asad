@@ -69,9 +69,12 @@ const AddExecutiveForm = () => {
               <option value="" disabled>
                 Select a role
               </option>
-              <option value="DCEO">DCEO</option>
-              <option value="DCTO">DCTO</option>
-              <option value="DCFO">DCFO</option>
+              <option value="President">President</option>
+              <option value="Vice President">Vice President</option>
+              <option value="General Secretary">General Secretary</option>
+              <option value="Deputy General Secretary">
+                Deputy General Secretary
+              </option>
             </Select>
           )}
         />

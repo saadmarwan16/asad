@@ -4,31 +4,35 @@ import Button from "@asad/lib/ui/Button";
 import Textarea from "@asad/lib/ui/Textarea";
 import styles from "@asad/styles/admin/new_or_update_timeline.module.css";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
+import { type FunctionComponent, useState } from "react";
 import { type SubmitHandler, useForm, Controller } from "react-hook-form";
 import AdminAddOrUpdateImage from "@asad/lib/components/admin/AdminAddOrUpdateImage";
 import {
   type TTimelineForm,
   timelineFormSchema,
+  type TTimeline,
 } from "@asad/lib/types/timeline";
 import DatePicker from "react-datepicker";
 import DateInput from "@asad/lib/ui/DateInput";
 
-const AddTimelineForm = () => {
-  const [image, setImage] = useState<string | undefined>(undefined);
+interface UpdateTimelineFormProps {
+  timeline?: TTimeline;
+}
+
+const UpdateTimelineForm: FunctionComponent<UpdateTimelineFormProps> = ({
+  timeline,
+}) => {
+  const [image, setImage] = useState<string | undefined>(timeline?.image);
   const {
     control,
     reset,
     handleSubmit,
     getValues,
     setValue,
-    formState: { errors },
+    formState: { errors, isDirty },
   } = useForm<TTimelineForm>({
     resolver: zodResolver(timelineFormSchema),
-    defaultValues: {
-      date: null,
-      description: "",
-    },
+    defaultValues: timeline,
   });
 
   const onSubmit: SubmitHandler<TTimelineForm> = (data) => {
@@ -90,13 +94,21 @@ const AddTimelineForm = () => {
         image={image}
         setImage={(value) => setImage(value)}
       />
-      <div id={styles.button}>
-        <Button type="submit" data-text="Add">
-          Add
+      <div id={styles.button} className="flex flex-wrap justify-end gap-4">
+        <Button
+          type="button"
+          data-text="Remove"
+          variant="secondary"
+          onClick={() => console.log("Executive removed")}
+        >
+          Remove
+        </Button>
+        <Button type="submit" data-text="Update" disabled={!isDirty}>
+          Update
         </Button>
       </div>
     </form>
   );
 };
 
-export default AddTimelineForm;
+export default UpdateTimelineForm;

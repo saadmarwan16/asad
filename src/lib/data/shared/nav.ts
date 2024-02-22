@@ -25,9 +25,5 @@ export const nav: INavItem[] = [
     {
         title: 'Activities',
         link: Routes.ACTIVITIES
-    },
-    {
-        title: 'Elections',
-        link: Routes.ELECTIONS
-    },
+    }
 ]

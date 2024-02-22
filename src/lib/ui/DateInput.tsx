@@ -1,5 +1,3 @@
-"use client";
-
 import { cva, type VariantProps } from "class-variance-authority";
 import {
   type InputHTMLAttributes,
@@ -41,7 +39,7 @@ interface DateInputProps
     DateInputVariantProps {
   top?: string;
   bottom?: string;
-  value: Date;
+  value: Date | null;
 }
 
 const DateInput: FunctionComponent<DateInputProps> = forwardRef<
@@ -55,7 +53,7 @@ const DateInput: FunctionComponent<DateInputProps> = forwardRef<
       )}
       <input
         ref={ref}
-        value={value.toString()}
+        value={value ? value.toString() : ""}
         {...props}
         className={input({ variant, width, size })}
       />

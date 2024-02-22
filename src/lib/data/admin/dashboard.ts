@@ -21,10 +21,5 @@ export const dashbaord: IDashbaord[] = [
         title: 'Activities',
         image: '/images/activities-1.jpg',
         link: Routes.ADMIN_ACTIVITIES
-    },
-    {
-        title: 'Elections',
-        image: '/images/activities-2.jpg',
-        link: Routes.ADMIN_ELECTIONS
-    },
+    }
 ];
