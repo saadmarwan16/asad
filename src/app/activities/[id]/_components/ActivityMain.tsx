@@ -19,7 +19,7 @@ const ActivityMain: FunctionComponent<ActivityMainProps> = () => {
     >
       <h5 className={`${styles.title} text-primary-200`}>ASAD Speaking Club</h5>
       <div className={`${styles.socials} flex flex-col gap-2`}>
-        <span className="text-content-100">Share on social</span>
+        <span className="text-content-100">Share on socials</span>
         <div className="flex gap-2 text-2xl">
           <Link
             href="https://www.facebook.com/pauasadafrika"

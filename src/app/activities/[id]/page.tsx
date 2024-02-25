@@ -6,7 +6,9 @@ import ActivityMain from "./_components/ActivityMain";
 const ActivityDetails = () => {
   return (
     <div>
-      <Header />
+      <div className="hidden lg:block">
+        <Header />
+      </div>
       <ActivityHero />
       <ActivityMain />
       <Footer />

@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Routes } from "@asad/lib/routes";
 import Hamburger from "@asad/lib/components/Hamburger";
 
-const Logo = () => {
+export const Logo = () => {
   return (
     <a href={Routes.HOME} className="relative inline-block w-12 sm:w-16">
       <Image
