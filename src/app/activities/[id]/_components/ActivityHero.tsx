@@ -6,12 +6,12 @@ import Image from "next/image";
 const ActivityHero = () => {
   return (
     <>
-      <section className="relative -z-20 h-screen flex-grow bg-base-100 px-5 text-2xl">
+      <section className="lg:relative lg:-z-20 lg:h-screen flex-grow bg-base-100 px-5 text-2xl">
         <div
           id={styles.hero}
-          className="-mx-5 !h-full w-full text-base-100 lg:fixed"
+          className="-mx-5 lg:h-full w-screen lg:w-full text-base-100 lg:fixed"
         >
-          <header className={`${styles.header} text-md flex h-20 items-center justify-between px-4 sm:h-24 lg:hidden`}>
+          <header className={`${styles.header} z-50 text-md flex h-20 items-center justify-between px-4 sm:h-24 lg:hidden`}>
             <div className="flex items-center">
               <Logo />
             </div>
@@ -19,6 +19,7 @@ const ActivityHero = () => {
               <Hamburger />
             </div>
           </header>
+
           <div
             className={`${styles.imageContainer} relative h-full w-full overflow-hidden`}
           >
@@ -33,7 +34,7 @@ const ActivityHero = () => {
           </div>
 
           <div
-            className={`${styles.textContainer} z-10 mb-16 mt-40 flex flex-col gap-8 px-4 sm:gap-10 md:mb-24 md:gap-12 lg:pl-20 lg:pr-0`}
+            className={`${styles.textContainer} z-10 mb-16 mt-24 sm:mt-28 md:mt-32 lg:mt-40 flex flex-col gap-12 px-4 md:mb-24 lg:pl-20 lg:pr-0`}
           >
             <h4 className={`${styles.title} grow`}>ASAD Speaking Club</h4>
 
