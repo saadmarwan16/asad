@@ -1,0 +1,74 @@
+#form {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 2rem;
+  grid-template-areas:
+    "image"
+    "name"
+    "slogan"
+    "genres"
+    "date"
+    "location"
+    "city"
+    "sponsors"
+    "description"
+    "button";
+}
+
+#name {
+  grid-area: name;
+}
+
+#slogan {
+  grid-area: slogan;
+}
+
+#image {
+  grid-area: image;
+}
+
+#genres {
+  grid-area: genres;
+}
+
+#date {
+  grid-area: date;
+}
+
+#location {
+  grid-area: location;
+}
+
+#city {
+  grid-area: city;
+}
+
+#sponsors {
+  grid-area: sponsors;
+}
+
+#description {
+  grid-area: description;
+}
+
+#button {
+  grid-area: button;
+  justify-self: end;
+}
+
+@media (min-width: 768px) {
+  #form {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 3rem;
+    row-gap: 2rem;
+    grid-template-areas:
+      "name image"
+      "slogan image"
+      "genres image"
+      "date image"
+      "description location"
+      "description city"
+      "description sponsors"
+      "button button";
+  }
+}

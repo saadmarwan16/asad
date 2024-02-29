@@ -1,7 +1,10 @@
+import AddActivityForm from "./_components/AddActivityForm";
+
 const AdminAddActivity = () => {
   return (
     <div>
-      <h1>Admin add Activity page is coming soon</h1>
+      <h4 className="mb-8 font-medium">Add new activity</h4>
+      <AddActivityForm />
     </div>
   );
 };

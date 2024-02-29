@@ -103,36 +103,6 @@ const AddPresidentForm = () => {
           )}
         />
       </div>
-      {/* <div className={styles.from}>
-        <Controller
-          control={control}
-          name="from"
-          render={({ field }) => (
-            <DatePicker
-              showIcon
-              icon={<FaRegCalendarAlt className="text-2xl" />}
-              selected={startDate}
-              onChange={(date) => {
-                console.log(date);
-                setStartDate(date);
-              }}
-              placeholderText="Select the year the president was sworn in"
-              dateFormat="MM/yyyy"
-              toggleCalendarOnIconClick
-              customInput={
-                <DateInput
-                  top="From"
-                  {...field}
-                  bottom={errors.from?.message}
-                />
-              }
-              showMonthYearPicker
-              maxDate={new Date()}
-              isClearable
-            />
-          )}
-        />
-      </div> */}
       <div id={styles.duties}>
         <Controller
           control={control}
