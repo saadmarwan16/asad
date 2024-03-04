@@ -6,7 +6,6 @@ import footerStyles from "@asad/styles/shared/footer.module.css";
 import AdminAside from "./_components/AdminAside";
 import Link from "next/link";
 import { Routes } from "@asad/lib/routes";
-import Image from "next/image";
 import dayjs from "dayjs";
 import AdminSearchForm from "./_components/AdminSearchForm";
 import { FaHeart } from "react-icons/fa6";
@@ -51,21 +50,10 @@ const AdminLayout: FunctionComponent<PropsWithChildren> = ({ children }) => {
                   </span>
                 </Link>
                 <AdminSearchForm />
-                <div
-                  id={styles.avatar}
-                  className="relative aspect-square w-12 rounded-full"
-                >
-                  <Image
-                    src="/logo.png"
-                    alt="User profile"
-                    sizes="100% 100%"
-                    fill
-                  />
-                </div>
               </header>
             </div>
           </div>
-          <div className="relative w-full pt-[9.5rem] sm:pt-[5.5rem]">
+          <div className="relative w-full pt-[5.5rem]">
             <div className="absolute w-full overflow-y-scroll bg-base-200 p-5 sm:py-8 lg:px-10">
               {children}
 

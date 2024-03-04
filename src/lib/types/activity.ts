@@ -11,9 +11,9 @@ export const newActivitySchema = z.object({
     .min(40, "Description must contain at least 40 characters"),
   location: z.string().min(2, "Location must contain at least 2 characters"),
   city: z.string().min(2, "City must contain at least 2 characters"),
-  sponsors: z.array(
-    z.string().min(2, "Sponsor name must contain at least 2 characters"),
-  ),
+  sponsors: z
+    .string()
+    .min(2, "Sponsor name must contain at least 2 characters"),
 });
 
 export const activitySchema = z.object({
@@ -28,9 +28,9 @@ export const activitySchema = z.object({
     .min(40, "Description must contain at least 40 characters"),
   location: z.string().min(2, "Location must contain at least 2 characters"),
   city: z.string().min(2, "City must contain at least 2 characters"),
-  sponsors: z.array(
-    z.string().min(2, "Sponsor name must contain at least 2 characters"),
-  ),
+  sponsors: z
+    .string()
+    .min(2, "Sponsor name must contain at least 2 characters"),
 });
 
 export type TNewActivity = z.infer<typeof newActivitySchema>;

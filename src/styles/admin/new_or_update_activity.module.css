@@ -3,7 +3,7 @@
   grid-template-columns: 1fr;
   row-gap: 2rem;
   grid-template-areas:
-    "image"
+    "images"
     "name"
     "slogan"
     "genres"
@@ -23,8 +23,8 @@
   grid-area: slogan;
 }
 
-#image {
-  grid-area: image;
+#images {
+  grid-area: images;
 }
 
 #genres {
@@ -62,10 +62,10 @@
     column-gap: 3rem;
     row-gap: 2rem;
     grid-template-areas:
-      "name image"
-      "slogan image"
-      "genres image"
-      "date image"
+      "name images"
+      "slogan images"
+      "genres images"
+      "date images"
       "description location"
       "description city"
       "description sponsors"

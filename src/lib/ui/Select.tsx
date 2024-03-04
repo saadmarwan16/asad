@@ -45,7 +45,7 @@ const Select: FunctionComponent<SelectProps> = forwardRef<
   SelectProps
 >(({ variant, width, size, top, bottom, children, ...props }, ref) => {
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2 grow">
       {top && (
         <label
           htmlFor={props.id}
