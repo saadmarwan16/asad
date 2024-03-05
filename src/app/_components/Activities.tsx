@@ -4,6 +4,7 @@ import Button from "@asad/lib/ui/Button";
 import { Routes } from "@asad/lib/routes";
 import styles from "@asad/styles/home/activities.module.css";
 import Link from "next/link";
+import dayjs from "dayjs";
 
 const Activities = () => {
   return (
@@ -30,7 +31,7 @@ const Activities = () => {
               <div className="flex flex-col gap-4">
                 <div
                   className={`${styles.activityImage}`}
-                  style={{ backgroundImage: `url(${activity.image})` }}
+                  style={{ backgroundImage: `url(${activity.images[0]})` }}
                 >
                   <div className="flex flex-col items-center justify-center gap-4 text-xl">
                     <span>
@@ -40,8 +41,8 @@ const Activities = () => {
                   </div>
                 </div>
                 <div>
-                  <small>{activity.date}</small>
-                  <h6 className="truncate font-medium">{activity.title}</h6>
+                  <small>{dayjs(activity.date).format("MMMM DD, YYYY")}</small>
+                  <h6 className="truncate font-medium">{activity.name}</h6>
                 </div>
               </div>
             </Link>

@@ -78,7 +78,7 @@ const ActivityMain: FunctionComponent<ActivityMainProps> = () => {
         soluta, enim illum laudantium sint laboriosam cum, assumenda consectetur
         ratione magni.
       </p>
-      <div className={`${styles.details} flex flex-col gap-3 text-content-100`}>
+      <div className={`${styles.details} flex flex-col gap-3 text-content-200`}>
         <span className={`${styles.detail} font-thin`}>
           <span className="font-medium text-primary-200">LOCATION:</span> Camlik
           Park

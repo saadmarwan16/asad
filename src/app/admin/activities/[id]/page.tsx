@@ -1,7 +1,12 @@
+import { activities } from "@asad/lib/data/home/activities";
+import UpdateActivityForm from "./_components/UpdateActivityForm";
+
 const AdminActivityDetails = () => {
+  const activity = activities[0];
   return (
     <div>
-      <h1>Admin Activity details page is coming soon</h1>
+      <h4 className="mb-8 font-medium">Update activity</h4>
+      {activity && <UpdateActivityForm activity={activity} />}
     </div>
   );
 };

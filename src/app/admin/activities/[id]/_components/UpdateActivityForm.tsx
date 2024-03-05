@@ -12,16 +12,26 @@ import {
   Controller,
   useFieldArray,
 } from "react-hook-form";
-import { type TNewActivity, newActivitySchema } from "@asad/lib/types/activity";
+import {
+  type TNewActivity,
+  newActivitySchema,
+  type TActivity,
+} from "@asad/lib/types/activity";
 import DateInput from "@asad/lib/ui/DateInput";
 import DatePicker from "react-datepicker";
 import { MdDelete } from "react-icons/md";
 import { IoMdAdd } from "react-icons/io";
-import AddActivityImages from "./AddActivityImages";
-import { useState } from "react";
+import { type FunctionComponent, useState } from "react";
+import UpdateActivityImages from "./UpdateActivityImages";
 
-const AddExecutiveForm = () => {
-  const [images, setImages] = useState<string[]>([]);
+interface UpdateExecutiveFormProps {
+  activity: TActivity;
+}
+
+const UpdateExecutiveForm: FunctionComponent<UpdateExecutiveFormProps> = ({
+  activity,
+}) => {
+  const [images, setImages] = useState<string[]>(activity.images);
   const {
     control,
     reset,
@@ -31,17 +41,7 @@ const AddExecutiveForm = () => {
     formState: { errors },
   } = useForm<TNewActivity>({
     resolver: zodResolver(newActivitySchema),
-    defaultValues: {
-      name: "",
-      slogan: "",
-      genres: ["s"],
-      date: null,
-      location: "",
-      sponsors: "",
-      city: "",
-      description: "",
-      images: [],
-    },
+    defaultValues: activity,
   });
   const { fields, insert, remove } = useFieldArray({
     control,
@@ -57,7 +57,7 @@ const AddExecutiveForm = () => {
 
   return (
     <form id={styles.form} onSubmit={handleSubmit(onSubmit)}>
-      <AddActivityImages
+      <UpdateActivityImages
         images={images}
         setImage={(value) => {
           if (value) setImages([...images, value]);
@@ -250,4 +250,4 @@ const AddExecutiveForm = () => {
   );
 };
 
-export default AddExecutiveForm;
+export default UpdateExecutiveForm;

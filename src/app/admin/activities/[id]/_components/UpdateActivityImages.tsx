@@ -4,13 +4,13 @@ import Image from "next/image";
 import { useState, type FunctionComponent } from "react";
 import { FaImage } from "react-icons/fa";
 
-interface AddActivityImagesProps {
+interface UpdateActivityImagesProps {
   images: string[];
   setImage: (value: string | undefined) => void;
   removeImage: (idx: number) => void;
 }
 
-const AddActivityImages: FunctionComponent<AddActivityImagesProps> = ({
+const UpdateActivityImages: FunctionComponent<UpdateActivityImagesProps> = ({
   images,
   setImage,
   removeImage,
@@ -100,4 +100,4 @@ const AddActivityImages: FunctionComponent<AddActivityImagesProps> = ({
   );
 };
 
-export default AddActivityImages;
+export default UpdateActivityImages;
