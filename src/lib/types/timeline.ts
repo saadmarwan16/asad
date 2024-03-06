@@ -6,8 +6,8 @@ export const timelineFormSchema = z.object({
 });
 
 export const timelineSchema = z.object({
-  id: z.number().min(1, "Invalid timeline id"),
-  date: z.date().nullable(),
+  id: z.number({ required_error: "Id is required" }),
+  date: z.date(),
   image: z.string().url("Invalid timeline image url"),
   description: z.string().min(40, "Description of timeline is too short"),
 });

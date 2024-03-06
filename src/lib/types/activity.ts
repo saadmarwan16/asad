@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { genres } from "../data/admin/genres";
 
 export const newActivitySchema = z.object({
   name: z.string().min(2, "Name must contain at least 2 characters"),
@@ -21,7 +22,7 @@ export const activitySchema = z.object({
   name: z.string().min(2, "Name must contain at least 2 characters"),
   slogan: z.string().min(8, "Slogan must contain at least 8 characters"),
   images: z.array(z.string().url()),
-  genres: z.array(z.string()),
+  genres: z.array(z.enum(genres)),
   date: z.date().nullable(),
   description: z
     .string()
