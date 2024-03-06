@@ -6,7 +6,7 @@ export const executives = sqliteTable("executives", {
   name: text("name").notNull(),
   role: text("role", { enum: roles }).notNull(),
   image: text("image"),
-  accomplishments: text("accomplishments").notNull(),
+  duties: text("duties").notNull(),
 });
 
 export type TInsertExecutive = typeof executives.$inferInsert;

@@ -1,9 +1,6 @@
 "use client";
 
-import {
-  type TNewExecutive,
-  newExecutiveSchema,
-} from "@asad/lib/types/executive";
+import { Executive } from "@asad/lib/types/executive";
 import Button from "@asad/lib/ui/Button";
 import Input from "@asad/lib/ui/Input";
 import Select from "@asad/lib/ui/Select";
@@ -12,7 +9,10 @@ import styles from "@asad/styles/admin/new_executive.module.css";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { type SubmitHandler, useForm, Controller } from "react-hook-form";
-import AddExecutiveImage from "./AddExecutiveImage";
+import AdminAddOrUpdateImage from "@asad/lib/components/admin/AdminAddOrUpdateImage";
+import { type TInsertExecutive } from "@asad/server/db/schema/executives";
+import { roles } from "@asad/lib/data/admin/roles";
+import { api } from "@asad/trpc/react";
 
 const AddExecutiveForm = () => {
   const [image, setImage] = useState<string | undefined>(undefined);
@@ -20,9 +20,9 @@ const AddExecutiveForm = () => {
     control,
     reset,
     handleSubmit,
-    formState: { errors },
-  } = useForm<TNewExecutive>({
-    resolver: zodResolver(newExecutiveSchema),
+    formState: { errors, isSubmitting },
+  } = useForm<TInsertExecutive>({
+    resolver: zodResolver(Executive.omit({ id: true, image: true })),
     defaultValues: {
       name: "",
       role: "",
@@ -30,11 +30,21 @@ const AddExecutiveForm = () => {
     },
   });
 
-  const onSubmit: SubmitHandler<TNewExecutive> = (data) => {
+  const insertExecutive = api.executive.insert.useMutation({
+    onError: (error) => {
+      console.log("An error occurred", error);
+    },
+    onSuccess: (val) => {
+      console.log("Suucess", val);
+    },
+  });
+
+  const onSubmit: SubmitHandler<TInsertExecutive> = async (data) => {
     console.log({
       ...data,
       image,
     });
+    const res = await insertExecutive.mutateAsync(data)
     setImage(undefined);
     reset();
   };
@@ -69,12 +79,13 @@ const AddExecutiveForm = () => {
               <option value="" disabled>
                 Select a role
               </option>
-              <option value="President">President</option>
-              <option value="Vice President">Vice President</option>
-              <option value="General Secretary">General Secretary</option>
-              <option value="Deputy General Secretary">
-                Deputy General Secretary
-              </option>
+              {roles
+                .filter((val) => val !== "")
+                .map((role, idx) => (
+                  <option key={idx} value={role}>
+                    {role}
+                  </option>
+                ))}
             </Select>
           )}
         />
@@ -94,10 +105,13 @@ const AddExecutiveForm = () => {
           )}
         />
       </div>
-      <AddExecutiveImage image={image} setImage={(value) => setImage(value)} />
+      <AdminAddOrUpdateImage
+        image={image}
+        setImage={(value) => setImage(value)}
+      />
       <div id={styles.button}>
-        <Button type="submit" data-text="Add">
-          Add
+        <Button disabled={isSubmitting} type="submit" data-text="Add">
+          {isSubmitting ? "Adding..." : "Add"}
         </Button>
       </div>
     </form>

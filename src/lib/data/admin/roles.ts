@@ -1,4 +1,5 @@
 export const roles = [
+  "",
   "President",
   "Vice President",
   "General Secretary",

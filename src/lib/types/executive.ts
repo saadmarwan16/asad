@@ -9,7 +9,7 @@ export const newExecutiveSchema = z.object({
     .min(120, "Description of executive member's duties is too short"),
 });
 
-export const executiveSchema = z.object({
+export const Executive = z.object({
   id: z.number({ required_error: "Id is required" }),
   name: z.string().min(2, "Name must contain at least 2 characters"),
   role: z.enum(roles),
@@ -21,4 +21,4 @@ export const executiveSchema = z.object({
 
 export type TNewExecutive = z.infer<typeof newExecutiveSchema>;
 
-export type TExecutive = z.infer<typeof executiveSchema>;
+export type TExecutive = z.infer<typeof Executive>;

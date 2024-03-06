@@ -3,6 +3,7 @@ import styles from "@asad/styles/admin/new_executive.module.css";
 import Image from "next/image";
 import { type FunctionComponent } from "react";
 import { FaImage } from "react-icons/fa";
+import { UploadButton } from "@asad/lib/utils/uploadthing";
 
 interface AdminAddOrUpdateImageProps {
   image: string | undefined;
@@ -40,7 +41,7 @@ const AdminAddOrUpdateImage: FunctionComponent<AdminAddOrUpdateImageProps> = ({
             <div className="absolute bottom-0 left-0 right-0 top-0 z-[1] flex flex-wrap content-center items-center justify-center gap-4 rounded-lg bg-content-200 bg-opacity-50 px-4 md:px-6">
               <Button
                 variant="secondary"
-                size='sm'
+                size="sm"
                 data-text="Remove"
                 onClick={() => setImage(undefined)}
               >
@@ -49,7 +50,7 @@ const AdminAddOrUpdateImage: FunctionComponent<AdminAddOrUpdateImageProps> = ({
               <label
                 htmlFor="update-image"
                 data-text="Update"
-                className={`cursor-pointer ${button({size: 'sm'})}`}
+                className={`cursor-pointer ${button({ size: "sm" })}`}
               >
                 Update
               </label>
@@ -63,15 +64,29 @@ const AdminAddOrUpdateImage: FunctionComponent<AdminAddOrUpdateImageProps> = ({
             />
           </div>
         ) : (
-          <label
-            htmlFor="new-image"
-            className="flex cursor-pointer flex-col items-center justify-center gap-6 rounded-lg border-2 border-primary-100 px-10 py-12 hover:border-primary-200"
-          >
-            <FaImage className="text-6xl text-primary-200 sm:text-7xl md:text-8xl lg:text-9xl" />
-            <span className="text-lg font-medium text-primary-300 md:text-xl">
-              Add an image
-            </span>
-          </label>
+          <>
+            <label
+              htmlFor="new-image"
+              className="flex cursor-pointer flex-col items-center justify-center gap-6 rounded-lg border-2 border-primary-100 px-10 py-12 hover:border-primary-200"
+            >
+              <FaImage className="text-6xl text-primary-200 sm:text-7xl md:text-8xl lg:text-9xl" />
+              <span className="text-lg font-medium text-primary-300 md:text-xl">
+                Add an image
+              </span>
+            </label>
+
+            <UploadButton
+              endpoint="imageUploader"
+              onClientUploadComplete={(res) => {
+                if (res.length > 0) {
+                  setImage(res[0]!.url);
+                }
+              }}
+              onUploadError={(error: Error) => {
+                alert(`ERROR! ${error.message}`);
+              }}
+            />
+          </>
         )}
       </div>
     </>
