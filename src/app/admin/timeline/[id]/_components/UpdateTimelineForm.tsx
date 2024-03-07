@@ -16,13 +16,13 @@ import DatePicker from "react-datepicker";
 import DateInput from "@asad/lib/ui/DateInput";
 
 interface UpdateTimelineFormProps {
-  timeline?: TTimeline;
+  timeline: TTimeline;
 }
 
 const UpdateTimelineForm: FunctionComponent<UpdateTimelineFormProps> = ({
   timeline,
 }) => {
-  const [image, setImage] = useState<string | undefined>(timeline?.image);
+  const [image, setImage] = useState<string | null>(timeline.image);
   const {
     control,
     reset,
@@ -40,7 +40,7 @@ const UpdateTimelineForm: FunctionComponent<UpdateTimelineFormProps> = ({
       ...data,
       image,
     });
-    setImage(undefined);
+    setImage(null);
     reset();
   };
 

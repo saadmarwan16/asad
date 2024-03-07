@@ -19,7 +19,7 @@ const PresidentContent: FunctionComponent<PresidentContentProps> = ({
       </div>
       <div className="relative h-[400px] overflow-hidden">
         <Image
-          src={president.image}
+          src={president.image ?? '/images/no_profile_image.jpg'}
           alt={president.name}
           width={500}
           height={500}

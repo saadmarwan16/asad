@@ -7,7 +7,7 @@ const AdminPresidentDetails = () => {
   return (
     <div>
       <h4 className="mb-8 font-medium">Update president</h4>
-      <UpdatePresidentForm president={president} />
+      {president && <UpdatePresidentForm president={president} />}
     </div>
   );
 };

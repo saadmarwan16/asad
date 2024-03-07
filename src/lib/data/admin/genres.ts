@@ -1,6 +1,7 @@
 export const genres = [
   "",
   "Meeting",
+  "Speaking",
   "Election",
   "Concert",
   "Festival",

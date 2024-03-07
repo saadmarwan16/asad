@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useModalContext } from "@asad/lib/components/ModalContextProvider";
 import ExecutiveMemberContent from "./ExecutiveMemberContent";
 import styles from "@asad/styles/shared/executivepresidentactivities.module.css";
-import { type TExecutive } from "@asad/lib/types/executive";
+import { type TExecutive } from "@asad/server/db/schema/executives";
 
 interface ExecutiveMemberCardProps {
   executive: TExecutive;

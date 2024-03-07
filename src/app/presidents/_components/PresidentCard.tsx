@@ -26,7 +26,7 @@ const PresidentCard: FunctionComponent<PresidentCardProps> = ({
       <div className={`${styles.imageContainer} aspect-[5/6]`}>
         <div className={`${styles.image}`}>
           <Image
-            src={president.image}
+            src={president.image ?? '/images/no_profile_image.jpg'}
             alt={president.name}
             width={400}
             height={700}

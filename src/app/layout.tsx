@@ -1,4 +1,5 @@
 import "@asad/styles/globals.css";
+import 'react-toastify/dist/ReactToastify.css';
 
 import { Montserrat } from "next/font/google";
 import { cookies } from "next/headers";
@@ -6,6 +7,7 @@ import { cookies } from "next/headers";
 import { TRPCReactProvider } from "@asad/trpc/react";
 import DrawerContextProvider from "@asad/lib/components/DrawerContextProvider";
 import ModalContextProvider from "@asad/lib/components/ModalContextProvider";
+import { ToastContainer } from 'react-toastify';
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -31,7 +33,20 @@ export default function RootLayout({
       >
         <TRPCReactProvider cookies={cookies().toString()}>
           <DrawerContextProvider>
-            <ModalContextProvider>{children}</ModalContextProvider>
+            <ModalContextProvider>
+              {children}
+
+              <ToastContainer
+                position="top-center"
+                autoClose={4000}
+                hideProgressBar={true}
+                newestOnTop={true}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                pauseOnHover
+              />
+            </ModalContextProvider>
           </DrawerContextProvider>
         </TRPCReactProvider>
       </body>

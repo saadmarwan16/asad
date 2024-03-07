@@ -17,13 +17,13 @@ import Select from "@asad/lib/ui/Select";
 import { generateYears } from "@asad/lib/utils/generateYears";
 
 interface UpdatePresidentFormProps {
-  president?: TPresident;
+  president: TPresident;
 }
 
 const UpdatePresidentForm: FunctionComponent<UpdatePresidentFormProps> = ({
   president,
 }) => {
-  const [image, setImage] = useState<string | undefined>(president?.image);
+  const [image, setImage] = useState<string | null>(president.image);
   const {
     control,
     reset,
@@ -39,7 +39,7 @@ const UpdatePresidentForm: FunctionComponent<UpdatePresidentFormProps> = ({
       ...data,
       image,
     });
-    setImage(undefined);
+    setImage(null);
     reset();
   };
 

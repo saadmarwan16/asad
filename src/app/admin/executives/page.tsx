@@ -1,11 +1,13 @@
 import Logo from "@asad/lib/components/Logo";
-import { executives } from "@asad/lib/data/home/executives";
 import { Routes } from "@asad/lib/routes";
 import styles from "@asad/styles/shared/executivepresidentactivities.module.css";
+import { api } from "@asad/trpc/server";
 import Image from "next/image";
 import Link from "next/link";
 
-const AdminExecutiveTeam = () => {
+const AdminExecutiveTeam = async () => {
+  const executives = (await api.executive.getMany.query()).executives;
+
   return (
     <div>
       <h4 className="mb-8 font-medium">Executive memebers</h4>
@@ -19,7 +21,7 @@ const AdminExecutiveTeam = () => {
             <div className={`${styles.imageContainer} aspect-[5/6]`}>
               <div className={`${styles.image}`}>
                 <Image
-                  src={executive.image ?? "/images/timeline.png"}
+                  src={executive.image ?? "/images/no_profile_image.jpg"}
                   alt={executive.name}
                   width={400}
                   height={700}

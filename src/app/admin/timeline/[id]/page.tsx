@@ -7,7 +7,7 @@ const AdminTimelineDetails = () => {
   return (
     <div>
       <h4 className="mb-8 font-medium">Update timeline</h4>
-      <UpdateTimelineForm timeline={timeline} />
+      {timeline && <UpdateTimelineForm timeline={timeline} />}
     </div>
   );
 };

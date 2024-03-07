@@ -16,7 +16,7 @@ import Select from "@asad/lib/ui/Select";
 import { generateYears } from "@asad/lib/utils/generateYears";
 
 const AddPresidentForm = () => {
-  const [image, setImage] = useState<string | undefined>(undefined);
+  const [image, setImage] = useState<string | null>(null);
   const {
     control,
     reset,
@@ -37,7 +37,7 @@ const AddPresidentForm = () => {
       ...data,
       image,
     });
-    setImage(undefined);
+    setImage(null);
     reset();
   };
 

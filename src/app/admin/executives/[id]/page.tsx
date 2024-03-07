@@ -1,8 +1,11 @@
-import { executives } from "@asad/lib/data/home/executives";
+import { type FunctionComponent } from "react";
 import UpdateExecutiveForm from "./_components/UpdateExecutiveForm";
+import { api } from "@asad/trpc/server";
 
-const AdminExecutiveDetails = () => {
-  const executive = executives[0];
+const AdminExecutiveDetails: FunctionComponent<{
+  params: { id: string };
+}> = async ({ params: { id } }) => {
+  const { executive } = await api.executive.getOne.query({ id: parseInt(id) });
 
   return (
     <div>

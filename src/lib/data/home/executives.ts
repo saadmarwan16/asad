@@ -1,4 +1,4 @@
-import { type TExecutive } from "@asad/lib/types/executive";
+import { type TExecutive } from "@asad/server/db/schema/executives";
 
 export const executives: TExecutive[] = [
     {
@@ -32,7 +32,7 @@ export const executives: TExecutive[] = [
     {
         id: 5,
         name: 'Iddris Acheampong',
-        role: 'Social Media Coordinator',
+        role: 'Communications Officer',
         image: '/images/activities-1.jpg',
         duties: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sunt dolorum assumenda itaque, qui magni eum dolorem perferendis libero quo tenetur maiores consequatur eligendi optio. Sed qui ut odio fugit voluptate!'
     },

@@ -1,6 +1,6 @@
 import { type FunctionComponent } from "react";
 import Image from "next/image";
-import { type TExecutive } from "@asad/lib/types/executive";
+import { type TExecutive } from "@asad/server/db/schema/executives";
 
 interface ExecutiveMemberContentProps {
   executive: TExecutive;

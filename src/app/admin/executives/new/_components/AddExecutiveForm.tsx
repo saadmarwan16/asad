@@ -13,9 +13,11 @@ import AdminAddOrUpdateImage from "@asad/lib/components/admin/AdminAddOrUpdateIm
 import { type TInsertExecutive } from "@asad/server/db/schema/executives";
 import { roles } from "@asad/lib/data/admin/roles";
 import { api } from "@asad/trpc/react";
+import errorToast from "@asad/lib/utils/errorToast";
+import successToast from "@asad/lib/utils/successToast";
 
 const AddExecutiveForm = () => {
-  const [image, setImage] = useState<string | undefined>(undefined);
+  const [image, setImage] = useState<string | null>(null);
   const {
     control,
     reset,
@@ -31,23 +33,19 @@ const AddExecutiveForm = () => {
   });
 
   const insertExecutive = api.executive.insert.useMutation({
-    onError: (error) => {
-      console.log("An error occurred", error);
-    },
-    onSuccess: (val) => {
-      console.log("Suucess", val);
+    onError: (error) => errorToast(error.message, "insert-executive-error"),
+    onSuccess: (res) => {
+      successToast(res.message, "insert-executive-success");
+      setImage(null);
+      reset();
     },
   });
 
-  const onSubmit: SubmitHandler<TInsertExecutive> = async (data) => {
-    console.log({
+  const onSubmit: SubmitHandler<TInsertExecutive> = async (data) =>
+    await insertExecutive.mutateAsync({
       ...data,
-      image,
+      image: image ?? null,
     });
-    const res = await insertExecutive.mutateAsync(data)
-    setImage(undefined);
-    reset();
-  };
 
   return (
     <form id={styles.form} onSubmit={handleSubmit(onSubmit)}>

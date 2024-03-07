@@ -15,7 +15,7 @@ import DatePicker from "react-datepicker";
 import DateInput from "@asad/lib/ui/DateInput";
 
 const AddTimelineForm = () => {
-  const [image, setImage] = useState<string | undefined>(undefined);
+  const [image, setImage] = useState<string | null>(null);
   const {
     control,
     reset,
@@ -36,7 +36,7 @@ const AddTimelineForm = () => {
       ...data,
       image,
     });
-    setImage(undefined);
+    setImage(null);
     reset();
   };
 
