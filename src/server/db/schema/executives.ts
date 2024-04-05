@@ -1,13 +1,18 @@
 import { roles } from "@asad/lib/data/admin/roles";
-import { sqliteTable, text, integer } from "drizzle-orm/sqlite-core";
+import { sqliteTable, text, integer, index } from "drizzle-orm/sqlite-core";
 
-export const executives = sqliteTable("executives", {
-  id: integer("id").primaryKey({ autoIncrement: true }),
-  name: text("name").notNull(),
-  role: text("role", { enum: roles }).notNull(),
-  image: text("image"),
-  duties: text("duties").notNull(),
-});
+export const executives = sqliteTable(
+  "executives",
+  {
+    id: integer("id").primaryKey({ autoIncrement: true }),
+    name: text("name").notNull(),
+    role: text("role", { enum: roles }).notNull(),
+    image: text("image"),
+    duties: text("duties").notNull(),
+    roleId: integer("role_id").notNull(),
+  },
+  (table) => ({ roleIdx: index("role_idx").on(table.roleId) }),
+);
 
 export type TInsertExecutive = typeof executives.$inferInsert;
 

@@ -8,6 +8,7 @@ import Textarea from "@asad/lib/ui/Textarea";
 import styles from "@asad/styles/admin/new_executive.module.css";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { type SubmitHandler, useForm, Controller } from "react-hook-form";
 import AdminAddOrUpdateImage from "@asad/lib/components/admin/AdminAddOrUpdateImage";
 import { type TInsertExecutive } from "@asad/server/db/schema/executives";
@@ -15,12 +16,13 @@ import { roles } from "@asad/lib/data/admin/roles";
 import { api } from "@asad/trpc/react";
 import errorToast from "@asad/lib/utils/errorToast";
 import successToast from "@asad/lib/utils/successToast";
+import { Routes } from "@asad/lib/routes";
 
 const AddExecutiveForm = () => {
+  const router = useRouter();
   const [image, setImage] = useState<string | null>(null);
   const {
     control,
-    reset,
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm<TInsertExecutive>({
@@ -31,13 +33,12 @@ const AddExecutiveForm = () => {
       duties: "",
     },
   });
-
   const insertExecutive = api.executive.insert.useMutation({
     onError: (error) => errorToast(error.message, "insert-executive-error"),
-    onSuccess: (res) => {
+    onSuccess: async (res) => {
+      router.refresh();
+      router.push(Routes.ADMIN_EXECUTIVES);
       successToast(res.message, "insert-executive-success");
-      setImage(null);
-      reset();
     },
   });
 

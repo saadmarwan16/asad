@@ -4,8 +4,10 @@ import styles from "@asad/styles/shared/executivepresidentactivities.module.css"
 import { api } from "@asad/trpc/server";
 import Image from "next/image";
 import Link from "next/link";
+import { unstable_noStore as noStore } from "next/cache";
 
 const AdminExecutiveTeam = async () => {
+  noStore();
   const executives = (await api.executive.getMany.query()).executives;
 
   return (
@@ -47,5 +49,7 @@ const AdminExecutiveTeam = async () => {
     </div>
   );
 };
+
+export const dynamic = "force-dynamic";
 
 export default AdminExecutiveTeam;

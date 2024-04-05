@@ -15,4 +15,6 @@ const AdminExecutiveDetails: FunctionComponent<{
   );
 };
 
+export const dynamic = 'force-dynamic';
+
 export default AdminExecutiveDetails;

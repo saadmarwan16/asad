@@ -41,6 +41,7 @@ const UpdateExecutiveForm: FunctionComponent<UpdateExecutiveFormProps> = ({
   const updateExecutive = api.executive.update.useMutation({
     onError: (error) => errorToast(error.message, "update-executive-error"),
     onSuccess: (res) => {
+      router.refresh();
       router.push(Routes.ADMIN_EXECUTIVES);
       successToast(res.message, "update-executive-success");
     },
@@ -49,6 +50,7 @@ const UpdateExecutiveForm: FunctionComponent<UpdateExecutiveFormProps> = ({
   const removeExecutive = api.executive.delete.useMutation({
     onError: (error) => errorToast(error.message, "remove-executive-error"),
     onSuccess: (res) => {
+      router.refresh();
       router.push(Routes.ADMIN_EXECUTIVES);
       successToast(res.message, "remove-executive-success");
     },

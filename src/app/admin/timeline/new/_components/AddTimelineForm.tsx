@@ -7,12 +7,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { type SubmitHandler, useForm, Controller } from "react-hook-form";
 import AdminAddOrUpdateImage from "@asad/lib/components/admin/AdminAddOrUpdateImage";
-import {
-  type TTimelineForm,
-  timelineFormSchema,
-} from "@asad/lib/types/timeline";
 import DatePicker from "react-datepicker";
 import DateInput from "@asad/lib/ui/DateInput";
+import { type TInsertTimeline } from "@asad/server/db/schema/timeline";
+import { Timeline } from "@asad/lib/types/timeline";
 
 const AddTimelineForm = () => {
   const [image, setImage] = useState<string | null>(null);
@@ -23,15 +21,15 @@ const AddTimelineForm = () => {
     getValues,
     setValue,
     formState: { errors },
-  } = useForm<TTimelineForm>({
-    resolver: zodResolver(timelineFormSchema),
+  } = useForm<TInsertTimeline>({
+    resolver: zodResolver(Timeline.omit({ id: true, image: true })),
     defaultValues: {
-      date: null,
+      date: undefined,
       description: "",
     },
   });
 
-  const onSubmit: SubmitHandler<TTimelineForm> = (data) => {
+  const onSubmit: SubmitHandler<TInsertTimeline> = (data) => {
     console.log({
       ...data,
       image,
@@ -49,7 +47,9 @@ const AddTimelineForm = () => {
           render={({ field }) => (
             <DatePicker
               selected={getValues().date}
-              onChange={(date) => setValue("date", date)}
+              onChange={(date) => {
+                if (date) setValue("date", date);
+              }}
               placeholderText="Select the date the timeline occured"
               dateFormat="dd/MM/yyyy"
               toggleCalendarOnIconClick={false}

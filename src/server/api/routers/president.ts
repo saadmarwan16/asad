@@ -3,9 +3,8 @@ import { Executive } from "@asad/lib/types/executive";
 import { executives } from "@asad/server/db/schema/executives";
 import { eq } from "drizzle-orm";
 import { TRPCClientError } from "@trpc/client";
-import { roles } from "@asad/lib/data/admin/roles";
 
-export const executiveRouter = createTRPCRouter({
+export const presidentRouter = createTRPCRouter({
   getOne: publicProcedure
     .input(Executive.pick({ id: true }))
     .query(async ({ ctx, input }) => {
@@ -23,18 +22,15 @@ export const executiveRouter = createTRPCRouter({
     }),
   getMany: publicProcedure.query(async ({ ctx }) => {
     return {
-      executives: await ctx.db.query.executives.findMany({
-        orderBy: (table, { asc }) => asc(table.roleId),
-      }),
+      executives: await ctx.db.query.executives.findMany(),
     };
   }),
   insert: publicProcedure
     .input(Executive.omit({ id: true }))
     .mutation(async ({ ctx, input }) => {
-      const index = roles.indexOf(input.role);
       await ctx.db.insert(executives).values({
         ...input,
-        roleId: index,
+        roleId: 1,
       });
 
       return {
@@ -43,11 +39,7 @@ export const executiveRouter = createTRPCRouter({
     }),
   update: publicProcedure.input(Executive).mutation(async ({ ctx, input }) => {
     const { id: id, ...payload } = input;
-    const index = roles.indexOf(payload.role);
-    await ctx.db
-      .update(executives)
-      .set({ ...payload, roleId: index })
-      .where(eq(executives.id, id));
+    await ctx.db.update(executives).set(payload).where(eq(executives.id, id));
 
     return {
       message: "Executive updated successfully",
