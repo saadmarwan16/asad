@@ -41,21 +41,25 @@ const refineYear = (data: string, ctx: z.RefinementCtx) => {
   return true;
 };
 
-export const newPresidentSchema = z
+export const NewPresident = z
   .object({
     name: z.string().min(2, "Name must contain at least 2 characters"),
     from: z.string().superRefine(refineYear),
     to: z.string().superRefine(refineYear),
+    image: z.string().url("Invalid president image url").nullable(),
     accomplishments: z
       .string()
-      .min(120, "Description of president's accomplishments is too short"),
+      .min(
+        120,
+        "Description of president's accomplishments must contain at least 120 characters",
+      ),
   })
   .refine(({ from, to }) => to >= from, {
     message: "Year sworn out cannot be earlier than year sworn in",
     path: ["to"],
   });
 
-export const presidentSchema = z
+export const President = z
   .object({
     id: z.number({ required_error: "Id is required" }),
     name: z.string().min(2, "Name must contain at least 2 characters"),
@@ -64,13 +68,12 @@ export const presidentSchema = z
     image: z.string().url("Invalid president image url").nullable(),
     accomplishments: z
       .string()
-      .min(120, "Description of president's accomplishments must contain at least 120 characters"),
+      .min(
+        120,
+        "Description of president's accomplishments must contain at least 120 characters",
+      ),
   })
   .refine(({ from, to }) => to >= from, {
     message: "Year sworn out cannot be earlier than year sworn in",
     path: ["to"],
   });
-
-export type TNewPresident = z.infer<typeof newPresidentSchema>;
-
-export type TPresident = z.infer<typeof presidentSchema>;

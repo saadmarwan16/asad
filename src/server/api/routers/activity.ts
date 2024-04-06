@@ -4,7 +4,7 @@ import { TRPCClientError } from "@trpc/client";
 import { Timeline } from "@asad/lib/types/timeline";
 import { timeline } from "@asad/server/db/schema/timeline";
 
-export const timelineRouter = createTRPCRouter({
+export const activityRouter = createTRPCRouter({
   getOne: publicProcedure
     .input(Timeline.pick({ id: true }))
     .query(async ({ ctx, input }) => {

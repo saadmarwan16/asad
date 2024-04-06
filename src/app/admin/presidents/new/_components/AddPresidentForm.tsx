@@ -7,23 +7,28 @@ import Textarea from "@asad/lib/ui/Textarea";
 import styles from "@asad/styles/admin/new_or_update_president.module.css";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { type SubmitHandler, useForm, Controller } from "react-hook-form";
-import {
-  type TNewPresident,
-  newPresidentSchema,
-} from "@asad/lib/types/president";
 import Select from "@asad/lib/ui/Select";
 import { generateYears } from "@asad/lib/utils/generateYears";
+import { type TInsertPresident } from "@asad/server/db/schema/presidents";
+import { NewPresident } from "@asad/lib/types/president";
+import { api } from "@asad/trpc/react";
+import errorToast from "@asad/lib/utils/errorToast";
+import { Routes } from "@asad/lib/routes";
+import successToast from "@asad/lib/utils/successToast";
+
+// Without passion life is nothing. Without passion life is nothing. Without passion life is nothing. Without passion life is nothing. Without passion life is nothing. Without passion life is nothing.
 
 const AddPresidentForm = () => {
+  const router = useRouter();
   const [image, setImage] = useState<string | null>(null);
   const {
     control,
-    reset,
     handleSubmit,
-    formState: { errors },
-  } = useForm<TNewPresident>({
-    resolver: zodResolver(newPresidentSchema),
+    formState: { errors, isSubmitting },
+  } = useForm<TInsertPresident>({
+    resolver: zodResolver(NewPresident),
     defaultValues: {
       name: "",
       from: "",
@@ -31,14 +36,21 @@ const AddPresidentForm = () => {
       accomplishments: "",
     },
   });
+  const insertPresident = api.president.insert.useMutation({
+    onError: (error) => errorToast(error.message, "insert-president-error"),
+    onSuccess: async (res) => {
+      router.refresh();
+      router.push(Routes.ADMIN_PRESIDENTS);
+      successToast(res.message, "insert-president-success");
+    },
+  });
 
-  const onSubmit: SubmitHandler<TNewPresident> = (data) => {
-    console.log({
+  const onSubmit: SubmitHandler<TInsertPresident> = async (data) => {
+    console.log('Came here', data)
+    await insertPresident.mutateAsync({
       ...data,
-      image,
+      image: image ?? null,
     });
-    setImage(null);
-    reset();
   };
 
   return (
@@ -123,8 +135,8 @@ const AddPresidentForm = () => {
         setImage={(value) => setImage(value)}
       />
       <div id={styles.button}>
-        <Button type="submit" data-text="Add">
-          Add
+        <Button disabled={isSubmitting} type="submit" data-text="Add">
+          {isSubmitting ? "Adding..." : "Add"}
         </Button>
       </div>
     </form>
