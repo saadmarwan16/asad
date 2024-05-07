@@ -1,6 +1,5 @@
 import Logo from "@asad/lib/components/Logo";
 import { Routes } from "@asad/lib/routes";
-import { db } from "@asad/server/db";
 import styles from "@asad/styles/shared/executivepresidentactivities.module.css";
 import Image from "next/image";
 import Link from "next/link";

@@ -1,8 +1,17 @@
-import { presidents } from "@asad/lib/data/home/presidents";
 import UpdatePresidentForm from "./_components/UpdatePresidentForm";
+import { getOnePresident } from "../queries";
+import { type FunctionComponent } from "react";
 
-const AdminPresidentDetails = () => {
-  const president = presidents[0];
+interface AdminPresidentDetailsProps {
+  params: {
+    id: string;
+  };
+}
+
+const AdminPresidentDetails: FunctionComponent<
+  AdminPresidentDetailsProps
+> = async ({ params: { id } }) => {
+  const president = await getOnePresident(id);
 
   return (
     <div>

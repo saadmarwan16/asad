@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import AdminAddOrUpdateImage from "@asad/lib/components/admin/AdminAddOrUpdateImage";
 import Button from "@asad/lib/ui/Button";
 import Input from "@asad/lib/ui/Input";
@@ -8,36 +9,46 @@ import styles from "@asad/styles/admin/new_or_update_president.module.css";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { type FunctionComponent, useState } from "react";
 import { type SubmitHandler, useForm, Controller } from "react-hook-form";
-import { NewPresident } from "@asad/lib/types/president";
+import { President } from "@asad/lib/types/president";
 import Select from "@asad/lib/ui/Select";
 import { generateYears } from "@asad/lib/utils/generateYears";
-import { type TInsertPresident } from "@asad/server/db/schema/presidents";
+import { type TPresident } from "@asad/server/db/schema/presidents";
+import errorToast from "@asad/lib/utils/errorToast";
+import successToast from "@asad/lib/utils/successToast";
+import { removePresident, updatePresident } from "../../actions";
+import { Routes } from "@asad/lib/routes";
 
 interface UpdatePresidentFormProps {
-  president: TInsertPresident;
+  president: TPresident;
 }
 
 const UpdatePresidentForm: FunctionComponent<UpdatePresidentFormProps> = ({
   president,
 }) => {
+  const router = useRouter();
   const [image, setImage] = useState<string | null>(president.image ?? null);
+  const [removing, setRemoving] = useState(false);
   const {
     control,
-    reset,
     handleSubmit,
-    formState: { errors, isDirty },
-  } = useForm<TInsertPresident>({
-    resolver: zodResolver(NewPresident),
+    formState: { errors, isSubmitting },
+  } = useForm<TPresident>({
+    resolver: zodResolver(President),
     defaultValues: president,
   });
 
-  const onSubmit: SubmitHandler<TInsertPresident> = (data) => {
-    console.log({
+  const onSubmit: SubmitHandler<TPresident> = async (data) => {
+    const res = await updatePresident({
       ...data,
-      image,
+      image
     });
-    setImage(null);
-    reset();
+    if (res) {
+      errorToast(res, "update-president-error");
+      return;
+    }
+
+    router.push(Routes.ADMIN_PRESIDENTS);
+    successToast("President updated successfully", "update-president-success");
   };
 
   return (
@@ -125,12 +136,29 @@ const UpdatePresidentForm: FunctionComponent<UpdatePresidentFormProps> = ({
         <Button
           type="button"
           data-text="Remove"
+          disabled={removing}
           variant="secondary"
-          onClick={() => console.log("Executive removed")}
+          onClick={async () => {
+            const id = president.id;
+            if (id) {
+              setRemoving(true);
+              const res = await removePresident(id);
+              if (res) {
+                errorToast(res, "remove-president-error");
+                return;
+              }
+
+              router.push(Routes.ADMIN_PRESIDENTS);
+              successToast(
+                "President removed successfully",
+                "remove-president-success",
+              );
+            }
+          }}
         >
           Remove
         </Button>
-        <Button type="submit" data-text="Update" disabled={!isDirty}>
+        <Button type="submit" data-text="Update" disabled={isSubmitting}>
           Update
         </Button>
       </div>

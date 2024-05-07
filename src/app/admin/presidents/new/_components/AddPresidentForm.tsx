@@ -13,10 +13,10 @@ import Select from "@asad/lib/ui/Select";
 import { generateYears } from "@asad/lib/utils/generateYears";
 import { type TInsertPresident } from "@asad/server/db/schema/presidents";
 import { NewPresident } from "@asad/lib/types/president";
-import { api } from "@asad/trpc/react";
 import errorToast from "@asad/lib/utils/errorToast";
 import { Routes } from "@asad/lib/routes";
 import successToast from "@asad/lib/utils/successToast";
+import { insertPresident } from "../../actions";
 
 const AddPresidentForm = () => {
   const router = useRouter();
@@ -32,23 +32,22 @@ const AddPresidentForm = () => {
       from: "",
       to: "",
       accomplishments: "",
-    },
-  });
-  const insertPresident = api.president.insert.useMutation({
-    onError: (error) => errorToast(error.message, "insert-president-error"),
-    onSuccess: async (res) => {
-      router.refresh();
-      router.push(Routes.ADMIN_PRESIDENTS);
-      successToast(res.message, "insert-president-success");
+      image: image,
     },
   });
 
   const onSubmit: SubmitHandler<TInsertPresident> = async (data) => {
-    console.log('Came here', data)
-    await insertPresident.mutateAsync({
+    const res = await insertPresident({
       ...data,
-      image: image ?? null,
+      image,
     });
+    if (res) {
+      errorToast(res, "insert-president-error");
+      return;
+    }
+
+    router.push(Routes.ADMIN_PRESIDENTS);
+    successToast("President added successfully", "insert-president-success");
   };
 
   return (
@@ -134,7 +133,7 @@ const AddPresidentForm = () => {
       />
       <div id={styles.button}>
         <Button disabled={isSubmitting} type="submit" data-text="Add">
-          {isSubmitting ? "Adding..." : "Add"}
+          Add
         </Button>
       </div>
     </form>
