@@ -18,8 +18,6 @@ import errorToast from "@asad/lib/utils/errorToast";
 import { Routes } from "@asad/lib/routes";
 import successToast from "@asad/lib/utils/successToast";
 
-// Without passion life is nothing. Without passion life is nothing. Without passion life is nothing. Without passion life is nothing. Without passion life is nothing. Without passion life is nothing.
-
 const AddPresidentForm = () => {
   const router = useRouter();
   const [image, setImage] = useState<string | null>(null);

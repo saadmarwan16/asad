@@ -51,7 +51,8 @@ div {
 }
 
 small,
-label {
+label,
+.small {
   font-size: 0.833rem;
   font-weight: 300;
 }

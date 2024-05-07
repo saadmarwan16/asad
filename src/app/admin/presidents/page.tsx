@@ -1,11 +1,14 @@
 import Logo from "@asad/lib/components/Logo";
-import { presidents } from "@asad/lib/data/home/presidents";
 import { Routes } from "@asad/lib/routes";
+import { db } from "@asad/server/db";
 import styles from "@asad/styles/shared/executivepresidentactivities.module.css";
 import Image from "next/image";
 import Link from "next/link";
+import { getManyPresidents } from "./queries";
 
-const AdminPresident = () => {
+const AdminPresident = async () => {
+  const presidents = await getManyPresidents();
+
   return (
     <div>
       <h4 className="mb-8 font-medium">Presidents</h4>
@@ -19,7 +22,7 @@ const AdminPresident = () => {
             <div className={`${styles.imageContainer} aspect-[5/6]`}>
               <div className={`${styles.image}`}>
                 <Image
-                  src={president.image ?? "/images/timeline.png"}
+                  src={president.image ?? "/images/no_profile_image.jpg"}
                   alt={president.name}
                   width={400}
                   height={700}
@@ -37,7 +40,9 @@ const AdminPresident = () => {
             </div>
             <div>
               <small>
-                From {president.from} to {president.to}
+                From{" "}
+                <span className="small !font-medium">{president.from}</span> to{" "}
+                <span className="small !font-medium">{president.to}</span>
               </small>
               <h6 className="truncate font-medium">{president.name}</h6>
             </div>
