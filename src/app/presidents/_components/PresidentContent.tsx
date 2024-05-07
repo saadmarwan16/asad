@@ -1,6 +1,7 @@
 import { type FunctionComponent } from "react";
 import Image from "next/image";
-import { type TPresident } from "@asad/lib/types/president";
+import { type TPresident } from "@asad/server/db/schema/presidents";
+
 
 interface PresidentContentProps {
   president: TPresident;

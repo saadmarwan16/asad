@@ -6,7 +6,7 @@ import styles from "@asad/styles/shared/executivepresidentactivities.module.css"
 import Image from "next/image";
 import { useModalContext } from "@asad/lib/components/ModalContextProvider";
 import PresidentContent from "./PresidentContent";
-import { type TPresident } from "@asad/lib/types/president";
+import { type TPresident } from "@asad/server/db/schema/presidents";
 
 interface PresidentCardProps {
   president: TPresident;

@@ -8,33 +8,30 @@ import styles from "@asad/styles/admin/new_or_update_president.module.css";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { type FunctionComponent, useState } from "react";
 import { type SubmitHandler, useForm, Controller } from "react-hook-form";
-import {
-  type TNewPresident,
-  newPresidentSchema,
-  type TPresident,
-} from "@asad/lib/types/president";
+import { NewPresident } from "@asad/lib/types/president";
 import Select from "@asad/lib/ui/Select";
 import { generateYears } from "@asad/lib/utils/generateYears";
+import { type TInsertPresident } from "@asad/server/db/schema/presidents";
 
 interface UpdatePresidentFormProps {
-  president: TPresident;
+  president: TInsertPresident;
 }
 
 const UpdatePresidentForm: FunctionComponent<UpdatePresidentFormProps> = ({
   president,
 }) => {
-  const [image, setImage] = useState<string | null>(president.image);
+  const [image, setImage] = useState<string | null>(president.image ?? null);
   const {
     control,
     reset,
     handleSubmit,
     formState: { errors, isDirty },
-  } = useForm<TNewPresident>({
-    resolver: zodResolver(newPresidentSchema),
+  } = useForm<TInsertPresident>({
+    resolver: zodResolver(NewPresident),
     defaultValues: president,
   });
 
-  const onSubmit: SubmitHandler<TNewPresident> = (data) => {
+  const onSubmit: SubmitHandler<TInsertPresident> = (data) => {
     console.log({
       ...data,
       image,

@@ -1,4 +1,4 @@
-import { type TPresident } from "@asad/lib/types/president";
+import { type TPresident } from "@asad/server/db/schema/presidents";
 
 export const presidents: TPresident[] = [
     {
