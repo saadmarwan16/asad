@@ -11,6 +11,11 @@ import DatePicker from "react-datepicker";
 import DateInput from "@asad/lib/ui/DateInput";
 import { type TTimeline } from "@asad/server/db/schema/timeline";
 import { Timeline } from "@asad/lib/types/timeline";
+import errorToast from "@asad/lib/utils/errorToast";
+import successToast from "@asad/lib/utils/successToast";
+import { useRouter } from "next/navigation";
+import { removeTimeline, updateTimelne } from "../../actions";
+import { Routes } from "@asad/lib/routes";
 
 interface UpdateTimelineFormProps {
   timeline: TTimeline;
@@ -19,26 +24,37 @@ interface UpdateTimelineFormProps {
 const UpdateTimelineForm: FunctionComponent<UpdateTimelineFormProps> = ({
   timeline,
 }) => {
+  const router = useRouter();
   const [image, setImage] = useState<string | null>(timeline.image);
+  const [removing, setRemoving] = useState(false);
   const {
     control,
-    reset,
     handleSubmit,
     getValues,
     setValue,
-    formState: { errors, isDirty },
+    formState: { errors, isSubmitting },
   } = useForm<TTimeline>({
     resolver: zodResolver(Timeline),
     defaultValues: timeline,
   });
 
-  const onSubmit: SubmitHandler<TTimeline> = (data) => {
-    console.log({
+  const onSubmit: SubmitHandler<TTimeline> = async (data) => {
+    if (!image) {
+      errorToast("Image is required", "update-timeline-image-missing-error");
+      return;
+    }
+
+    const res = await updateTimelne({
       ...data,
       image,
     });
-    setImage(null);
-    reset();
+    if (!res) {
+      router.push(Routes.ADMIN_TIMELINE);
+      successToast("Timeline updated successfully", "update-timeline-success");
+      return;
+    }
+
+    errorToast(res, "update-timeline-error");
   };
 
   return (
@@ -98,11 +114,25 @@ const UpdateTimelineForm: FunctionComponent<UpdateTimelineFormProps> = ({
           type="button"
           data-text="Remove"
           variant="secondary"
-          onClick={() => console.log("Executive removed")}
+          disabled={removing}
+          onClick={async () => {
+            setRemoving(true);
+            const res = await removeTimeline(timeline.id);
+            if (!res) {
+              router.push(Routes.ADMIN_TIMELINE);
+              successToast(
+                "Timeline removed successfully",
+                "remove-timeline-success",
+              );
+              return;
+            }
+
+            errorToast(res, "remove-president-error");
+          }}
         >
           Remove
         </Button>
-        <Button type="submit" data-text="Update" disabled={!isDirty}>
+        <Button type="submit" data-text="Update" disabled={isSubmitting}>
           Update
         </Button>
       </div>

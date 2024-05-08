@@ -2,7 +2,6 @@ import { type FunctionComponent } from "react";
 import Image from "next/image";
 import { type TPresident } from "@asad/server/db/schema/presidents";
 
-
 interface PresidentContentProps {
   president: TPresident;
 }
@@ -15,12 +14,13 @@ const PresidentContent: FunctionComponent<PresidentContentProps> = ({
       <div>
         <h2 className="font-medium capitalize leading-10">{president.name}</h2>
         <span className="uppercase text-content-100">
-          From {president.from} to {president.to}
+          From <span className="font-semibold">{president.from}</span> to{" "}
+          <span className="font-semibold">{president.to}</span>
         </span>
       </div>
       <div className="relative h-[400px] overflow-hidden">
         <Image
-          src={president.image ?? '/images/no_profile_image.jpg'}
+          src={president.image ?? "/images/no_profile_image.jpg"}
           alt={president.name}
           width={500}
           height={500}

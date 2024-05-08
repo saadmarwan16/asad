@@ -4,7 +4,7 @@ import styles from "@asad/styles/shared/admin/side.module.css";
 import { MdArrowForwardIos } from "react-icons/md";
 import Link from "next/link";
 import { aside } from "@asad/lib/data/shared/admin/aside";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { Routes } from "@asad/lib/routes";
 import { usePathname } from "next/navigation";
@@ -13,10 +13,6 @@ const AdminAside = () => {
   const [open, setOpen] = useState(false);
   const [current, setCurrent] = useState("Dashboard");
   const [route, setRoute] = useState(usePathname());
-
-  useEffect(() => {
-    setRoute(usePathname());
-  }, [usePathname()]);
 
   return (
     <aside className="h-full w-full overflow-y-scroll bg-base-200 lg:fixed lg:w-64">

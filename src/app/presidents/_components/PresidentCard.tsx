@@ -26,7 +26,7 @@ const PresidentCard: FunctionComponent<PresidentCardProps> = ({
       <div className={`${styles.imageContainer} aspect-[5/6]`}>
         <div className={`${styles.image}`}>
           <Image
-            src={president.image ?? '/images/no_profile_image.jpg'}
+            src={president.image ?? "/images/no_profile_image.jpg"}
             alt={president.name}
             width={400}
             height={700}
@@ -44,7 +44,8 @@ const PresidentCard: FunctionComponent<PresidentCardProps> = ({
       </div>
       <div>
         <small>
-          From {president.from} to {president.to}
+          From <span className="small !font-medium">{president.from}</span> to{" "}
+          <span className="small !font-medium">{president.to}</span>
         </small>
         <h6 className="truncate font-medium">{president.name}</h6>
       </div>

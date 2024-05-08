@@ -1,8 +1,17 @@
-import { timelines } from "@asad/lib/data/home/timelines";
 import UpdateTimelineForm from "./_components/UpdateTimelineForm";
+import { getOneTimeline } from "../queries";
+import { type FunctionComponent } from "react";
 
-const AdminTimelineDetails = () => {
-  const timeline = timelines[0];
+interface AdminTimelineDetailsProps {
+  params: {
+    id: string;
+  };
+}
+
+const AdminTimelineDetails: FunctionComponent<
+  AdminTimelineDetailsProps
+> = async ({ params: { id } }) => {
+  const timeline = await getOneTimeline(id);
 
   return (
     <div>

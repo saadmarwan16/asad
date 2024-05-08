@@ -11,16 +11,21 @@ import DatePicker from "react-datepicker";
 import DateInput from "@asad/lib/ui/DateInput";
 import { type TInsertTimeline } from "@asad/server/db/schema/timeline";
 import { Timeline } from "@asad/lib/types/timeline";
+import errorToast from "@asad/lib/utils/errorToast";
+import { addTimeline } from "../../actions";
+import { useRouter } from "next/navigation";
+import { Routes } from "@asad/lib/routes";
+import successToast from "@asad/lib/utils/successToast";
 
 const AddTimelineForm = () => {
+  const router = useRouter();
   const [image, setImage] = useState<string | null>(null);
   const {
     control,
-    reset,
     handleSubmit,
     getValues,
     setValue,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<TInsertTimeline>({
     resolver: zodResolver(Timeline.omit({ id: true, image: true })),
     defaultValues: {
@@ -29,13 +34,23 @@ const AddTimelineForm = () => {
     },
   });
 
-  const onSubmit: SubmitHandler<TInsertTimeline> = (data) => {
-    console.log({
+  const onSubmit: SubmitHandler<TInsertTimeline> = async (data) => {
+    if (!image) {
+      errorToast("Image is required", "insert-timeline-image-missing-error");
+      return;
+    }
+
+    const res = await addTimeline({
       ...data,
       image,
     });
-    setImage(null);
-    reset();
+    if (!res) {
+      router.push(Routes.ADMIN_TIMELINE);
+      successToast("Timeline added successfully", "insert-timeline-success");
+      return;
+    }
+
+    errorToast(res, "insert-timeline-error");
   };
 
   return (
@@ -91,7 +106,7 @@ const AddTimelineForm = () => {
         setImage={(value) => setImage(value)}
       />
       <div id={styles.button}>
-        <Button type="submit" data-text="Add">
+        <Button type="submit" disabled={isSubmitting} data-text="Add">
           Add
         </Button>
       </div>
