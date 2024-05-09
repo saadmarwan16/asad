@@ -4,11 +4,11 @@ import { eq } from "drizzle-orm";
 import { unstable_cache } from "next/cache";
 
 export const getManyTimeline = unstable_cache(
-  async () => {
+  async (pageIdx: number | undefined = 0, pageSize: number | undefined = 1) => {
     const timeline = await db.query.timeline.findMany({
       orderBy: (table, { desc }) => desc(table.date),
-      limit: 1,
-      offset: 0
+      limit: pageSize,
+      offset: pageIdx * pageSize,
     });
 
     return timeline;

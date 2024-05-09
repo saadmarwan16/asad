@@ -1,41 +1,16 @@
 import ExecutivePresidentTimelineActivitiesWrapper from "@asad/lib/components/ExecutivePresidentTimelineActivitiesWrapper";
-import Button from "@asad/lib/ui/Button";
-import Image from "next/image";
-import styles from "@asad/styles/shared/timeline.module.css";
-import dayjs from "dayjs";
 import { getManyTimeline } from "../admin/timeline/queries";
+import Timelines from "./_components/Timelines";
 
 const Timeline = async () => {
-  const timelines = await getManyTimeline();
+  const timelines = await getManyTimeline(0, 12);
 
   return (
     <ExecutivePresidentTimelineActivitiesWrapper
       title="Timeline"
       description="Empowering Unity, Celebrating Diversity: Our Journey Through Time."
     >
-      <div id={styles.cards}>
-        {timelines.map((timeline) => (
-          <div
-            className={`${styles.card} relative flex flex-col gap-6 border-l-2 border-base-400 py-12 pl-6 md:gap-8`}
-          >
-            <span className="text-lg font-semibold md:text-xl">
-              {dayjs(timeline.date).format("MMM YYYY")}
-            </span>
-            <div className="relative aspect-[3/2] w-full">
-              <Image
-                src={timeline.image}
-                alt={timeline.description}
-                fill
-                className="h-full w-full rounded-lg object-cover"
-              />
-            </div>
-            <p>{timeline.description}</p>
-          </div>
-        ))}
-      </div>
-      <div className="self-end">
-        <Button data-text="Load more">Load more</Button>
-      </div>
+      <Timelines data={timelines} />
     </ExecutivePresidentTimelineActivitiesWrapper>
   );
 };

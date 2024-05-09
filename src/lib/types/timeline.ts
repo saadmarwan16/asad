@@ -8,3 +8,8 @@ export const Timeline = z.object({
     .url("Invalid timeline image url"),
   description: z.string().min(40, "Description of timeline is too short"),
 });
+
+export const TimelineQuery = z.object({
+  pageIdx: z.number({ coerce: true }).optional().default(0),
+  pageSize: z.number({ coerce: true }).optional().default(1),
+});

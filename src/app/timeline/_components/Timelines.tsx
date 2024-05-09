@@ -1,12 +1,10 @@
-"use client";
+'use client';
 
 import { type FunctionComponent } from "react";
 import Button from "@asad/lib/ui/Button";
 import Image from "next/image";
 import styles from "@asad/styles/shared/timeline.module.css";
 import dayjs from "dayjs";
-import Link from "next/link";
-import { Routes } from "@asad/lib/routes";
 import useSWRInfinite from "swr/infinite";
 import { type TTimeline } from "@asad/server/db/schema/timeline";
 
@@ -34,14 +32,13 @@ const Timelines: FunctionComponent<TimelinesProps> = ({ data }) => {
   );
 
   return (
-    <div className="flex flex-col gap-8">
+    <>
       <div id={styles.cards}>
         {timelines?.map((page) => (
           <>
             {page.map((timeline) => (
-              <Link
-                href={Routes.ADMIN_TIMELINE_DETAILS(timeline.id.toString())}
-                className={`${styles.card} ${styles.cardHover} relative flex flex-col gap-6 border-l-2 border-base-400 py-12 pl-6 md:gap-8`}
+              <div
+                className={`${styles.card} relative flex flex-col gap-6 border-l-2 border-base-400 py-12 pl-6 md:gap-8`}
               >
                 <span className="text-lg font-semibold md:text-xl">
                   {dayjs(timeline.date).format("MMM YYYY")}
@@ -50,12 +47,12 @@ const Timelines: FunctionComponent<TimelinesProps> = ({ data }) => {
                   <Image
                     src={timeline.image}
                     alt={timeline.description}
-                    fill={true}
+                    fill
                     className="h-full w-full rounded-lg object-cover"
                   />
                 </div>
                 <p>{timeline.description}</p>
-              </Link>
+              </div>
             ))}
           </>
         ))}
@@ -71,7 +68,7 @@ const Timelines: FunctionComponent<TimelinesProps> = ({ data }) => {
           Load more
         </Button>
       </div>
-    </div>
+    </>
   );
 };
 
