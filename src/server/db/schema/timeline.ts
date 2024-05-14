@@ -8,7 +8,7 @@ export const timeline = sqliteTable(
     image: text("image").notNull(),
     description: text("accomplishments").notNull(),
   },
-  (table) => ({ dateIdx: index("date_idx").on(table.date) }),
+  (table) => ({ dateIdx: index("timeline_date_idx").on(table.date) }),
 );
 
 export type TInsertTimeline = typeof timeline.$inferInsert;

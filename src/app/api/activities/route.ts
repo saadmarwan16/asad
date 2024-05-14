@@ -1,4 +1,4 @@
-import { getManyTimeline } from "@asad/app/admin/timeline/queries";
+import { getManyActivities } from "@asad/app/admin/activities/queries";
 import { PaginatedQuery } from "@asad/lib/types/pagination";
 import { type NextRequest, NextResponse } from "next/server";
 
@@ -18,7 +18,7 @@ export const GET = async (req: NextRequest) => {
   }
 
   const { pageIdx, pageSize } = results.data;
-  const res = await getManyTimeline(pageIdx, pageSize);
+  const res = await getManyActivities(pageIdx, pageSize);
 
   return NextResponse.json(res);
 };

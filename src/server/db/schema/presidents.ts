@@ -10,7 +10,7 @@ export const presidents = sqliteTable(
     image: text("image"),
     accomplishments: text("accomplishments").notNull(),
   },
-  (table) => ({ fromIdx: index("from_idx").on(table.from) }),
+  (table) => ({ fromIdx: index("presidents_from_idx").on(table.from) }),
 );
 
 export type TInsertPresident = typeof presidents.$inferInsert;

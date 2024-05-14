@@ -1,5 +1,5 @@
 export const genres = [
-  "",
+  "Select a genre",
   "Meeting",
   "Speaking",
   "Election",

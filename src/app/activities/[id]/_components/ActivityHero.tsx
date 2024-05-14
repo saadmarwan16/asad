@@ -6,12 +6,14 @@ import Image from "next/image";
 const ActivityHero = () => {
   return (
     <>
-      <section className="lg:relative lg:-z-20 lg:h-screen flex-grow bg-base-100 px-5 text-2xl">
+      <section className="min-h-[400px] flex-grow bg-base-100 px-5 text-2xl lg:relative lg:-z-20 lg:h-screen">
         <div
           id={styles.hero}
-          className="-mx-5 lg:h-full w-screen lg:w-full text-base-100 lg:fixed"
+          className="-mx-5 min-h-[400px] w-screen text-base-100 lg:fixed lg:h-full lg:w-full"
         >
-          <header className={`${styles.header} z-50 text-md flex h-20 items-center justify-between px-4 sm:h-24 lg:hidden`}>
+          <header
+            className={`${styles.header} text-md z-50 flex h-20 items-center justify-between px-4 sm:h-24 lg:hidden`}
+          >
             <div className="flex items-center">
               <Logo />
             </div>
@@ -34,15 +36,9 @@ const ActivityHero = () => {
           </div>
 
           <div
-            className={`${styles.textContainer} z-10 mb-16 mt-24 sm:mt-28 md:mt-32 lg:mt-40 flex flex-col gap-12 px-4 md:mb-24 lg:pl-20 lg:pr-0`}
+            className={`${styles.textContainer} z-10 mb-16 mt-32 flex flex-col gap-12 px-4 md:mb-24 lg:mt-40 lg:pl-20 lg:pr-0`}
           >
             <h4 className={`${styles.title} grow`}>ASAD Speaking Club</h4>
-
-            <h2
-              className={`${styles.slogan} font-semibold leading-10 md:leading-[3rem]`}
-            >
-              Come let's speak English together
-            </h2>
 
             <div
               className={`${styles.genres} flex flex-wrap gap-2 text-primary-400`}
@@ -55,6 +51,9 @@ const ActivityHero = () => {
               </small>
               <small className="bg-primary-100 px-4 py-0 uppercase">
                 Community
+              </small>
+              <small className="bg-primary-100 px-4 py-0 uppercase">
+                Inter-racial
               </small>
               <small className="bg-primary-100 px-4 py-0 uppercase">
                 Inter-racial

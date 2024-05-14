@@ -5,22 +5,17 @@
   grid-template-areas:
     "images"
     "name"
-    "slogan"
-    "genres"
     "date"
-    "location"
     "city"
-    "sponsors"
+    "location"
     "description"
+    "genres"
+    "sponsors"
     "button";
 }
 
 #name {
   grid-area: name;
-}
-
-#slogan {
-  grid-area: slogan;
 }
 
 #images {
@@ -63,11 +58,11 @@
     row-gap: 2rem;
     grid-template-areas:
       "name images"
-      "slogan images"
-      "genres images"
       "date images"
-      "description location"
-      "description city"
+      "city images"
+      "location genres"
+      "description genres"
+      "description sponsors"
       "description sponsors"
       "button button";
   }

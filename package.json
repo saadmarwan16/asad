@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "build": "next build",
-    "db:push": "dotenv drizzle-kit push:sqlite",
+    "db:push": "dotenv drizzle-kit push",
     "db:studio": "dotenv drizzle-kit studio",
     "dev": "next dev",
     "lint": "next lint",
@@ -57,7 +57,7 @@
     "@typescript-eslint/parser": "^6.11.0",
     "autoprefixer": "^10.4.14",
     "dotenv-cli": "^7.3.0",
-    "drizzle-kit": "^0.20.18",
+    "drizzle-kit": "^0.21.1",
     "eslint": "^8.54.0",
     "postcss": "^8.4.31",
     "prettier": "^3.1.0",

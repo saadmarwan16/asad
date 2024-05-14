@@ -127,7 +127,7 @@ const UpdateTimelineForm: FunctionComponent<UpdateTimelineFormProps> = ({
               return;
             }
 
-            errorToast(res, "remove-president-error");
+            errorToast(res, "remove-timeline-error");
           }}
         >
           Remove

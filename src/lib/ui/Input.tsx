@@ -43,7 +43,7 @@ const Input: FunctionComponent<InputProps> = forwardRef<
   InputProps
 >(({ variant, width, size, top, bottom, ...props }, ref) => {
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2 grow">
       {top && (
         <label className="cursor-default select-none font-medium">{top}</label>
       )}

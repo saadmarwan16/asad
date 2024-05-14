@@ -22,7 +22,8 @@ const UploadThingPage = () => {
           allowedContent: "Upto 1MB allowed",
         }}
         onClientUploadComplete={(res) => {
-          console.log("Files: ", res);
+          res.map((img) => console.log(img.url));
+          const urls = res.map((img) => img.url);
           alert("Upload Completed");
         }}
         onUploadError={(error: Error) => {

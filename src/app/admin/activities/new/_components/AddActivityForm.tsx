@@ -17,27 +17,33 @@ import DateInput from "@asad/lib/ui/DateInput";
 import DatePicker from "react-datepicker";
 import { MdDelete } from "react-icons/md";
 import { IoMdAdd } from "react-icons/io";
-import AddActivityImages from "./AddActivityImages";
 import { useState } from "react";
+import { addActivity } from "../../actions";
+import { genres } from "@asad/lib/data/admin/genres";
+import errorToast from "@asad/lib/utils/errorToast";
+import { type TInsertActivity } from "@asad/server/db/schema/activities";
+import successToast from "@asad/lib/utils/successToast";
+import { useRouter } from "next/navigation";
+import { Routes } from "@asad/lib/routes";
+import AddOrUpdateActivityImages from "../../_components/AddOrUpdateActivityImages";
 
-const AddExecutiveForm = () => {
+const AddActivityForm = () => {
+  const router = useRouter();
   const [images, setImages] = useState<string[]>([]);
   const {
     control,
-    reset,
     handleSubmit,
     getValues,
     setValue,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<TNewActivity>({
     resolver: zodResolver(newActivitySchema),
     defaultValues: {
       name: "",
-      slogan: "",
-      genres: ["s"],
+      genres: ["Select a genre"],
       date: null,
       location: "",
-      sponsors: "",
+      sponsors: [],
       city: "",
       description: "",
       images: [],
@@ -48,21 +54,37 @@ const AddExecutiveForm = () => {
     name: "genres" as never,
   });
 
-  const onSubmit: SubmitHandler<TNewActivity> = (data) => {
-    console.log({
+  const {
+    fields: sponsors,
+    insert: insertSponsor,
+    remove: removeSponsor,
+  } = useFieldArray({
+    control,
+    name: "sponsors" as never,
+  });
+
+  const onSubmit: SubmitHandler<TInsertActivity> = async (data) => {
+    const res = await addActivity({
       ...data,
+      images,
     });
-    reset();
+    if (!res) {
+      router.push(Routes.ADMIN_ACTIVITIES);
+      successToast("Activity added successfully", "insert-activity-success");
+      return;
+    }
+
+    errorToast(res, "insert-activity-error");
   };
 
   return (
     <form id={styles.form} onSubmit={handleSubmit(onSubmit)}>
-      <AddActivityImages
+      <AddOrUpdateActivityImages
         images={images}
-        setImage={(value) => {
-          if (value) setImages([...images, value]);
+        setImages={(value) => {
+          if (value) setImages([...images, ...value]);
         }}
-        removeImage={(idx) => setImages(images.filter((_, i) => i !== idx))}
+        removeImage={(url) => setImages(images.filter((i) => i !== url))}
       />
 
       <div id={styles.name}>
@@ -80,41 +102,21 @@ const AddExecutiveForm = () => {
         />
       </div>
 
-      <div id={styles.slogan}>
-        <Controller
-          control={control}
-          name="slogan"
-          render={({ field }) => (
-            <Input
-              top="Slogan"
-              placeholder="Enter activity slogan here"
-              {...field}
-              bottom={errors.slogan?.message}
-            />
-          )}
-        />
-      </div>
-
       <div id={styles.genres} className="flex flex-col gap-2">
-        {top && (
-          <label className="cursor-default select-none font-medium">
-            Genres
-          </label>
-        )}
+        <label className="cursor-default select-none font-medium">Genres</label>
         {fields.map((field, idx) => (
           <div key={field.id} className="flex gap-2">
             <Controller
               control={control}
               name={`genres.${idx}`}
               render={({ field }) => (
-                <Select id="genres" {...field} bottom={errors.genres?.message}>
-                  <option value="s" disabled>
-                    Select a genre
+                <Select id="genres" {...field}>
+                  <option value={genres[0]} disabled>
+                    {genres[0]}
                   </option>
-                  <option value="Speaking">Speaking</option>
-                  <option value="English">English</option>
-                  <option value="Interracial">Interracial</option>
-                  <option value="Community">Community</option>
+                  {genres.slice(1).map((genre) => (
+                    <option value={genre}>{genre}</option>
+                  ))}
                 </Select>
               )}
             />
@@ -123,7 +125,10 @@ const AddExecutiveForm = () => {
               className="flex aspect-square w-10 items-center justify-center rounded-lg bg-primary-200 font-medium text-base-100 transition-all hover:bg-primary-300"
               onClick={() => {
                 if (fields.length <= 1) {
-                  console.log("Activity must have at least 1 genre");
+                  errorToast(
+                    "Activity must have at least 1 genre",
+                    "remove-genre-error",
+                  );
                   return;
                 }
 
@@ -136,12 +141,15 @@ const AddExecutiveForm = () => {
               type="button"
               className="flex aspect-square w-10 items-center justify-center rounded-lg bg-primary-200 font-medium text-base-100 transition-all hover:bg-primary-300"
               onClick={() => {
-                if (fields.length >= 3) {
-                  console.log("Activity can have up to 3 genres");
+                if (fields.length >= 5) {
+                  errorToast(
+                    "Activity can have up to 5 genres",
+                    "add-genre-error",
+                  );
                   return;
                 }
 
-                insert(idx + 1, "s");
+                insert(idx + 1, "Select a genre");
               }}
             >
               <IoMdAdd className="text-3xl" />
@@ -211,18 +219,57 @@ const AddExecutiveForm = () => {
       </div>
 
       <div id={styles.sponsors}>
-        <Controller
-          control={control}
-          name="sponsors"
-          render={({ field }) => (
-            <Input
-              top="Sponsors"
-              placeholder="Enter a sponsor here"
-              {...field}
-              bottom={errors.sponsors?.message}
-            />
+        <div className="flex flex-col gap-2">
+          <label className="cursor-default select-none font-medium">
+            Sponsors
+          </label>
+          {sponsors.length > 0 ? (
+            <>
+              {sponsors.map((sponsor, idx) => (
+                <div key={sponsor.id} className="flex gap-2">
+                  <Controller
+                    control={control}
+                    name={`sponsors.${idx}`}
+                    render={({ field }) => (
+                      <Input placeholder="Enter a sponsor here" {...field} />
+                    )}
+                  />
+                  <button
+                    type="button"
+                    className="flex aspect-square w-10 items-center justify-center rounded-lg bg-primary-200 font-medium text-base-100 transition-all hover:bg-primary-300"
+                    onClick={() => removeSponsor(idx)}
+                  >
+                    <MdDelete className="text-3xl" />
+                  </button>
+                  <button
+                    type="button"
+                    className="flex aspect-square w-10 items-center justify-center rounded-lg bg-primary-200 font-medium text-base-100 transition-all hover:bg-primary-300"
+                    onClick={() => {
+                      if (sponsors.length >= 5) {
+                        errorToast(
+                          "Activity can have up to 5 sponsors",
+                          "add-sponsor-error",
+                        );
+                        return;
+                      }
+
+                      insertSponsor(idx + 1, "");
+                    }}
+                  >
+                    <IoMdAdd className="text-3xl" />
+                  </button>
+                </div>
+              ))}
+            </>
+          ) : (
+            <Button
+              data-text="Add Sponsor"
+              onClick={() => insertSponsor(0, "")}
+            >
+              Add Sponsor
+            </Button>
           )}
-        />
+        </div>
       </div>
 
       <div id={styles.description}>
@@ -242,7 +289,7 @@ const AddExecutiveForm = () => {
       </div>
 
       <div id={styles.button}>
-        <Button type="submit" data-text="Add">
+        <Button type="submit" data-text="Add" disabled={isSubmitting}>
           Add
         </Button>
       </div>
@@ -250,4 +297,4 @@ const AddExecutiveForm = () => {
   );
 };
 
-export default AddExecutiveForm;
+export default AddActivityForm;

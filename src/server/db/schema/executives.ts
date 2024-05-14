@@ -11,7 +11,7 @@ export const executives = sqliteTable(
     duties: text("duties").notNull(),
     roleId: integer("role_id").notNull(),
   },
-  (table) => ({ roleIdx: index("role_idx").on(table.roleId) }),
+  (table) => ({ roleIdx: index("executives_role_idx").on(table.roleId) }),
 );
 
 export type TInsertExecutive = typeof executives.$inferInsert;

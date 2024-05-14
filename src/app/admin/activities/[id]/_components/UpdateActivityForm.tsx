@@ -12,17 +12,20 @@ import {
   Controller,
   useFieldArray,
 } from "react-hook-form";
-import {
-  type TNewActivity,
-  newActivitySchema,
-  type TActivity,
-} from "@asad/lib/types/activity";
+import { activitySchema } from "@asad/lib/types/activity";
 import DateInput from "@asad/lib/ui/DateInput";
 import DatePicker from "react-datepicker";
 import { MdDelete } from "react-icons/md";
 import { IoMdAdd } from "react-icons/io";
 import { type FunctionComponent, useState } from "react";
-import UpdateActivityImages from "./UpdateActivityImages";
+import { removeActivity, updateActivity } from "../../actions";
+import successToast from "@asad/lib/utils/successToast";
+import errorToast from "@asad/lib/utils/errorToast";
+import { useRouter } from "next/navigation";
+import { Routes } from "@asad/lib/routes";
+import { type TActivity } from "@asad/server/db/schema/activities";
+import AddOrUpdateActivityImages from "../../_components/AddOrUpdateActivityImages";
+import { genres } from "@asad/lib/data/admin/genres";
 
 interface UpdateExecutiveFormProps {
   activity: TActivity;
@@ -31,16 +34,17 @@ interface UpdateExecutiveFormProps {
 const UpdateExecutiveForm: FunctionComponent<UpdateExecutiveFormProps> = ({
   activity,
 }) => {
+  const router = useRouter();
+  const [removing, setRemoving] = useState(false);
   const [images, setImages] = useState<string[]>(activity.images);
   const {
     control,
-    reset,
     handleSubmit,
     getValues,
     setValue,
-    formState: { errors },
-  } = useForm<TNewActivity>({
-    resolver: zodResolver(newActivitySchema),
+    formState: { errors, isSubmitting },
+  } = useForm<TActivity>({
+    resolver: zodResolver(activitySchema),
     defaultValues: activity,
   });
   const { fields, insert, remove } = useFieldArray({
@@ -48,21 +52,37 @@ const UpdateExecutiveForm: FunctionComponent<UpdateExecutiveFormProps> = ({
     name: "genres" as never,
   });
 
-  const onSubmit: SubmitHandler<TNewActivity> = (data) => {
-    console.log({
+  const {
+    fields: sponsors,
+    insert: insertSponsor,
+    remove: removeSponsor,
+  } = useFieldArray({
+    control,
+    name: "sponsors" as never,
+  });
+
+  const onSubmit: SubmitHandler<TActivity> = async (data) => {
+    const res = await updateActivity({
       ...data,
+      images,
     });
-    reset();
+    if (!res) {
+      router.push(Routes.ADMIN_ACTIVITIES);
+      successToast("Activity updated successfully", "update-activity-success");
+      return;
+    }
+
+    errorToast(res, "update-activity-error");
   };
 
   return (
     <form id={styles.form} onSubmit={handleSubmit(onSubmit)}>
-      <UpdateActivityImages
+      <AddOrUpdateActivityImages
         images={images}
-        setImage={(value) => {
-          if (value) setImages([...images, value]);
+        setImages={(value) => {
+          if (value) setImages([...images, ...value]);
         }}
-        removeImage={(idx) => setImages(images.filter((_, i) => i !== idx))}
+        removeImage={(url) => setImages(images.filter((i) => i !== url))}
       />
 
       <div id={styles.name}>
@@ -80,21 +100,6 @@ const UpdateExecutiveForm: FunctionComponent<UpdateExecutiveFormProps> = ({
         />
       </div>
 
-      <div id={styles.slogan}>
-        <Controller
-          control={control}
-          name="slogan"
-          render={({ field }) => (
-            <Input
-              top="Slogan"
-              placeholder="Enter activity slogan here"
-              {...field}
-              bottom={errors.slogan?.message}
-            />
-          )}
-        />
-      </div>
-
       <div id={styles.genres} className="flex flex-col gap-2">
         {top && (
           <label className="cursor-default select-none font-medium">
@@ -107,14 +112,13 @@ const UpdateExecutiveForm: FunctionComponent<UpdateExecutiveFormProps> = ({
               control={control}
               name={`genres.${idx}`}
               render={({ field }) => (
-                <Select id="genres" {...field} bottom={errors.genres?.message}>
-                  <option value="s" disabled>
-                    Select a genre
+                <Select id="genres" {...field}>
+                  <option value={genres[0]} disabled>
+                    {genres[0]}
                   </option>
-                  <option value="Speaking">Speaking</option>
-                  <option value="English">English</option>
-                  <option value="Interracial">Interracial</option>
-                  <option value="Community">Community</option>
+                  {genres.slice(1).map((genre) => (
+                    <option value={genre}>{genre}</option>
+                  ))}
                 </Select>
               )}
             />
@@ -211,18 +215,57 @@ const UpdateExecutiveForm: FunctionComponent<UpdateExecutiveFormProps> = ({
       </div>
 
       <div id={styles.sponsors}>
-        <Controller
-          control={control}
-          name="sponsors"
-          render={({ field }) => (
-            <Input
-              top="Sponsors"
-              placeholder="Enter a sponsor here"
-              {...field}
-              bottom={errors.sponsors?.message}
-            />
+        <div className="flex flex-col gap-2">
+          <label className="cursor-default select-none font-medium">
+            Sponsors
+          </label>
+          {sponsors.length > 0 ? (
+            <>
+              {sponsors.map((sponsor, idx) => (
+                <div key={sponsor.id} className="flex gap-2">
+                  <Controller
+                    control={control}
+                    name={`sponsors.${idx}`}
+                    render={({ field }) => (
+                      <Input placeholder="Enter a sponsor here" {...field} />
+                    )}
+                  />
+                  <button
+                    type="button"
+                    className="flex aspect-square w-10 items-center justify-center rounded-lg bg-primary-200 font-medium text-base-100 transition-all hover:bg-primary-300"
+                    onClick={() => removeSponsor(idx)}
+                  >
+                    <MdDelete className="text-3xl" />
+                  </button>
+                  <button
+                    type="button"
+                    className="flex aspect-square w-10 items-center justify-center rounded-lg bg-primary-200 font-medium text-base-100 transition-all hover:bg-primary-300"
+                    onClick={() => {
+                      if (sponsors.length >= 5) {
+                        errorToast(
+                          "Activity can have up to 5 sponsors",
+                          "add-sponsor-error",
+                        );
+                        return;
+                      }
+
+                      insertSponsor(idx + 1, "");
+                    }}
+                  >
+                    <IoMdAdd className="text-3xl" />
+                  </button>
+                </div>
+              ))}
+            </>
+          ) : (
+            <Button
+              data-text="Add Sponsor"
+              onClick={() => insertSponsor(0, "")}
+            >
+              Add Sponsor
+            </Button>
           )}
-        />
+        </div>
       </div>
 
       <div id={styles.description}>
@@ -240,10 +283,31 @@ const UpdateExecutiveForm: FunctionComponent<UpdateExecutiveFormProps> = ({
           )}
         />
       </div>
+      <div id={styles.button} className="flex flex-wrap justify-end gap-4">
+        <Button
+          type="button"
+          data-text="Remove"
+          variant="secondary"
+          disabled={removing}
+          onClick={async () => {
+            setRemoving(true);
+            const res = await removeActivity(activity.id);
+            if (!res) {
+              router.push(Routes.ADMIN_ACTIVITIES);
+              successToast(
+                "Activity removed successfully",
+                "remove-activity-success",
+              );
+              return;
+            }
 
-      <div id={styles.button}>
-        <Button type="submit" data-text="Add">
-          Add
+            errorToast(res, "remove-activity-error");
+          }}
+        >
+          Remove
+        </Button>
+        <Button type="submit" data-text="Update" disabled={isSubmitting}>
+          Update
         </Button>
       </div>
     </form>

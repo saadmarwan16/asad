@@ -1,8 +1,18 @@
-import { activities } from "@asad/lib/data/home/activities";
 import UpdateActivityForm from "./_components/UpdateActivityForm";
+import { type FunctionComponent } from "react";
+import { getOneActivity } from "../queries";
 
-const AdminActivityDetails = () => {
-  const activity = activities[0];
+interface AdminActivityDetailsProps {
+  params: {
+    id: string;
+  };
+}
+
+const AdminActivityDetails: FunctionComponent<
+  AdminActivityDetailsProps
+> = async ({ params: { id } }) => {
+  const activity = await getOneActivity(id);
+
   return (
     <div>
       <h4 className="mb-8 font-medium">Update activity</h4>
