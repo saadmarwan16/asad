@@ -1,12 +1,17 @@
 import Logo from "@asad/lib/components/Logo";
-import { activities } from "@asad/lib/data/home/activities";
 import Button from "@asad/lib/ui/Button";
 import { Routes } from "@asad/lib/routes";
 import styles from "@asad/styles/home/activities.module.css";
 import Link from "next/link";
 import dayjs from "dayjs";
+import { type TActivity } from "@asad/server/db/schema/activities";
+import { type FunctionComponent } from "react";
 
-const Activities = () => {
+interface ActivitiesProps {
+  activities: TActivity[];
+}
+
+const Activities: FunctionComponent<ActivitiesProps> = ({ activities }) => {
   return (
     <section
       id="activities"

@@ -45,7 +45,10 @@ const UpdateExecutiveForm: FunctionComponent<UpdateExecutiveFormProps> = ({
     formState: { errors, isSubmitting },
   } = useForm<TActivity>({
     resolver: zodResolver(activitySchema),
-    defaultValues: activity,
+    defaultValues: {
+      ...activity,
+      date: activity.date ? new Date(activity.date) : null,
+    },
   });
   const { fields, insert, remove } = useFieldArray({
     control,

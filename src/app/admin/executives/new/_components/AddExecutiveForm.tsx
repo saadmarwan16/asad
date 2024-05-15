@@ -13,10 +13,10 @@ import { type SubmitHandler, useForm, Controller } from "react-hook-form";
 import AdminAddOrUpdateImage from "@asad/lib/components/admin/AdminAddOrUpdateImage";
 import { type TInsertExecutive } from "@asad/server/db/schema/executives";
 import { roles } from "@asad/lib/data/admin/roles";
-import { api } from "@asad/trpc/react";
 import errorToast from "@asad/lib/utils/errorToast";
 import successToast from "@asad/lib/utils/successToast";
 import { Routes } from "@asad/lib/routes";
+import { addExecutive } from "../../actions";
 
 const AddExecutiveForm = () => {
   const router = useRouter();
@@ -33,20 +33,20 @@ const AddExecutiveForm = () => {
       duties: "",
     },
   });
-  const insertExecutive = api.executive.insert.useMutation({
-    onError: (error) => errorToast(error.message, "insert-executive-error"),
-    onSuccess: async (res) => {
-      router.refresh();
-      router.push(Routes.ADMIN_EXECUTIVES);
-      successToast(res.message, "insert-executive-success");
-    },
-  });
 
-  const onSubmit: SubmitHandler<TInsertExecutive> = async (data) =>
-    await insertExecutive.mutateAsync({
+  const onSubmit: SubmitHandler<TInsertExecutive> = async (data) => {
+    const res = await addExecutive({
       ...data,
       image: image ?? null,
     });
+    if (!res) {
+      router.push(Routes.ADMIN_EXECUTIVES);
+      successToast("Executive added successfully", "insert-executive-success");
+      return;
+    }
+
+    errorToast(res, "insert-executive-error");
+  };
 
   return (
     <form id={styles.form} onSubmit={handleSubmit(onSubmit)}>
@@ -110,7 +110,7 @@ const AddExecutiveForm = () => {
       />
       <div id={styles.button}>
         <Button disabled={isSubmitting} type="submit" data-text="Add">
-          {isSubmitting ? "Adding..." : "Add"}
+          Add
         </Button>
       </div>
     </form>

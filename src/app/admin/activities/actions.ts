@@ -22,7 +22,6 @@ export const addActivity = async (data: TInsertActivity) => {
     };
     await db.insert(activities).values(res);
   } catch (e) {
-    console.log(e)
     return "Unexpected error";
   } finally {
     revalidateTag("activities");

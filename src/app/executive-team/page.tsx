@@ -2,16 +2,17 @@ import ExecutivePresidentTimelineActivitiesWrapper from "@asad/lib/components/Ex
 import styles from "@asad/styles/shared/executivepresidentactivities.module.css";
 
 import ExecutiveMemberCard from "./_components/ExecutiveMemberCard";
-import { executives } from "@asad/lib/data/home/executives";
+import { getManyExecutives } from "../admin/executives/queries";
 
-const ExecutiveTeam = () => {
+const ExecutiveTeam = async () => {
+  const executives = await getManyExecutives();
+
   return (
     <ExecutivePresidentTimelineActivitiesWrapper
       title="Executive team"
       description="Their vision, expertise and dedication have propelled the association to
     excellence and new heights."
     >
-      <h6>Filter</h6>
       <div id={styles.cards}>
         {executives.map((executive) => (
           <ExecutiveMemberCard key={executive.id} executive={executive} />

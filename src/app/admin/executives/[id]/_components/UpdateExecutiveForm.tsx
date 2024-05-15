@@ -13,10 +13,10 @@ import { type SubmitHandler, useForm, Controller } from "react-hook-form";
 import { roles } from "@asad/lib/data/admin/roles";
 import AdminAddOrUpdateImage from "@asad/lib/components/admin/AdminAddOrUpdateImage";
 import { type TExecutive } from "@asad/server/db/schema/executives";
-import { api } from "@asad/trpc/react";
 import errorToast from "@asad/lib/utils/errorToast";
 import successToast from "@asad/lib/utils/successToast";
 import { Routes } from "@asad/lib/routes";
+import { removeExecutive, updateExecutive } from "../../actions";
 
 interface UpdateExecutiveFormProps {
   executive: TExecutive;
@@ -26,8 +26,8 @@ const UpdateExecutiveForm: FunctionComponent<UpdateExecutiveFormProps> = ({
   executive,
 }) => {
   const router = useRouter();
+  const [removing, setRemoving] = useState(false);
   const [image, setImage] = useState<string | null>(executive.image);
-  const [deleting, setDeleting] = useState(false);
 
   const {
     control,
@@ -38,30 +38,19 @@ const UpdateExecutiveForm: FunctionComponent<UpdateExecutiveFormProps> = ({
     defaultValues: executive,
   });
 
-  const updateExecutive = api.executive.update.useMutation({
-    onError: (error) => errorToast(error.message, "update-executive-error"),
-    onSuccess: (res) => {
-      router.refresh();
-      router.push(Routes.ADMIN_EXECUTIVES);
-      successToast(res.message, "update-executive-success");
-    },
-  });
-
-  const removeExecutive = api.executive.delete.useMutation({
-    onError: (error) => errorToast(error.message, "remove-executive-error"),
-    onSuccess: (res) => {
-      router.refresh();
-      router.push(Routes.ADMIN_EXECUTIVES);
-      successToast(res.message, "remove-executive-success");
-    },
-    onSettled: () => setDeleting(false),
-  });
-
-  const onSubmit: SubmitHandler<TExecutive> = async (data) =>
-    await updateExecutive.mutateAsync({
+  const onSubmit: SubmitHandler<TExecutive> = async (data) => {
+    const res = await updateExecutive({
       ...data,
-      image: image ?? null,
+      image,
     });
+    if (!res) {
+      router.push(Routes.ADMIN_EXECUTIVES);
+      successToast("Executive updated successfully", "update-executive-success");
+      return;
+    }
+
+    errorToast(res, "update-executive-error");
+  }
 
   return (
     <form id={styles.form} onSubmit={handleSubmit(onSubmit)}>
@@ -125,19 +114,29 @@ const UpdateExecutiveForm: FunctionComponent<UpdateExecutiveFormProps> = ({
       />
       <div id={styles.button} className="flex flex-wrap justify-end gap-4">
         <Button
-          disabled={deleting}
+          disabled={removing}
           type="button"
           data-text="Remove"
           variant="secondary"
-          onClick={() => {
-            setDeleting(true);
-            removeExecutive.mutate({ id: executive.id });
+          onClick={async () => {
+            setRemoving(true);
+            const res = await removeExecutive(executive.id);
+            if (!res) {
+              router.push(Routes.ADMIN_EXECUTIVES);
+              successToast(
+                "Executive removed successfully",
+                "remove-executive-success",
+              );
+              return;
+            }
+
+            errorToast(res, "remove-executive-error");
           }}
         >
-          {deleting ? "Removing..." : "Remove"}
+          Remove
         </Button>
         <Button disabled={isSubmitting} type="submit" data-text="Update">
-          {isSubmitting ? "Updating..." : "Update"}
+          Update
         </Button>
       </div>
     </form>

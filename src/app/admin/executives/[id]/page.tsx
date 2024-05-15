@@ -1,11 +1,11 @@
 import { type FunctionComponent } from "react";
 import UpdateExecutiveForm from "./_components/UpdateExecutiveForm";
-import { api } from "@asad/trpc/server";
+import { getOneExecutive } from "../queries";
 
 const AdminExecutiveDetails: FunctionComponent<{
   params: { id: string };
 }> = async ({ params: { id } }) => {
-  const { executive } = await api.executive.getOne.query({ id: parseInt(id) });
+  const executive = await getOneExecutive(id);
 
   return (
     <div>
@@ -14,7 +14,5 @@ const AdminExecutiveDetails: FunctionComponent<{
     </div>
   );
 };
-
-export const dynamic = 'force-dynamic';
 
 export default AdminExecutiveDetails;
