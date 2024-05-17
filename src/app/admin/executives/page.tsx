@@ -4,6 +4,7 @@ import styles from "@asad/styles/shared/executivepresidentactivities.module.css"
 import Image from "next/image";
 import Link from "next/link";
 import { getManyExecutives } from "./queries";
+import NoItems from "../_components/NoItems";
 
 const AdminExecutiveTeam = async () => {
   const executives = await getManyExecutives();
@@ -11,7 +12,8 @@ const AdminExecutiveTeam = async () => {
   return (
     <div>
       <h4 className="mb-8 font-medium">Executive memebers</h4>
-      <div id={styles.cards}>
+      {executives.length > 0 ? (
+        <div id={styles.cards}>
         {executives.map((executive) => (
           <Link
             key={executive.id}
@@ -44,6 +46,7 @@ const AdminExecutiveTeam = async () => {
           </Link>
         ))}
       </div>
+      ) : (<NoItems title="executives" buttonTitle="Add an Executive" route={Routes.ADMIN_ADD_EXECUTIVE} />)}
     </div>
   );
 };

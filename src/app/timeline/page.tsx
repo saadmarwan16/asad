@@ -1,6 +1,7 @@
 import ExecutivePresidentTimelineActivitiesWrapper from "@asad/lib/components/ExecutivePresidentTimelineActivitiesWrapper";
 import { getManyTimeline } from "../admin/timeline/queries";
 import Timelines from "./_components/Timelines";
+import NoItems from "../_components/NoItems";
 
 const Timeline = async () => {
   const timelines = await getManyTimeline(0, 12);
@@ -10,7 +11,11 @@ const Timeline = async () => {
       title="Timeline"
       description="Empowering Unity, Celebrating Diversity: Our Journey Through Time."
     >
-      <Timelines data={timelines} />
+      {timelines.length > 0 ? (
+        <Timelines data={timelines} />
+      ) : (
+        <NoItems title="timeline" />
+      )}
     </ExecutivePresidentTimelineActivitiesWrapper>
   );
 };
