@@ -24,7 +24,7 @@ const ActivitiesList: FunctionComponent<ActivitiesListProps> = ({ data }) => {
     isValidating,
   } = useSWRInfinite(
     (pageIdx) => {
-      return `http://localhost:3000/api/activities?pageIdx=${pageIdx}&pageSize=1`;
+      return `http://localhost:3000/api/activities?pageIdx=${pageIdx}&pageSize=12`;
     },
     async (url) => {
       return fetch(url).then((res) => res.json() as Promise<TActivity[]>);

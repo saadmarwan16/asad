@@ -16,7 +16,7 @@ export const addTimeline = async (data: TInsertTimeline) => {
   } catch (e) {
     return "Unexpected error";
   } finally {
-    revalidateTag("timeline");
+    revalidateTag("timelines");
   }
 };
 
@@ -27,7 +27,7 @@ export const updateTimelne = async (data: TTimeline) => {
   } catch (e) {
     return "Unexpected error";
   } finally {
-    revalidateTag("timeline");
+    revalidateTag("timelines");
     revalidatePath(Routes.ADMIN_TIMELINE_DETAILS(data.id.toString()));
   }
 };
@@ -38,6 +38,6 @@ export const removeTimeline = async (id: number) => {
   } catch (e) {
     return "Unexpected error";
   } finally {
-    revalidateTag("timeline");
+    revalidateTag("timelines");
   }
 };

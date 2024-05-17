@@ -1,7 +1,6 @@
 import { db } from "@asad/server/db";
-import { eq } from "drizzle-orm";
-import { presidents } from "@asad/server/db/schema/presidents";
 import { unstable_cache } from "next/cache";
+import { notFound } from "next/navigation";
 
 export const getManyPresidents = unstable_cache(
   async () => {
@@ -22,15 +21,14 @@ export const getOnePresident = unstable_cache(
       throw new Error("Unexpected error");
     }
 
-    const president = await db
-      .select()
-      .from(presidents)
-      .where(eq(presidents.id, id));
-    if (president.length === 0) {
-      throw new Error("President not found");
+    const president = await db.query.presidents.findFirst({
+      where: (fields, { eq }) => eq(fields.id, id),
+    });
+    if (!president) {
+      notFound();
     }
 
-    return president[0];
+    return president;
   },
   ["president"],
 );

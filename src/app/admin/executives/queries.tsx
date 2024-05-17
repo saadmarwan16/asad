@@ -1,5 +1,6 @@
 import { db } from "@asad/server/db";
 import { unstable_cache } from "next/cache";
+import { notFound } from "next/navigation";
 
 export const getManyExecutives = unstable_cache(
   async () => {
@@ -24,7 +25,7 @@ export const getOneExecutive = unstable_cache(
       where: (fields, { eq }) => eq(fields.id, id),
     });
     if (!executive) {
-      throw new Error("Executive not found");
+      notFound();
     }
 
     return executive;
