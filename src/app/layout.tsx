@@ -5,10 +5,8 @@ import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { extractRouterConfig } from "uploadthing/server";
 
 import { Montserrat } from "next/font/google";
-import { cookies } from "next/headers";
 
 import { ourFileRouter } from "./api/uploadthing/core";
-import { TRPCReactProvider } from "@asad/trpc/react";
 import DrawerContextProvider from "@asad/lib/components/DrawerContextProvider";
 import ModalContextProvider from "@asad/lib/components/ModalContextProvider";
 import { ToastContainer } from "react-toastify";
@@ -36,24 +34,22 @@ export default function RootLayout({
         className={`font-sans ${montserrat.variable} bg-base-100 text-content-200`}
       >
         <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
-        <TRPCReactProvider cookies={cookies().toString()}>
-          <DrawerContextProvider>
-            <ModalContextProvider>
-              {children}
+        <DrawerContextProvider>
+          <ModalContextProvider>
+            {children}
 
-              <ToastContainer
-                position="top-center"
-                autoClose={4000}
-                hideProgressBar={true}
-                newestOnTop={true}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                pauseOnHover
-              />
-            </ModalContextProvider>
-          </DrawerContextProvider>
-        </TRPCReactProvider>
+            <ToastContainer
+              position="top-center"
+              autoClose={4000}
+              hideProgressBar={true}
+              newestOnTop={true}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              pauseOnHover
+            />
+          </ModalContextProvider>
+        </DrawerContextProvider>
       </body>
     </html>
   );
